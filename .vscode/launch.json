@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug pipeline with audio file",
+      "type": "python",
+      "request": "launch",
+      "module": "src.pipeline.run_pipeline",
+      "args": [
+        "Dataset\\300_AUDIO.wav",
+        "--output",
+        "data\\month_01_baseline\\300_report.json"
+      ],
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
+}

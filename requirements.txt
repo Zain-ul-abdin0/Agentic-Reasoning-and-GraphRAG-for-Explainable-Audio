@@ -1,0 +1,5 @@
+librosa
+networkx
+numpy
+pandas
+praat-parselmouth

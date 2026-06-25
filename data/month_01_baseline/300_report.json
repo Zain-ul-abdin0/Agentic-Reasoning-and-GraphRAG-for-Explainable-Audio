@@ -1,0 +1,129 @@
+{
+  "file": "300_AUDIO.wav",
+  "biomarkers": {
+    "duration_seconds": 648.5,
+    "energy": 0.010082407854497433,
+    "pitch_mean": 279.1104736328125,
+    "pitch_std": 169.74952697753906,
+    "pause_ratio": 0.9028589051657672,
+    "jitter": 0.01803777406293635,
+    "mfcc_mean": [
+      -420.8195495605469,
+      72.46096801757812,
+      16.55335807800293,
+      20.60474967956543,
+      7.017234802246094,
+      8.182559967041016,
+      -0.04596871882677078,
+      9.265275001525879,
+      0.7324381470680237,
+      3.7482683658599854,
+      -2.621431827545166,
+      0.628852367401123,
+      -1.9458400011062622
+    ],
+    "mfcc_std": [
+      115.96023559570312,
+      23.114116668701172,
+      16.4150390625,
+      11.290689468383789,
+      8.253551483154297,
+      8.653456687927246,
+      8.423317909240723,
+      6.5795769691467285,
+      6.360387325286865,
+      5.49871826171875,
+      4.532811164855957,
+      4.475384712219238,
+      4.715241432189941
+    ]
+  },
+  "rule_findings": [
+    {
+      "feature": "jitter",
+      "value": 0.01803777406293635,
+      "threshold": 0.015,
+      "direction": "high",
+      "matched": true,
+      "node": "High Jitter",
+      "summary": "Vocal instability can indicate autonomic arousal."
+    },
+    {
+      "feature": "pause_ratio",
+      "value": 0.9028589051657672,
+      "threshold": 0.8,
+      "direction": "high",
+      "matched": true,
+      "node": "High Pause Ratio",
+      "summary": "Long silence or hesitation can indicate speech disruption."
+    },
+    {
+      "feature": "energy",
+      "value": 0.010082407854497433,
+      "threshold": 0.015,
+      "direction": "low",
+      "matched": true,
+      "node": "Low Energy",
+      "summary": "Low vocal intensity can indicate reduced arousal."
+    },
+    {
+      "feature": "pitch_std",
+      "value": 169.74952697753906,
+      "threshold": 80.0,
+      "direction": "high",
+      "matched": true,
+      "node": "High Pitch Variability",
+      "summary": "Large pitch variation can indicate unstable vocal control."
+    }
+  ],
+  "explanation_paths": [
+    {
+      "start": "High Jitter",
+      "target": "Anxiety Risk",
+      "path": [
+        "High Jitter",
+        "Vocal Instability",
+        "Autonomic Arousal",
+        "Anxiety Risk"
+      ]
+    },
+    {
+      "start": "High Pause Ratio",
+      "target": "Cognitive Load",
+      "path": [
+        "High Pause Ratio",
+        "Speech Disruption",
+        "Cognitive Load"
+      ]
+    },
+    {
+      "start": "Low Energy",
+      "target": "Depressive Indicator",
+      "path": [
+        "Low Energy",
+        "Reduced Arousal",
+        "Depressive Indicator"
+      ]
+    },
+    {
+      "start": "High Pitch Variability",
+      "target": "Anxiety Risk",
+      "path": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Autonomic Arousal",
+        "Anxiety Risk"
+      ]
+    }
+  ],
+  "clinical_summary": [
+    "jitter=0.0180 crossed the high threshold of 0.015. Vocal instability can indicate autonomic arousal.",
+    "pause_ratio=0.9029 crossed the high threshold of 0.8. Long silence or hesitation can indicate speech disruption.",
+    "energy=0.0101 crossed the low threshold of 0.015. Low vocal intensity can indicate reduced arousal.",
+    "pitch_std=169.7495 crossed the high threshold of 80.0. Large pitch variation can indicate unstable vocal control.",
+    "Graph explanation: High Jitter -> Vocal Instability -> Autonomic Arousal -> Anxiety Risk.",
+    "Graph explanation: High Pause Ratio -> Speech Disruption -> Cognitive Load.",
+    "Graph explanation: Low Energy -> Reduced Arousal -> Depressive Indicator.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Autonomic Arousal -> Anxiety Risk."
+  ]
+}
