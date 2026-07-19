@@ -1,29 +1,4 @@
-FEATURE_RULES = {
-    "jitter": {
-        "threshold": 0.015,
-        "direction": "high",
-        "node": "High Jitter",
-        "summary": "Vocal instability can indicate autonomic arousal."
-    },
-    "pause_ratio": {
-        "threshold": 0.80,
-        "direction": "high",
-        "node": "High Pause Ratio",
-        "summary": "Long silence or hesitation can indicate speech disruption."
-    },
-    "energy": {
-        "threshold": 0.015,
-        "direction": "low",
-        "node": "Low Energy",
-        "summary": "Low vocal intensity can indicate reduced arousal."
-    },
-    "pitch_std": {
-        "threshold": 80.0,
-        "direction": "high",
-        "node": "High Pitch Variability",
-        "summary": "Large pitch variation can indicate unstable vocal control."
-    }
-}
+from src.graph.knowledge_graph import get_biomarker_rules
 
 
 def _rule_matches(value, threshold, direction):
@@ -36,11 +11,31 @@ def _rule_matches(value, threshold, direction):
     raise ValueError(f"Unsupported rule direction: {direction}")
 
 
-def assess_features(features):
+def _read_feature_value(features, feature_key, feature_index=None):
+    value = features.get(feature_key)
+
+    if value is None:
+        return None
+
+    if feature_index is None:
+        return value
+
+    if feature_index >= len(value):
+        return None
+
+    return value[feature_index]
+
+
+def assess_features(features, graph=None):
+    feature_rules = get_biomarker_rules(graph)
     findings = []
 
-    for feature_name, rule in FEATURE_RULES.items():
-        value = features.get(feature_name)
+    for rule in feature_rules.values():
+        value = _read_feature_value(
+            features,
+            rule["feature_key"],
+            rule["feature_index"]
+        )
         if value is None:
             continue
 
@@ -51,12 +46,14 @@ def assess_features(features):
         )
 
         findings.append({
-            "feature": feature_name,
+            "feature": rule["feature_key"],
+            "feature_index": rule["feature_index"],
             "value": value,
             "threshold": rule["threshold"],
             "direction": rule["direction"],
             "matched": matched,
             "node": rule["node"],
+            "label": rule["label"],
             "summary": rule["summary"]
         })
 

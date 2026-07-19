@@ -6,7 +6,7 @@ import json
 from src.feature_extraction import AudioFeatureExtractor
 from src.graph.feature_mapping import assess_features
 from src.graph.knowledge_graph import build_graph, terminal_risk_nodes
-from src.rag.graph_rag import get_all_explanations
+from src.rag.graph_rag import get_all_explanation_contexts
 from src.rag.reporter_agent import generate_report
 
 
@@ -37,18 +37,17 @@ def resolve_audio_path(input_path: str) -> Path:
 def analyze_audio(audio_file: Path):
     extractor = AudioFeatureExtractor(str(audio_file))
     features = extractor.extract_all()
-    findings = assess_features(features)
-
     graph = build_graph()
+    findings = assess_features(features, graph)
     explanations = []
 
     for finding in findings:
         if finding["matched"]:
             explanations.extend(
-                get_all_explanations(
+                get_all_explanation_contexts(
                     graph,
                     finding["node"],
-                    terminal_risk_nodes()
+                    terminal_risk_nodes(graph)
                 )
             )
 

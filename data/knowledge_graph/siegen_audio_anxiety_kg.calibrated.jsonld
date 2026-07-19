@@ -1,0 +1,460 @@
+{
+  "@context": {
+    "kg": "https://example.org/siegen-audio-anxiety#",
+    "id": "@id",
+    "type": "@type",
+    "name": "kg:name",
+    "description": "kg:description",
+    "source": "kg:source",
+    "feature_key": "kg:featureKey",
+    "feature_index": "kg:featureIndex",
+    "threshold": "kg:threshold",
+    "direction": "kg:direction",
+    "clinical_summary": "kg:clinicalSummary",
+    "nodes": "kg:nodes",
+    "edges": "kg:edges",
+    "from": "kg:from",
+    "to": "kg:to",
+    "relation": "kg:relation",
+    "weight": "kg:weight"
+  },
+  "id": "kg:siegen-audio-anxiety-knowledge-graph",
+  "name": "Simplified Siegen Audio-Anxiety Knowledge Graph",
+  "description": "A lightweight seed graph connecting acoustic biomarkers to anxiety-relevant symptoms, DSM-5/GAD-7 aligned clinical concepts, and conservative intervention suggestions.",
+  "version": "2026-07-month-02",
+  "nodes": [
+    {
+      "id": "biomarker:high_jitter",
+      "type": "Biomarker",
+      "name": "High Jitter",
+      "feature_key": "jitter",
+      "threshold": 0.13194497433207755,
+      "direction": "high",
+      "clinical_summary": "Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.10909090909090909,
+      "calibration_specificity": 0.9821428571428571,
+      "calibration_youden_j": 0.09123376623376611
+    },
+    {
+      "id": "biomarker:high_pause_ratio",
+      "type": "Biomarker",
+      "name": "High Pause Ratio",
+      "feature_key": "pause_ratio",
+      "threshold": 0.33980947443458004,
+      "direction": "high",
+      "clinical_summary": "Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 108,
+      "calibration_sensitivity": 0.9423076923076923,
+      "calibration_specificity": 0.19642857142857142,
+      "calibration_youden_j": 0.1387362637362637
+    },
+    {
+      "id": "biomarker:low_speech_rate",
+      "type": "Biomarker",
+      "name": "Low Speech Rate",
+      "feature_key": "speech_rate",
+      "threshold": 3.8373045786765463,
+      "direction": "low",
+      "clinical_summary": "Reduced words per second may reflect slowed speech production, psychomotor slowing, or reduced verbal fluency.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 108,
+      "calibration_sensitivity": 0.9423076923076923,
+      "calibration_specificity": 0.14285714285714285,
+      "calibration_youden_j": 0.08516483516483508
+    },
+    {
+      "id": "biomarker:low_energy",
+      "type": "Biomarker",
+      "name": "Low Vocal Energy",
+      "feature_key": "energy",
+      "threshold": 0.004403299186378717,
+      "direction": "low",
+      "clinical_summary": "Reduced vocal intensity may indicate flattened expression, fatigue, withdrawal, or low activation.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.2727272727272727,
+      "calibration_specificity": 0.8928571428571429,
+      "calibration_youden_j": 0.16558441558441572
+    },
+    {
+      "id": "biomarker:high_pitch_variability",
+      "type": "Biomarker",
+      "name": "High Pitch Variability",
+      "feature_key": "pitch_std",
+      "threshold": 42.65833713444162,
+      "direction": "high",
+      "clinical_summary": "Large pitch variation may suggest unstable vocal control during heightened affective states.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.7636363636363637,
+      "calibration_specificity": 0.5535714285714286,
+      "calibration_youden_j": 0.31720779220779227
+    },
+    {
+      "id": "biomarker:high_pitch_mean",
+      "type": "Biomarker",
+      "name": "High Mean Pitch",
+      "feature_key": "pitch_mean",
+      "threshold": 147.44227707006368,
+      "direction": "high",
+      "clinical_summary": "Raised average pitch can be consistent with tension or sympathetic arousal, depending on speaker baseline.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.7272727272727273,
+      "calibration_specificity": 0.5714285714285714,
+      "calibration_youden_j": 0.2987012987012987
+    },
+    {
+      "id": "biomarker:low_pitch_mean",
+      "type": "Biomarker",
+      "name": "Low Mean Pitch",
+      "feature_key": "pitch_mean",
+      "threshold": 122.94135465289503,
+      "direction": "low",
+      "clinical_summary": "Lowered average pitch can appear with reduced expressivity, fatigue, or psychomotor slowing.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.14545454545454545,
+      "calibration_specificity": 0.9285714285714286,
+      "calibration_youden_j": 0.0740259740259741
+    },
+    {
+      "id": "biomarker:high_mfcc_1_mean",
+      "type": "Biomarker",
+      "name": "High MFCC 1 Mean",
+      "feature_key": "mfcc_mean",
+      "feature_index": 0,
+      "threshold": -85.89946577463174,
+      "direction": "high",
+      "clinical_summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.5818181818181818,
+      "calibration_specificity": 0.4642857142857143,
+      "calibration_youden_j": 0.04610389610389598
+    },
+    {
+      "id": "biomarker:high_mfcc_2_std",
+      "type": "Biomarker",
+      "name": "High MFCC 2 Variability",
+      "feature_key": "mfcc_std",
+      "feature_index": 1,
+      "threshold": 4.798454658265069,
+      "direction": "high",
+      "clinical_summary": "Greater spectral-shape variability can indicate inconsistent articulation or affective instability.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.6909090909090909,
+      "calibration_specificity": 0.44642857142857145,
+      "calibration_youden_j": 0.13733766233766231
+    },
+    {
+      "id": "biomarker:low_mfcc_3_mean",
+      "type": "Biomarker",
+      "name": "Low MFCC 3 Mean",
+      "feature_key": "mfcc_mean",
+      "feature_index": 2,
+      "threshold": -0.3752938608783923,
+      "direction": "low",
+      "clinical_summary": "A low third cepstral coefficient may indicate altered spectral balance requiring contextual review.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.8,
+      "calibration_specificity": 0.3392857142857143,
+      "calibration_youden_j": 0.13928571428571423
+    },
+    {
+      "id": "biomarker:high_mfcc_4_std",
+      "type": "Biomarker",
+      "name": "High MFCC 4 Variability",
+      "feature_key": "mfcc_std",
+      "feature_index": 3,
+      "threshold": 2.556283375895461,
+      "direction": "high",
+      "clinical_summary": "Higher mid-cepstral variability may reflect unstable speech production across the recording.",
+      "calibration_status": "calibrated",
+      "active_for_threshold_detection": true,
+      "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_n": 111,
+      "calibration_sensitivity": 0.16363636363636364,
+      "calibration_specificity": 0.9285714285714286,
+      "calibration_youden_j": 0.09220779220779218
+    },
+    {
+      "id": "concept:vocal_instability",
+      "type": "ClinicalConcept",
+      "name": "Vocal Instability",
+      "description": "Irregular or unstable vocal production."
+    },
+    {
+      "id": "concept:speech_disruption",
+      "type": "ClinicalConcept",
+      "name": "Speech Disruption",
+      "description": "Interrupted, hesitant, or slowed speech flow."
+    },
+    {
+      "id": "concept:reduced_expressivity",
+      "type": "ClinicalConcept",
+      "name": "Reduced Expressivity",
+      "description": "Lower vocal activation or flattened prosodic expression."
+    },
+    {
+      "id": "concept:spectral_shift",
+      "type": "ClinicalConcept",
+      "name": "Spectral Shift",
+      "description": "Changes in cepstral or spectral balance that can cue altered voice quality."
+    },
+    {
+      "id": "symptom:excessive_worry",
+      "type": "Symptom",
+      "name": "Excessive Worry",
+      "source": "DSM-5 generalized anxiety criteria"
+    },
+    {
+      "id": "symptom:restlessness",
+      "type": "Symptom",
+      "name": "Restlessness or Feeling Keyed Up",
+      "source": "DSM-5 generalized anxiety criteria"
+    },
+    {
+      "id": "symptom:fatigue",
+      "type": "Symptom",
+      "name": "Fatigue",
+      "source": "DSM-5 generalized anxiety criteria"
+    },
+    {
+      "id": "symptom:concentration_difficulty",
+      "type": "Symptom",
+      "name": "Difficulty Concentrating",
+      "source": "DSM-5 generalized anxiety criteria"
+    },
+    {
+      "id": "screening:gad7_anxiety_severity",
+      "type": "ScreeningConstruct",
+      "name": "GAD-7 Anxiety Severity",
+      "source": "GAD-7 screening construct"
+    },
+    {
+      "id": "risk:anxiety_risk",
+      "type": "Risk",
+      "name": "Anxiety Risk",
+      "description": "Non-diagnostic signal that anxiety-relevant patterns may be present."
+    },
+    {
+      "id": "intervention:clinical_review",
+      "type": "Intervention",
+      "name": "Clinical Review",
+      "description": "Review the acoustic explanation alongside interview, questionnaire, and contextual information."
+    },
+    {
+      "id": "intervention:gad7_followup",
+      "type": "Intervention",
+      "name": "GAD-7 Follow-up",
+      "description": "Use a validated questionnaire as a structured follow-up rather than treating audio as a diagnosis."
+    },
+    {
+      "id": "intervention:grounding_breathing",
+      "type": "Intervention",
+      "name": "Grounding or Breathing Exercise",
+      "description": "Offer a low-risk self-regulation suggestion when acute arousal is suspected."
+    }
+  ],
+  "edges": [
+    {
+      "from": "biomarker:high_jitter",
+      "to": "concept:vocal_instability",
+      "relation": "indicates",
+      "weight": 0.86
+    },
+    {
+      "from": "biomarker:high_pitch_variability",
+      "to": "concept:vocal_instability",
+      "relation": "indicates",
+      "weight": 0.78
+    },
+    {
+      "from": "biomarker:high_pitch_mean",
+      "to": "symptom:restlessness",
+      "relation": "may_support",
+      "weight": 0.58
+    },
+    {
+      "from": "concept:vocal_instability",
+      "to": "symptom:restlessness",
+      "relation": "may_support",
+      "weight": 0.64
+    },
+    {
+      "from": "concept:vocal_instability",
+      "to": "risk:anxiety_risk",
+      "relation": "contributes_to",
+      "weight": 0.68
+    },
+    {
+      "from": "biomarker:high_pause_ratio",
+      "to": "concept:speech_disruption",
+      "relation": "indicates",
+      "weight": 0.82
+    },
+    {
+      "from": "biomarker:low_speech_rate",
+      "to": "concept:speech_disruption",
+      "relation": "indicates",
+      "weight": 0.8
+    },
+    {
+      "from": "biomarker:low_speech_rate",
+      "to": "concept:reduced_expressivity",
+      "relation": "may_support",
+      "weight": 0.58
+    },
+    {
+      "from": "concept:speech_disruption",
+      "to": "symptom:concentration_difficulty",
+      "relation": "may_support",
+      "weight": 0.62
+    },
+    {
+      "from": "concept:speech_disruption",
+      "to": "risk:anxiety_risk",
+      "relation": "contributes_to",
+      "weight": 0.57
+    },
+    {
+      "from": "biomarker:low_energy",
+      "to": "concept:reduced_expressivity",
+      "relation": "indicates",
+      "weight": 0.74
+    },
+    {
+      "from": "biomarker:low_pitch_mean",
+      "to": "concept:reduced_expressivity",
+      "relation": "may_support",
+      "weight": 0.55
+    },
+    {
+      "from": "concept:reduced_expressivity",
+      "to": "symptom:fatigue",
+      "relation": "may_support",
+      "weight": 0.7
+    },
+    {
+      "from": "symptom:fatigue",
+      "to": "risk:anxiety_risk",
+      "relation": "screening_context",
+      "weight": 0.42
+    },
+    {
+      "from": "biomarker:high_mfcc_1_mean",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.48
+    },
+    {
+      "from": "biomarker:high_mfcc_2_std",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.5
+    },
+    {
+      "from": "biomarker:low_mfcc_3_mean",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.45
+    },
+    {
+      "from": "biomarker:high_mfcc_4_std",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.44
+    },
+    {
+      "from": "concept:spectral_shift",
+      "to": "symptom:excessive_worry",
+      "relation": "requires_context_for",
+      "weight": 0.35
+    },
+    {
+      "from": "symptom:excessive_worry",
+      "to": "screening:gad7_anxiety_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:restlessness",
+      "to": "screening:gad7_anxiety_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:fatigue",
+      "to": "screening:gad7_anxiety_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:concentration_difficulty",
+      "to": "screening:gad7_anxiety_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "screening:gad7_anxiety_severity",
+      "to": "risk:anxiety_risk",
+      "relation": "estimates",
+      "weight": 0.88
+    },
+    {
+      "from": "risk:anxiety_risk",
+      "to": "intervention:clinical_review",
+      "relation": "recommends",
+      "weight": 0.95
+    },
+    {
+      "from": "risk:anxiety_risk",
+      "to": "intervention:gad7_followup",
+      "relation": "recommends",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:restlessness",
+      "to": "intervention:grounding_breathing",
+      "relation": "may_benefit_from",
+      "weight": 0.52
+    }
+  ]
+}

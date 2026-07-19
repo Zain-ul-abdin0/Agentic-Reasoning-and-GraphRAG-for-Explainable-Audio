@@ -1,0 +1,28 @@
+{
+  "name": "Simplified Siegen Audio-Anxiety Knowledge Graph",
+  "version": "2026-07-month-02",
+  "nodes": 24,
+  "edges": 27,
+  "biomarkers": 11,
+  "terminal_targets": [
+    "risk:anxiety_risk",
+    "intervention:clinical_review",
+    "intervention:gad7_followup",
+    "intervention:grounding_breathing",
+    "screening:gad7_anxiety_severity"
+  ],
+  "validation_problems": [],
+  "biomarker_labels": [
+    "High Jitter",
+    "High Pause Ratio",
+    "Low Speech Rate",
+    "Low Vocal Energy",
+    "High Pitch Variability",
+    "High Mean Pitch",
+    "Low Mean Pitch",
+    "High MFCC 1 Mean",
+    "High MFCC 2 Variability",
+    "Low MFCC 3 Mean",
+    "High MFCC 4 Variability"
+  ]
+}
