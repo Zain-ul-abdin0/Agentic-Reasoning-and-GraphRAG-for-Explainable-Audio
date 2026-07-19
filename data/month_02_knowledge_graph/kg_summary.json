@@ -1,15 +1,15 @@
 {
-  "name": "Simplified Siegen Audio-Anxiety Knowledge Graph",
+  "name": "Simplified Siegen Audio-Depression Knowledge Graph",
   "version": "2026-07-month-02",
   "nodes": 24,
   "edges": 27,
   "biomarkers": 11,
   "terminal_targets": [
-    "risk:anxiety_risk",
+    "risk:depression_screening_risk",
     "intervention:clinical_review",
-    "intervention:gad7_followup",
-    "intervention:grounding_breathing",
-    "screening:gad7_anxiety_severity"
+    "intervention:phq8_followup",
+    "intervention:supportive_followup",
+    "screening:phq8_depression_severity"
   ],
   "validation_problems": [],
   "biomarker_labels": [

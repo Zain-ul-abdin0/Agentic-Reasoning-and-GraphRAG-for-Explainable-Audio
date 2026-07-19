@@ -47,7 +47,7 @@ def save_json(path: Path, data):
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Inspect the lightweight Siegen audio-anxiety knowledge graph."
+        description="Inspect the lightweight Siegen audio-depression knowledge graph."
     )
     parser.add_argument(
         "--graph",

@@ -1,0 +1,372 @@
+{
+  "@context": {
+    "kg": "https://example.org/siegen-audio-depression#",
+    "id": "@id",
+    "type": "@type",
+    "name": "kg:name",
+    "description": "kg:description",
+    "source": "kg:source",
+    "feature_key": "kg:featureKey",
+    "feature_index": "kg:featureIndex",
+    "threshold": "kg:threshold",
+    "direction": "kg:direction",
+    "clinical_summary": "kg:clinicalSummary",
+    "nodes": "kg:nodes",
+    "edges": "kg:edges",
+    "from": "kg:from",
+    "to": "kg:to",
+    "relation": "kg:relation",
+    "weight": "kg:weight"
+  },
+  "id": "kg:siegen-audio-depression-knowledge-graph",
+  "name": "Simplified Siegen Audio-Depression Knowledge Graph",
+  "description": "A lightweight graph connecting calibrated acoustic biomarkers to PHQ-8-aligned depression screening concepts, clinically cautious symptom interpretations, and conservative follow-up suggestions.",
+  "version": "2026-07-month-02",
+  "nodes": [
+    {
+      "id": "biomarker:high_jitter",
+      "type": "Biomarker",
+      "name": "High Jitter",
+      "feature_key": "jitter",
+      "threshold": 0.13194497433207755,
+      "direction": "high",
+      "clinical_summary": "Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal."
+    },
+    {
+      "id": "biomarker:high_pause_ratio",
+      "type": "Biomarker",
+      "name": "High Pause Ratio",
+      "feature_key": "pause_ratio",
+      "threshold": 0.33980947443458004,
+      "direction": "high",
+      "clinical_summary": "Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow."
+    },
+    {
+      "id": "biomarker:low_speech_rate",
+      "type": "Biomarker",
+      "name": "Low Speech Rate",
+      "feature_key": "speech_rate",
+      "threshold": 3.8373045786765463,
+      "direction": "low",
+      "clinical_summary": "Reduced words per second may reflect slowed speech production, psychomotor slowing, or reduced verbal fluency."
+    },
+    {
+      "id": "biomarker:low_energy",
+      "type": "Biomarker",
+      "name": "Low Vocal Energy",
+      "feature_key": "energy",
+      "threshold": 0.004403299186378717,
+      "direction": "low",
+      "clinical_summary": "Reduced vocal intensity may indicate flattened expression, fatigue, withdrawal, or low activation."
+    },
+    {
+      "id": "biomarker:high_pitch_variability",
+      "type": "Biomarker",
+      "name": "High Pitch Variability",
+      "feature_key": "pitch_std",
+      "threshold": 42.65833713444162,
+      "direction": "high",
+      "clinical_summary": "Large pitch variation may suggest unstable vocal control during depression-relevant affective states."
+    },
+    {
+      "id": "biomarker:high_pitch_mean",
+      "type": "Biomarker",
+      "name": "High Mean Pitch",
+      "feature_key": "pitch_mean",
+      "threshold": 147.44227707006368,
+      "direction": "high",
+      "clinical_summary": "Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline."
+    },
+    {
+      "id": "biomarker:low_pitch_mean",
+      "type": "Biomarker",
+      "name": "Low Mean Pitch",
+      "feature_key": "pitch_mean",
+      "threshold": 122.94135465289503,
+      "direction": "low",
+      "clinical_summary": "Lowered average pitch can appear with reduced expressivity, fatigue, or psychomotor slowing."
+    },
+    {
+      "id": "biomarker:high_mfcc_1_mean",
+      "type": "Biomarker",
+      "name": "High MFCC 1 Mean",
+      "feature_key": "mfcc_mean",
+      "feature_index": 0,
+      "threshold": -85.89946577463174,
+      "direction": "high",
+      "clinical_summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice."
+    },
+    {
+      "id": "biomarker:high_mfcc_2_std",
+      "type": "Biomarker",
+      "name": "High MFCC 2 Variability",
+      "feature_key": "mfcc_std",
+      "feature_index": 1,
+      "threshold": 4.798454658265069,
+      "direction": "high",
+      "clinical_summary": "Greater spectral-shape variability can indicate inconsistent articulation or affective instability."
+    },
+    {
+      "id": "biomarker:low_mfcc_3_mean",
+      "type": "Biomarker",
+      "name": "Low MFCC 3 Mean",
+      "feature_key": "mfcc_mean",
+      "feature_index": 2,
+      "threshold": -0.3752938608783923,
+      "direction": "low",
+      "clinical_summary": "A low third cepstral coefficient may indicate altered spectral balance requiring contextual review."
+    },
+    {
+      "id": "biomarker:high_mfcc_4_std",
+      "type": "Biomarker",
+      "name": "High MFCC 4 Variability",
+      "feature_key": "mfcc_std",
+      "feature_index": 3,
+      "threshold": 2.556283375895461,
+      "direction": "high",
+      "clinical_summary": "Higher mid-cepstral variability may reflect unstable speech production across the recording."
+    },
+    {
+      "id": "concept:vocal_instability",
+      "type": "ClinicalConcept",
+      "name": "Vocal Instability",
+      "description": "Irregular or unstable vocal production."
+    },
+    {
+      "id": "concept:speech_disruption",
+      "type": "ClinicalConcept",
+      "name": "Speech Disruption",
+      "description": "Interrupted, hesitant, or slowed speech flow."
+    },
+    {
+      "id": "concept:reduced_expressivity",
+      "type": "ClinicalConcept",
+      "name": "Reduced Expressivity",
+      "description": "Lower vocal activation or flattened prosodic expression."
+    },
+    {
+      "id": "concept:spectral_shift",
+      "type": "ClinicalConcept",
+      "name": "Spectral Shift",
+      "description": "Changes in cepstral or spectral balance that can cue altered voice quality."
+    },
+    {
+      "id": "symptom:depressed_mood",
+      "type": "Symptom",
+      "name": "Depressed Mood",
+      "source": "PHQ-8 depressed mood item"
+    },
+    {
+      "id": "symptom:psychomotor_change",
+      "type": "Symptom",
+      "name": "Psychomotor Slowing or Agitation",
+      "source": "PHQ-8 psychomotor item"
+    },
+    {
+      "id": "symptom:fatigue",
+      "type": "Symptom",
+      "name": "Fatigue or Low Energy",
+      "source": "PHQ-8 tired or little energy item"
+    },
+    {
+      "id": "symptom:concentration_difficulty",
+      "type": "Symptom",
+      "name": "Difficulty Concentrating",
+      "source": "PHQ-8 concentration item"
+    },
+    {
+      "id": "screening:phq8_depression_severity",
+      "type": "ScreeningConstruct",
+      "name": "PHQ-8 Depression Severity",
+      "source": "PHQ-8 screening construct"
+    },
+    {
+      "id": "risk:depression_screening_risk",
+      "type": "Risk",
+      "name": "Depression Screening Risk",
+      "description": "Non-diagnostic signal that depression-relevant speech patterns may be present."
+    },
+    {
+      "id": "intervention:clinical_review",
+      "type": "Intervention",
+      "name": "Clinical Review",
+      "description": "Review the acoustic explanation alongside interview, questionnaire, and contextual information."
+    },
+    {
+      "id": "intervention:phq8_followup",
+      "type": "Intervention",
+      "name": "PHQ-8 Follow-up",
+      "description": "Use PHQ-8 or clinician-administered assessment as structured follow-up rather than treating audio as a diagnosis."
+    },
+    {
+      "id": "intervention:supportive_followup",
+      "type": "Intervention",
+      "name": "Supportive Follow-up",
+      "description": "Encourage supportive clinical discussion when speech patterns suggest distress, fatigue, or slowed expression."
+    }
+  ],
+  "edges": [
+    {
+      "from": "biomarker:high_jitter",
+      "to": "concept:vocal_instability",
+      "relation": "indicates",
+      "weight": 0.86
+    },
+    {
+      "from": "biomarker:high_pitch_variability",
+      "to": "concept:vocal_instability",
+      "relation": "indicates",
+      "weight": 0.78
+    },
+    {
+      "from": "biomarker:high_pitch_mean",
+      "to": "symptom:psychomotor_change",
+      "relation": "may_support",
+      "weight": 0.58
+    },
+    {
+      "from": "concept:vocal_instability",
+      "to": "symptom:psychomotor_change",
+      "relation": "may_support",
+      "weight": 0.64
+    },
+    {
+      "from": "concept:vocal_instability",
+      "to": "risk:depression_screening_risk",
+      "relation": "contributes_to",
+      "weight": 0.68
+    },
+    {
+      "from": "biomarker:high_pause_ratio",
+      "to": "concept:speech_disruption",
+      "relation": "indicates",
+      "weight": 0.82
+    },
+    {
+      "from": "biomarker:low_speech_rate",
+      "to": "concept:speech_disruption",
+      "relation": "indicates",
+      "weight": 0.8
+    },
+    {
+      "from": "biomarker:low_speech_rate",
+      "to": "concept:reduced_expressivity",
+      "relation": "may_support",
+      "weight": 0.58
+    },
+    {
+      "from": "concept:speech_disruption",
+      "to": "symptom:concentration_difficulty",
+      "relation": "may_support",
+      "weight": 0.62
+    },
+    {
+      "from": "concept:speech_disruption",
+      "to": "risk:depression_screening_risk",
+      "relation": "contributes_to",
+      "weight": 0.57
+    },
+    {
+      "from": "biomarker:low_energy",
+      "to": "concept:reduced_expressivity",
+      "relation": "indicates",
+      "weight": 0.74
+    },
+    {
+      "from": "biomarker:low_pitch_mean",
+      "to": "concept:reduced_expressivity",
+      "relation": "may_support",
+      "weight": 0.55
+    },
+    {
+      "from": "concept:reduced_expressivity",
+      "to": "symptom:fatigue",
+      "relation": "may_support",
+      "weight": 0.7
+    },
+    {
+      "from": "symptom:fatigue",
+      "to": "risk:depression_screening_risk",
+      "relation": "screening_context",
+      "weight": 0.42
+    },
+    {
+      "from": "biomarker:high_mfcc_1_mean",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.48
+    },
+    {
+      "from": "biomarker:high_mfcc_2_std",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.5
+    },
+    {
+      "from": "biomarker:low_mfcc_3_mean",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.45
+    },
+    {
+      "from": "biomarker:high_mfcc_4_std",
+      "to": "concept:spectral_shift",
+      "relation": "indicates",
+      "weight": 0.44
+    },
+    {
+      "from": "concept:spectral_shift",
+      "to": "symptom:depressed_mood",
+      "relation": "requires_context_for",
+      "weight": 0.35
+    },
+    {
+      "from": "symptom:depressed_mood",
+      "to": "screening:phq8_depression_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:psychomotor_change",
+      "to": "screening:phq8_depression_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:fatigue",
+      "to": "screening:phq8_depression_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:concentration_difficulty",
+      "to": "screening:phq8_depression_severity",
+      "relation": "part_of",
+      "weight": 0.9
+    },
+    {
+      "from": "screening:phq8_depression_severity",
+      "to": "risk:depression_screening_risk",
+      "relation": "estimates",
+      "weight": 0.88
+    },
+    {
+      "from": "risk:depression_screening_risk",
+      "to": "intervention:clinical_review",
+      "relation": "recommends",
+      "weight": 0.95
+    },
+    {
+      "from": "risk:depression_screening_risk",
+      "to": "intervention:phq8_followup",
+      "relation": "recommends",
+      "weight": 0.9
+    },
+    {
+      "from": "symptom:psychomotor_change",
+      "to": "intervention:supportive_followup",
+      "relation": "may_benefit_from",
+      "weight": 0.52
+    }
+  ]
+}

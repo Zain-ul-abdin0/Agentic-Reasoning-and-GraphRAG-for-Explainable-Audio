@@ -81,7 +81,7 @@
       "matched": true,
       "node": "biomarker:high_pitch_variability",
       "label": "High Pitch Variability",
-      "summary": "Large pitch variation may suggest unstable vocal control during heightened affective states."
+      "summary": "Large pitch variation may suggest unstable vocal control during depression-relevant affective states."
     },
     {
       "feature": "pitch_mean",
@@ -92,7 +92,7 @@
       "matched": true,
       "node": "biomarker:high_pitch_mean",
       "label": "High Mean Pitch",
-      "summary": "Raised average pitch can be consistent with tension or sympathetic arousal, depending on speaker baseline."
+      "summary": "Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline."
     },
     {
       "feature": "pitch_mean",
@@ -153,16 +153,16 @@
   "explanation_paths": [
     {
       "start": "biomarker:high_pause_ratio",
-      "target": "risk:anxiety_risk",
+      "target": "risk:depression_screening_risk",
       "path": [
         "biomarker:high_pause_ratio",
         "concept:speech_disruption",
-        "risk:anxiety_risk"
+        "risk:depression_screening_risk"
       ],
       "path_labels": [
         "High Pause Ratio",
         "Speech Disruption",
-        "Anxiety Risk"
+        "Depression Screening Risk"
       ],
       "steps": [
         {
@@ -180,8 +180,8 @@
           "weight_to_next": 0.57
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk"
         }
       ]
@@ -192,13 +192,13 @@
       "path": [
         "biomarker:high_pause_ratio",
         "concept:speech_disruption",
-        "risk:anxiety_risk",
+        "risk:depression_screening_risk",
         "intervention:clinical_review"
       ],
       "path_labels": [
         "High Pause Ratio",
         "Speech Disruption",
-        "Anxiety Risk",
+        "Depression Screening Risk",
         "Clinical Review"
       ],
       "steps": [
@@ -217,8 +217,8 @@
           "weight_to_next": 0.57
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.95
@@ -232,18 +232,18 @@
     },
     {
       "start": "biomarker:high_pause_ratio",
-      "target": "intervention:gad7_followup",
+      "target": "intervention:phq8_followup",
       "path": [
         "biomarker:high_pause_ratio",
         "concept:speech_disruption",
-        "risk:anxiety_risk",
-        "intervention:gad7_followup"
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
       ],
       "path_labels": [
         "High Pause Ratio",
         "Speech Disruption",
-        "Anxiety Risk",
-        "GAD-7 Follow-up"
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
       ],
       "steps": [
         {
@@ -261,33 +261,33 @@
           "weight_to_next": 0.57
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.9
         },
         {
-          "id": "intervention:gad7_followup",
-          "name": "GAD-7 Follow-up",
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_pause_ratio",
-      "target": "screening:gad7_anxiety_severity",
+      "target": "screening:phq8_depression_severity",
       "path": [
         "biomarker:high_pause_ratio",
         "concept:speech_disruption",
         "symptom:concentration_difficulty",
-        "screening:gad7_anxiety_severity"
+        "screening:phq8_depression_severity"
       ],
       "path_labels": [
         "High Pause Ratio",
         "Speech Disruption",
         "Difficulty Concentrating",
-        "GAD-7 Anxiety Severity"
+        "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
@@ -312,24 +312,24 @@
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_variability",
-      "target": "risk:anxiety_risk",
+      "target": "risk:depression_screening_risk",
       "path": [
         "biomarker:high_pitch_variability",
         "concept:vocal_instability",
-        "risk:anxiety_risk"
+        "risk:depression_screening_risk"
       ],
       "path_labels": [
         "High Pitch Variability",
         "Vocal Instability",
-        "Anxiety Risk"
+        "Depression Screening Risk"
       ],
       "steps": [
         {
@@ -347,8 +347,8 @@
           "weight_to_next": 0.68
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk"
         }
       ]
@@ -359,13 +359,13 @@
       "path": [
         "biomarker:high_pitch_variability",
         "concept:vocal_instability",
-        "risk:anxiety_risk",
+        "risk:depression_screening_risk",
         "intervention:clinical_review"
       ],
       "path_labels": [
         "High Pitch Variability",
         "Vocal Instability",
-        "Anxiety Risk",
+        "Depression Screening Risk",
         "Clinical Review"
       ],
       "steps": [
@@ -384,8 +384,8 @@
           "weight_to_next": 0.68
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.95
@@ -399,18 +399,18 @@
     },
     {
       "start": "biomarker:high_pitch_variability",
-      "target": "intervention:gad7_followup",
+      "target": "intervention:phq8_followup",
       "path": [
         "biomarker:high_pitch_variability",
         "concept:vocal_instability",
-        "risk:anxiety_risk",
-        "intervention:gad7_followup"
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
       ],
       "path_labels": [
         "High Pitch Variability",
         "Vocal Instability",
-        "Anxiety Risk",
-        "GAD-7 Follow-up"
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
       ],
       "steps": [
         {
@@ -428,33 +428,33 @@
           "weight_to_next": 0.68
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.9
         },
         {
-          "id": "intervention:gad7_followup",
-          "name": "GAD-7 Follow-up",
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_variability",
-      "target": "intervention:grounding_breathing",
+      "target": "intervention:supportive_followup",
       "path": [
         "biomarker:high_pitch_variability",
         "concept:vocal_instability",
-        "symptom:restlessness",
-        "intervention:grounding_breathing"
+        "symptom:psychomotor_change",
+        "intervention:supportive_followup"
       ],
       "path_labels": [
         "High Pitch Variability",
         "Vocal Instability",
-        "Restlessness or Feeling Keyed Up",
-        "Grounding or Breathing Exercise"
+        "Psychomotor Slowing or Agitation",
+        "Supportive Follow-up"
       ],
       "steps": [
         {
@@ -472,33 +472,33 @@
           "weight_to_next": 0.64
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "may_benefit_from",
           "weight_to_next": 0.52
         },
         {
-          "id": "intervention:grounding_breathing",
-          "name": "Grounding or Breathing Exercise",
+          "id": "intervention:supportive_followup",
+          "name": "Supportive Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_variability",
-      "target": "screening:gad7_anxiety_severity",
+      "target": "screening:phq8_depression_severity",
       "path": [
         "biomarker:high_pitch_variability",
         "concept:vocal_instability",
-        "symptom:restlessness",
-        "screening:gad7_anxiety_severity"
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity"
       ],
       "path_labels": [
         "High Pitch Variability",
         "Vocal Instability",
-        "Restlessness or Feeling Keyed Up",
-        "GAD-7 Anxiety Severity"
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
@@ -516,33 +516,33 @@
           "weight_to_next": 0.64
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_mean",
-      "target": "risk:anxiety_risk",
+      "target": "risk:depression_screening_risk",
       "path": [
         "biomarker:high_pitch_mean",
-        "symptom:restlessness",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk"
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk"
       ],
       "path_labels": [
         "High Mean Pitch",
-        "Restlessness or Feeling Keyed Up",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk"
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk"
       ],
       "steps": [
         {
@@ -553,22 +553,22 @@
           "weight_to_next": 0.58
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk"
         }
       ]
@@ -578,16 +578,16 @@
       "target": "intervention:clinical_review",
       "path": [
         "biomarker:high_pitch_mean",
-        "symptom:restlessness",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
         "intervention:clinical_review"
       ],
       "path_labels": [
         "High Mean Pitch",
-        "Restlessness or Feeling Keyed Up",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
         "Clinical Review"
       ],
       "steps": [
@@ -599,22 +599,22 @@
           "weight_to_next": 0.58
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.95
@@ -628,20 +628,20 @@
     },
     {
       "start": "biomarker:high_pitch_mean",
-      "target": "intervention:gad7_followup",
+      "target": "intervention:phq8_followup",
       "path": [
         "biomarker:high_pitch_mean",
-        "symptom:restlessness",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
-        "intervention:gad7_followup"
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
       ],
       "path_labels": [
         "High Mean Pitch",
-        "Restlessness or Feeling Keyed Up",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
-        "GAD-7 Follow-up"
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
       ],
       "steps": [
         {
@@ -652,45 +652,45 @@
           "weight_to_next": 0.58
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.9
         },
         {
-          "id": "intervention:gad7_followup",
-          "name": "GAD-7 Follow-up",
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_mean",
-      "target": "intervention:grounding_breathing",
+      "target": "intervention:supportive_followup",
       "path": [
         "biomarker:high_pitch_mean",
-        "symptom:restlessness",
-        "intervention:grounding_breathing"
+        "symptom:psychomotor_change",
+        "intervention:supportive_followup"
       ],
       "path_labels": [
         "High Mean Pitch",
-        "Restlessness or Feeling Keyed Up",
-        "Grounding or Breathing Exercise"
+        "Psychomotor Slowing or Agitation",
+        "Supportive Follow-up"
       ],
       "steps": [
         {
@@ -701,31 +701,31 @@
           "weight_to_next": 0.58
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "may_benefit_from",
           "weight_to_next": 0.52
         },
         {
-          "id": "intervention:grounding_breathing",
-          "name": "Grounding or Breathing Exercise",
+          "id": "intervention:supportive_followup",
+          "name": "Supportive Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_pitch_mean",
-      "target": "screening:gad7_anxiety_severity",
+      "target": "screening:phq8_depression_severity",
       "path": [
         "biomarker:high_pitch_mean",
-        "symptom:restlessness",
-        "screening:gad7_anxiety_severity"
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity"
       ],
       "path_labels": [
         "High Mean Pitch",
-        "Restlessness or Feeling Keyed Up",
-        "GAD-7 Anxiety Severity"
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
@@ -736,35 +736,35 @@
           "weight_to_next": 0.58
         },
         {
-          "id": "symptom:restlessness",
-          "name": "Restlessness or Feeling Keyed Up",
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct"
         }
       ]
     },
     {
       "start": "biomarker:high_mfcc_2_std",
-      "target": "risk:anxiety_risk",
+      "target": "risk:depression_screening_risk",
       "path": [
         "biomarker:high_mfcc_2_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk"
       ],
       "path_labels": [
         "High MFCC 2 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk"
       ],
       "steps": [
         {
@@ -782,22 +782,22 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk"
         }
       ]
@@ -808,17 +808,17 @@
       "path": [
         "biomarker:high_mfcc_2_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
         "intervention:clinical_review"
       ],
       "path_labels": [
         "High MFCC 2 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
         "Clinical Review"
       ],
       "steps": [
@@ -837,22 +837,22 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.95
@@ -866,22 +866,22 @@
     },
     {
       "start": "biomarker:high_mfcc_2_std",
-      "target": "intervention:gad7_followup",
+      "target": "intervention:phq8_followup",
       "path": [
         "biomarker:high_mfcc_2_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
-        "intervention:gad7_followup"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
       ],
       "path_labels": [
         "High MFCC 2 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
-        "GAD-7 Follow-up"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
       ],
       "steps": [
         {
@@ -899,47 +899,47 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.9
         },
         {
-          "id": "intervention:gad7_followup",
-          "name": "GAD-7 Follow-up",
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_mfcc_2_std",
-      "target": "screening:gad7_anxiety_severity",
+      "target": "screening:phq8_depression_severity",
       "path": [
         "biomarker:high_mfcc_2_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity"
       ],
       "path_labels": [
         "High MFCC 2 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
@@ -957,35 +957,35 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct"
         }
       ]
     },
     {
       "start": "biomarker:high_mfcc_4_std",
-      "target": "risk:anxiety_risk",
+      "target": "risk:depression_screening_risk",
       "path": [
         "biomarker:high_mfcc_4_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk"
       ],
       "path_labels": [
         "High MFCC 4 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk"
       ],
       "steps": [
         {
@@ -1003,22 +1003,22 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk"
         }
       ]
@@ -1029,17 +1029,17 @@
       "path": [
         "biomarker:high_mfcc_4_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
         "intervention:clinical_review"
       ],
       "path_labels": [
         "High MFCC 4 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
         "Clinical Review"
       ],
       "steps": [
@@ -1058,22 +1058,22 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.95
@@ -1087,22 +1087,22 @@
     },
     {
       "start": "biomarker:high_mfcc_4_std",
-      "target": "intervention:gad7_followup",
+      "target": "intervention:phq8_followup",
       "path": [
         "biomarker:high_mfcc_4_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity",
-        "risk:anxiety_risk",
-        "intervention:gad7_followup"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
       ],
       "path_labels": [
         "High MFCC 4 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity",
-        "Anxiety Risk",
-        "GAD-7 Follow-up"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
       ],
       "steps": [
         {
@@ -1120,47 +1120,47 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct",
           "relation_to_next": "estimates",
           "weight_to_next": 0.88
         },
         {
-          "id": "risk:anxiety_risk",
-          "name": "Anxiety Risk",
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
           "type": "Risk",
           "relation_to_next": "recommends",
           "weight_to_next": 0.9
         },
         {
-          "id": "intervention:gad7_followup",
-          "name": "GAD-7 Follow-up",
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
           "type": "Intervention"
         }
       ]
     },
     {
       "start": "biomarker:high_mfcc_4_std",
-      "target": "screening:gad7_anxiety_severity",
+      "target": "screening:phq8_depression_severity",
       "path": [
         "biomarker:high_mfcc_4_std",
         "concept:spectral_shift",
-        "symptom:excessive_worry",
-        "screening:gad7_anxiety_severity"
+        "symptom:depressed_mood",
+        "screening:phq8_depression_severity"
       ],
       "path_labels": [
         "High MFCC 4 Variability",
         "Spectral Shift",
-        "Excessive Worry",
-        "GAD-7 Anxiety Severity"
+        "Depressed Mood",
+        "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
@@ -1178,15 +1178,15 @@
           "weight_to_next": 0.35
         },
         {
-          "id": "symptom:excessive_worry",
-          "name": "Excessive Worry",
+          "id": "symptom:depressed_mood",
+          "name": "Depressed Mood",
           "type": "Symptom",
           "relation_to_next": "part_of",
           "weight_to_next": 0.9
         },
         {
-          "id": "screening:gad7_anxiety_severity",
-          "name": "GAD-7 Anxiety Severity",
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
           "type": "ScreeningConstruct"
         }
       ]
@@ -1194,31 +1194,31 @@
   ],
   "clinical_summary": [
     "High Pause Ratio (pause_ratio=0.9029) crossed the high threshold of 0.33980947443458004. Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.",
-    "High Pitch Variability (pitch_std=169.7495) crossed the high threshold of 42.65833713444162. Large pitch variation may suggest unstable vocal control during heightened affective states.",
-    "High Mean Pitch (pitch_mean=279.1105) crossed the high threshold of 147.44227707006368. Raised average pitch can be consistent with tension or sympathetic arousal, depending on speaker baseline.",
+    "High Pitch Variability (pitch_std=169.7495) crossed the high threshold of 42.65833713444162. Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
+    "High Mean Pitch (pitch_mean=279.1105) crossed the high threshold of 147.44227707006368. Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
     "High MFCC 2 Variability (mfcc_std[1]=23.1141) crossed the high threshold of 4.798454658265069. Greater spectral-shape variability can indicate inconsistent articulation or affective instability.",
     "High MFCC 4 Variability (mfcc_std[3]=11.2907) crossed the high threshold of 2.556283375895461. Higher mid-cepstral variability may reflect unstable speech production across the recording.",
-    "Graph explanation: High Pause Ratio -> Speech Disruption -> Anxiety Risk.",
-    "Graph explanation: High Pause Ratio -> Speech Disruption -> Anxiety Risk -> Clinical Review.",
-    "Graph explanation: High Pause Ratio -> Speech Disruption -> Anxiety Risk -> GAD-7 Follow-up.",
-    "Graph explanation: High Pause Ratio -> Speech Disruption -> Difficulty Concentrating -> GAD-7 Anxiety Severity.",
-    "Graph explanation: High Pitch Variability -> Vocal Instability -> Anxiety Risk.",
-    "Graph explanation: High Pitch Variability -> Vocal Instability -> Anxiety Risk -> Clinical Review.",
-    "Graph explanation: High Pitch Variability -> Vocal Instability -> Anxiety Risk -> GAD-7 Follow-up.",
-    "Graph explanation: High Pitch Variability -> Vocal Instability -> Restlessness or Feeling Keyed Up -> Grounding or Breathing Exercise.",
-    "Graph explanation: High Pitch Variability -> Vocal Instability -> Restlessness or Feeling Keyed Up -> GAD-7 Anxiety Severity.",
-    "Graph explanation: High Mean Pitch -> Restlessness or Feeling Keyed Up -> GAD-7 Anxiety Severity -> Anxiety Risk.",
-    "Graph explanation: High Mean Pitch -> Restlessness or Feeling Keyed Up -> GAD-7 Anxiety Severity -> Anxiety Risk -> Clinical Review.",
-    "Graph explanation: High Mean Pitch -> Restlessness or Feeling Keyed Up -> GAD-7 Anxiety Severity -> Anxiety Risk -> GAD-7 Follow-up.",
-    "Graph explanation: High Mean Pitch -> Restlessness or Feeling Keyed Up -> Grounding or Breathing Exercise.",
-    "Graph explanation: High Mean Pitch -> Restlessness or Feeling Keyed Up -> GAD-7 Anxiety Severity.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk -> Clinical Review.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk -> GAD-7 Follow-up.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk -> Clinical Review.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity -> Anxiety Risk -> GAD-7 Follow-up.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Excessive Worry -> GAD-7 Anxiety Severity."
+    "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk.",
+    "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High Pause Ratio -> Speech Disruption -> Difficulty Concentrating -> PHQ-8 Depression Severity.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> Supportive Follow-up.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> Supportive Follow-up.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity.",
+    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity.",
+    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity."
   ]
 }

@@ -6,13 +6,13 @@ import networkx as nx
 
 BASE_DIR = Path(__file__).resolve().parents[2]
 SEED_GRAPH_PATH = (
-    BASE_DIR / "data" / "knowledge_graph" / "siegen_audio_anxiety_kg.jsonld"
+    BASE_DIR / "data" / "knowledge_graph" / "siegen_audio_depression_kg.jsonld"
 )
 CALIBRATED_GRAPH_PATH = (
     BASE_DIR
     / "data"
     / "knowledge_graph"
-    / "siegen_audio_anxiety_kg.calibrated.jsonld"
+    / "siegen_audio_depression_kg.calibrated.jsonld"
 )
 DEFAULT_GRAPH_PATH = (
     CALIBRATED_GRAPH_PATH

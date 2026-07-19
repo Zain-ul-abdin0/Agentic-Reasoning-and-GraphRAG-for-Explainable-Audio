@@ -1,6 +1,6 @@
 {
   "@context": {
-    "kg": "https://example.org/siegen-audio-anxiety#",
+    "kg": "https://example.org/siegen-audio-depression#",
     "id": "@id",
     "type": "@type",
     "name": "kg:name",
@@ -18,9 +18,9 @@
     "relation": "kg:relation",
     "weight": "kg:weight"
   },
-  "id": "kg:siegen-audio-anxiety-knowledge-graph",
-  "name": "Simplified Siegen Audio-Anxiety Knowledge Graph",
-  "description": "A lightweight seed graph connecting acoustic biomarkers to anxiety-relevant symptoms, DSM-5/GAD-7 aligned clinical concepts, and conservative intervention suggestions.",
+  "id": "kg:siegen-audio-depression-knowledge-graph",
+  "name": "Simplified Siegen Audio-Depression Knowledge Graph",
+  "description": "A lightweight graph connecting calibrated acoustic biomarkers to PHQ-8-aligned depression screening concepts, clinically cautious symptom interpretations, and conservative follow-up suggestions.",
   "version": "2026-07-month-02",
   "nodes": [
     {
@@ -98,7 +98,7 @@
       "feature_key": "pitch_std",
       "threshold": 42.65833713444162,
       "direction": "high",
-      "clinical_summary": "Large pitch variation may suggest unstable vocal control during heightened affective states.",
+      "clinical_summary": "Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
       "calibration_status": "calibrated",
       "active_for_threshold_detection": true,
       "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
@@ -115,7 +115,7 @@
       "feature_key": "pitch_mean",
       "threshold": 147.44227707006368,
       "direction": "high",
-      "clinical_summary": "Raised average pitch can be consistent with tension or sympathetic arousal, depending on speaker baseline.",
+      "clinical_summary": "Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
       "calibration_status": "calibrated",
       "active_for_threshold_detection": true,
       "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
@@ -239,40 +239,40 @@
       "description": "Changes in cepstral or spectral balance that can cue altered voice quality."
     },
     {
-      "id": "symptom:excessive_worry",
+      "id": "symptom:depressed_mood",
       "type": "Symptom",
-      "name": "Excessive Worry",
-      "source": "DSM-5 generalized anxiety criteria"
+      "name": "Depressed Mood",
+      "source": "PHQ-8 depressed mood item"
     },
     {
-      "id": "symptom:restlessness",
+      "id": "symptom:psychomotor_change",
       "type": "Symptom",
-      "name": "Restlessness or Feeling Keyed Up",
-      "source": "DSM-5 generalized anxiety criteria"
+      "name": "Psychomotor Slowing or Agitation",
+      "source": "PHQ-8 psychomotor item"
     },
     {
       "id": "symptom:fatigue",
       "type": "Symptom",
-      "name": "Fatigue",
-      "source": "DSM-5 generalized anxiety criteria"
+      "name": "Fatigue or Low Energy",
+      "source": "PHQ-8 tired or little energy item"
     },
     {
       "id": "symptom:concentration_difficulty",
       "type": "Symptom",
       "name": "Difficulty Concentrating",
-      "source": "DSM-5 generalized anxiety criteria"
+      "source": "PHQ-8 concentration item"
     },
     {
-      "id": "screening:gad7_anxiety_severity",
+      "id": "screening:phq8_depression_severity",
       "type": "ScreeningConstruct",
-      "name": "GAD-7 Anxiety Severity",
-      "source": "GAD-7 screening construct"
+      "name": "PHQ-8 Depression Severity",
+      "source": "PHQ-8 screening construct"
     },
     {
-      "id": "risk:anxiety_risk",
+      "id": "risk:depression_screening_risk",
       "type": "Risk",
-      "name": "Anxiety Risk",
-      "description": "Non-diagnostic signal that anxiety-relevant patterns may be present."
+      "name": "Depression Screening Risk",
+      "description": "Non-diagnostic signal that depression-relevant speech patterns may be present."
     },
     {
       "id": "intervention:clinical_review",
@@ -281,16 +281,16 @@
       "description": "Review the acoustic explanation alongside interview, questionnaire, and contextual information."
     },
     {
-      "id": "intervention:gad7_followup",
+      "id": "intervention:phq8_followup",
       "type": "Intervention",
-      "name": "GAD-7 Follow-up",
-      "description": "Use a validated questionnaire as a structured follow-up rather than treating audio as a diagnosis."
+      "name": "PHQ-8 Follow-up",
+      "description": "Use PHQ-8 or clinician-administered assessment as structured follow-up rather than treating audio as a diagnosis."
     },
     {
-      "id": "intervention:grounding_breathing",
+      "id": "intervention:supportive_followup",
       "type": "Intervention",
-      "name": "Grounding or Breathing Exercise",
-      "description": "Offer a low-risk self-regulation suggestion when acute arousal is suspected."
+      "name": "Supportive Follow-up",
+      "description": "Encourage supportive clinical discussion when speech patterns suggest distress, fatigue, or slowed expression."
     }
   ],
   "edges": [
@@ -308,19 +308,19 @@
     },
     {
       "from": "biomarker:high_pitch_mean",
-      "to": "symptom:restlessness",
+      "to": "symptom:psychomotor_change",
       "relation": "may_support",
       "weight": 0.58
     },
     {
       "from": "concept:vocal_instability",
-      "to": "symptom:restlessness",
+      "to": "symptom:psychomotor_change",
       "relation": "may_support",
       "weight": 0.64
     },
     {
       "from": "concept:vocal_instability",
-      "to": "risk:anxiety_risk",
+      "to": "risk:depression_screening_risk",
       "relation": "contributes_to",
       "weight": 0.68
     },
@@ -350,7 +350,7 @@
     },
     {
       "from": "concept:speech_disruption",
-      "to": "risk:anxiety_risk",
+      "to": "risk:depression_screening_risk",
       "relation": "contributes_to",
       "weight": 0.57
     },
@@ -374,7 +374,7 @@
     },
     {
       "from": "symptom:fatigue",
-      "to": "risk:anxiety_risk",
+      "to": "risk:depression_screening_risk",
       "relation": "screening_context",
       "weight": 0.42
     },
@@ -404,55 +404,55 @@
     },
     {
       "from": "concept:spectral_shift",
-      "to": "symptom:excessive_worry",
+      "to": "symptom:depressed_mood",
       "relation": "requires_context_for",
       "weight": 0.35
     },
     {
-      "from": "symptom:excessive_worry",
-      "to": "screening:gad7_anxiety_severity",
+      "from": "symptom:depressed_mood",
+      "to": "screening:phq8_depression_severity",
       "relation": "part_of",
       "weight": 0.9
     },
     {
-      "from": "symptom:restlessness",
-      "to": "screening:gad7_anxiety_severity",
+      "from": "symptom:psychomotor_change",
+      "to": "screening:phq8_depression_severity",
       "relation": "part_of",
       "weight": 0.9
     },
     {
       "from": "symptom:fatigue",
-      "to": "screening:gad7_anxiety_severity",
+      "to": "screening:phq8_depression_severity",
       "relation": "part_of",
       "weight": 0.9
     },
     {
       "from": "symptom:concentration_difficulty",
-      "to": "screening:gad7_anxiety_severity",
+      "to": "screening:phq8_depression_severity",
       "relation": "part_of",
       "weight": 0.9
     },
     {
-      "from": "screening:gad7_anxiety_severity",
-      "to": "risk:anxiety_risk",
+      "from": "screening:phq8_depression_severity",
+      "to": "risk:depression_screening_risk",
       "relation": "estimates",
       "weight": 0.88
     },
     {
-      "from": "risk:anxiety_risk",
+      "from": "risk:depression_screening_risk",
       "to": "intervention:clinical_review",
       "relation": "recommends",
       "weight": 0.95
     },
     {
-      "from": "risk:anxiety_risk",
-      "to": "intervention:gad7_followup",
+      "from": "risk:depression_screening_risk",
+      "to": "intervention:phq8_followup",
       "relation": "recommends",
       "weight": 0.9
     },
     {
-      "from": "symptom:restlessness",
-      "to": "intervention:grounding_breathing",
+      "from": "symptom:psychomotor_change",
+      "to": "intervention:supportive_followup",
       "relation": "may_benefit_from",
       "weight": 0.52
     }

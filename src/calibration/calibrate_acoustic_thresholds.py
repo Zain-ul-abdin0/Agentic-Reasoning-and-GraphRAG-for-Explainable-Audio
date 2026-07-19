@@ -532,7 +532,7 @@ def main():
     parser.add_argument("--graph", default=str(SEED_GRAPH_PATH))
     parser.add_argument(
         "--calibrated-graph",
-        default="data/knowledge_graph/siegen_audio_anxiety_kg.calibrated.jsonld",
+        default="data/knowledge_graph/siegen_audio_depression_kg.calibrated.jsonld",
     )
 
     args = parser.parse_args()
