@@ -1,48 +1,48 @@
 {
-  "file": "300_AUDIO.wav",
+  "file": "308_AUDIO.wav",
   "biomarkers": {
-    "duration_seconds": 648.5,
-    "energy": 0.010082407854497433,
-    "pitch_mean": 279.1104736328125,
-    "pitch_std": 169.74952697753906,
-    "pause_ratio": 0.9028589051657672,
-    "jitter": 0.01803777406293635,
+    "duration_seconds": 300.0,
+    "energy": 0.03864670544862747,
+    "pitch_mean": 187.6749246338377,
+    "pitch_std": 61.39642658273533,
+    "pause_ratio": 0.792,
+    "jitter": 0.03108775047635909,
     "mfcc_mean": [
-      -420.8195495605469,
-      72.46096801757812,
-      16.55335807800293,
-      20.60474967956543,
-      7.017234802246094,
-      8.182559967041016,
-      -0.04596871882677078,
-      9.265275001525879,
-      0.7324381470680237,
-      3.7482683658599854,
-      -2.621431827545166,
-      0.628852367401123,
-      -1.9458400011062622
+      -59.20485693852928,
+      4.020933005530261,
+      -0.739197399400768,
+      -1.8248473262804403,
+      -0.9325242897061329,
+      -0.7262812873602803,
+      -0.736001163387909,
+      -0.4007517918309927,
+      -0.7511538088091814,
+      -1.1916487110429272,
+      -0.6216803308890733,
+      -0.5708266349322764,
+      -0.610394031124692
     ],
     "mfcc_std": [
-      115.96023559570312,
-      23.114116668701172,
-      16.4150390625,
-      11.290689468383789,
-      8.253551483154297,
-      8.653456687927246,
-      8.423317909240723,
-      6.5795769691467285,
-      6.360387325286865,
-      5.49871826171875,
-      4.532811164855957,
-      4.475384712219238,
-      4.715241432189941
+      5.519120282870648,
+      2.859859857204008,
+      2.031704643554607,
+      1.641132266452639,
+      1.1596292326256528,
+      1.4050881314703398,
+      1.1467321884487625,
+      1.0193726095997495,
+      0.9314407098823944,
+      0.8329628185089452,
+      0.7699956712650534,
+      0.7985671215857534,
+      0.7354062349571475
     ]
   },
   "rule_findings": [
     {
       "feature": "jitter",
       "feature_index": null,
-      "value": 0.01803777406293635,
+      "value": 0.03108775047635909,
       "threshold": 0.13194497433207755,
       "direction": "high",
       "matched": false,
@@ -53,7 +53,7 @@
     {
       "feature": "pause_ratio",
       "feature_index": null,
-      "value": 0.9028589051657672,
+      "value": 0.792,
       "threshold": 0.33980947443458004,
       "direction": "high",
       "matched": true,
@@ -64,7 +64,7 @@
     {
       "feature": "energy",
       "feature_index": null,
-      "value": 0.010082407854497433,
+      "value": 0.03864670544862747,
       "threshold": 0.004403299186378717,
       "direction": "low",
       "matched": false,
@@ -75,7 +75,7 @@
     {
       "feature": "pitch_std",
       "feature_index": null,
-      "value": 169.74952697753906,
+      "value": 61.39642658273533,
       "threshold": 42.65833713444162,
       "direction": "high",
       "matched": true,
@@ -86,7 +86,7 @@
     {
       "feature": "pitch_mean",
       "feature_index": null,
-      "value": 279.1104736328125,
+      "value": 187.6749246338377,
       "threshold": 147.44227707006368,
       "direction": "high",
       "matched": true,
@@ -97,7 +97,7 @@
     {
       "feature": "pitch_mean",
       "feature_index": null,
-      "value": 279.1104736328125,
+      "value": 187.6749246338377,
       "threshold": 122.94135465289503,
       "direction": "low",
       "matched": false,
@@ -108,10 +108,10 @@
     {
       "feature": "mfcc_mean",
       "feature_index": 0,
-      "value": -420.8195495605469,
+      "value": -59.20485693852928,
       "threshold": -85.89946577463174,
       "direction": "high",
-      "matched": false,
+      "matched": true,
       "node": "biomarker:high_mfcc_1_mean",
       "label": "High MFCC 1 Mean",
       "summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice."
@@ -119,10 +119,10 @@
     {
       "feature": "mfcc_std",
       "feature_index": 1,
-      "value": 23.114116668701172,
+      "value": 2.859859857204008,
       "threshold": 4.798454658265069,
       "direction": "high",
-      "matched": true,
+      "matched": false,
       "node": "biomarker:high_mfcc_2_std",
       "label": "High MFCC 2 Variability",
       "summary": "Greater spectral-shape variability can indicate inconsistent articulation or affective instability."
@@ -130,10 +130,10 @@
     {
       "feature": "mfcc_mean",
       "feature_index": 2,
-      "value": 16.55335807800293,
+      "value": -0.739197399400768,
       "threshold": -0.3752938608783923,
       "direction": "low",
-      "matched": false,
+      "matched": true,
       "node": "biomarker:low_mfcc_3_mean",
       "label": "Low MFCC 3 Mean",
       "summary": "A low third cepstral coefficient may indicate altered spectral balance requiring contextual review."
@@ -141,10 +141,10 @@
     {
       "feature": "mfcc_std",
       "feature_index": 3,
-      "value": 11.290689468383789,
+      "value": 1.641132266452639,
       "threshold": 2.556283375895461,
       "direction": "high",
-      "matched": true,
+      "matched": false,
       "node": "biomarker:high_mfcc_4_std",
       "label": "High MFCC 4 Variability",
       "summary": "Higher mid-cepstral variability may reflect unstable speech production across the recording."
@@ -710,17 +710,17 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_2_std",
+      "start": "biomarker:high_mfcc_1_mean",
       "target": "risk:depression_screening_risk",
       "path": [
-        "biomarker:high_mfcc_2_std",
+        "biomarker:high_mfcc_1_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
         "risk:depression_screening_risk"
       ],
       "path_labels": [
-        "High MFCC 2 Variability",
+        "High MFCC 1 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -728,8 +728,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_2_std",
-          "name": "High MFCC 2 Variability",
+          "id": "biomarker:high_mfcc_1_mean",
+          "name": "High MFCC 1 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -759,10 +759,10 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_2_std",
+      "start": "biomarker:high_mfcc_1_mean",
       "target": "intervention:clinical_review",
       "path": [
-        "biomarker:high_mfcc_2_std",
+        "biomarker:high_mfcc_1_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
@@ -770,7 +770,7 @@
         "intervention:clinical_review"
       ],
       "path_labels": [
-        "High MFCC 2 Variability",
+        "High MFCC 1 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -779,8 +779,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_2_std",
-          "name": "High MFCC 2 Variability",
+          "id": "biomarker:high_mfcc_1_mean",
+          "name": "High MFCC 1 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -816,10 +816,10 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_2_std",
+      "start": "biomarker:high_mfcc_1_mean",
       "target": "intervention:phq8_followup",
       "path": [
-        "biomarker:high_mfcc_2_std",
+        "biomarker:high_mfcc_1_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
@@ -827,7 +827,7 @@
         "intervention:phq8_followup"
       ],
       "path_labels": [
-        "High MFCC 2 Variability",
+        "High MFCC 1 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -836,8 +836,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_2_std",
-          "name": "High MFCC 2 Variability",
+          "id": "biomarker:high_mfcc_1_mean",
+          "name": "High MFCC 1 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -873,24 +873,24 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_2_std",
+      "start": "biomarker:high_mfcc_1_mean",
       "target": "screening:phq8_depression_severity",
       "path": [
-        "biomarker:high_mfcc_2_std",
+        "biomarker:high_mfcc_1_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity"
       ],
       "path_labels": [
-        "High MFCC 2 Variability",
+        "High MFCC 1 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_2_std",
-          "name": "High MFCC 2 Variability",
+          "id": "biomarker:high_mfcc_1_mean",
+          "name": "High MFCC 1 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -914,17 +914,17 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_4_std",
+      "start": "biomarker:low_mfcc_3_mean",
       "target": "risk:depression_screening_risk",
       "path": [
-        "biomarker:high_mfcc_4_std",
+        "biomarker:low_mfcc_3_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
         "risk:depression_screening_risk"
       ],
       "path_labels": [
-        "High MFCC 4 Variability",
+        "Low MFCC 3 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -932,8 +932,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_4_std",
-          "name": "High MFCC 4 Variability",
+          "id": "biomarker:low_mfcc_3_mean",
+          "name": "Low MFCC 3 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -963,10 +963,10 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_4_std",
+      "start": "biomarker:low_mfcc_3_mean",
       "target": "intervention:clinical_review",
       "path": [
-        "biomarker:high_mfcc_4_std",
+        "biomarker:low_mfcc_3_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
@@ -974,7 +974,7 @@
         "intervention:clinical_review"
       ],
       "path_labels": [
-        "High MFCC 4 Variability",
+        "Low MFCC 3 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -983,8 +983,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_4_std",
-          "name": "High MFCC 4 Variability",
+          "id": "biomarker:low_mfcc_3_mean",
+          "name": "Low MFCC 3 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -1020,10 +1020,10 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_4_std",
+      "start": "biomarker:low_mfcc_3_mean",
       "target": "intervention:phq8_followup",
       "path": [
-        "biomarker:high_mfcc_4_std",
+        "biomarker:low_mfcc_3_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity",
@@ -1031,7 +1031,7 @@
         "intervention:phq8_followup"
       ],
       "path_labels": [
-        "High MFCC 4 Variability",
+        "Low MFCC 3 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity",
@@ -1040,8 +1040,8 @@
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_4_std",
-          "name": "High MFCC 4 Variability",
+          "id": "biomarker:low_mfcc_3_mean",
+          "name": "Low MFCC 3 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -1077,24 +1077,24 @@
       ]
     },
     {
-      "start": "biomarker:high_mfcc_4_std",
+      "start": "biomarker:low_mfcc_3_mean",
       "target": "screening:phq8_depression_severity",
       "path": [
-        "biomarker:high_mfcc_4_std",
+        "biomarker:low_mfcc_3_mean",
         "concept:spectral_shift",
         "symptom:depressed_mood",
         "screening:phq8_depression_severity"
       ],
       "path_labels": [
-        "High MFCC 4 Variability",
+        "Low MFCC 3 Mean",
         "Spectral Shift",
         "Depressed Mood",
         "PHQ-8 Depression Severity"
       ],
       "steps": [
         {
-          "id": "biomarker:high_mfcc_4_std",
-          "name": "High MFCC 4 Variability",
+          "id": "biomarker:low_mfcc_3_mean",
+          "name": "Low MFCC 3 Mean",
           "type": "Biomarker",
           "relation_to_next": "indicates"
         },
@@ -1119,11 +1119,11 @@
     }
   ],
   "clinical_summary": [
-    "High Pause Ratio (pause_ratio=0.9029) crossed the high threshold of 0.33980947443458004. Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.",
-    "High Pitch Variability (pitch_std=169.7495) crossed the high threshold of 42.65833713444162. Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
-    "High Mean Pitch (pitch_mean=279.1105) crossed the high threshold of 147.44227707006368. Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
-    "High MFCC 2 Variability (mfcc_std[1]=23.1141) crossed the high threshold of 4.798454658265069. Greater spectral-shape variability can indicate inconsistent articulation or affective instability.",
-    "High MFCC 4 Variability (mfcc_std[3]=11.2907) crossed the high threshold of 2.556283375895461. Higher mid-cepstral variability may reflect unstable speech production across the recording.",
+    "High Pause Ratio (pause_ratio=0.7920) crossed the high threshold of 0.33980947443458004. Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.",
+    "High Pitch Variability (pitch_std=61.3964) crossed the high threshold of 42.65833713444162. Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
+    "High Mean Pitch (pitch_mean=187.6749) crossed the high threshold of 147.44227707006368. Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
+    "High MFCC 1 Mean (mfcc_mean[0]=-59.2049) crossed the high threshold of -85.89946577463174. A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.",
+    "Low MFCC 3 Mean (mfcc_mean[2]=-0.7392) crossed the low threshold of -0.3752938608783923. A low third cepstral coefficient may indicate altered spectral balance requiring contextual review.",
     "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk.",
     "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> Clinical Review.",
     "Graph explanation: High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> PHQ-8 Follow-up.",
@@ -1138,13 +1138,22 @@
     "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
     "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> Supportive Follow-up.",
     "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
-    "Graph explanation: High MFCC 2 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
-    "Graph explanation: High MFCC 4 Variability -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity."
-  ]
+    "Graph explanation: High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity.",
+    "Graph explanation: Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity."
+  ],
+  "persona": "patient",
+  "llm_status": {
+    "provider": "ollama",
+    "model": "gemma3:1b",
+    "used": true,
+    "error": null
+  },
+  "llm_report": "Okay, here\u2019s a report based on the provided audio data and graph interpretations, designed to be presented to a patient in an understandable way.\n\n---\n\n**Report Regarding Your Audio Recording**\n\n\u201cHello,\u201d begins this report regarding your recent audio recording. We've analyzed the acoustic features of this recording, and it represents a preliminary assessment focusing on potential indicators that might suggest some subtle shifts in your voice patterns.  It\u2019s important to understand that **this is not a diagnosis of depression**, but rather a screening tool designed to help us explore possible areas where you might benefit from further discussion with a healthcare professional.\n\n**1. Screening Interpretation:**\n\nBased solely on the audio, we've identified several acoustic features that warrant closer attention and potential investigation.  Specifically, our analysis reveals:\n\n*   **High Pause Ratio (0.792):** This suggests there are more pauses than usual in your speech patterns. These pauses might be related to hesitation or difficulty focusing, which can sometimes be associated with feelings of distress or cognitive load \u2013 a common experience when experiencing depression.\n*   **High Pitch Variability (61.3964):** The variability in pitch levels is noticeable and warrants further evaluation. Significant shifts could indicate emotional instability, which has been linked to depressive symptoms.\n*   **High Mean Pitch (187.6749):**  The average pitch of your voice is elevated compared to a baseline. This may be indicative of an altered vocal pattern that can be associated with depression. \n*   **High MFCC 1 Mean (-59.20485693852928, 4.020933005530261, -0.739197399400768, -1.8248473262804403):** This suggests a shift in the overall spectral balance of your voice \u2013 a subtle change that could be linked to emotional states. \n\nThese findings suggest an area where you might experience some difficulty concentrating or feeling emotionally affected, which can sometimes be associated with depression. It's important to remember that these are just indicators and do not define your condition.\n\n\n**2. Evidence From Audio:**\n\nThe audio data itself provides a snapshot of the acoustic characteristics of your voice. The specific values \u2013 pause ratio, pitch variability, mean pitch, MFCC 1 mean, and MFCC 3 mean \u2013 all contribute to this assessment.  These features are being analyzed in relation to established diagnostic criteria for depression, but it's crucial to note that these are just one piece of the puzzle.\n\n**3. Graph Reasoning:**\n\nThe graph paths show a pattern of vocal characteristics that could be associated with certain emotional states. The high pause ratio and pitch variability suggest potential challenges with focus or emotional regulation \u2013 areas where depression can manifest.  The elevated mean pitch suggests an altered voice quality, potentially linked to feelings of distress. \n\n\n**4. Recommended Follow-up:**\n\nWe recommend the following steps:\n\n*   **Further Observation:** We will continue monitoring your audio recording over time to see if these patterns persist or change.\n*   **Contextual Inquiry (Optional):** If you\u2019re comfortable, we can schedule a brief conversation where we can discuss any recent life events that might be influencing your voice and emotional state.  This would help us understand the context of this analysis. \n*   **Further Evaluation:** Depending on our observations, we may recommend further psychological assessment to explore potential underlying factors contributing to these acoustic changes.\n\nWe want to emphasize that this is a preliminary assessment based solely on the audio data provided. We are here to support you and will work with you to ensure your well-being.\u201d\n\n\n---\n\n**Important Disclaimer:** *This report provides an interpretation of the audio data as described in the prompt, but it does not constitute a diagnosis or recommendation for any medical treatment.*  It is crucial that this information be discussed with a qualified healthcare professional.",
+  "llm_prompt": "You are the Reporter Agent in a Graph-RAG system for explainable audio biomarkers.\nWrite for a patient. Use plain, non-alarming language, avoid technical jargon where possible, and clearly say that the audio result is not a diagnosis.\nUse only the supplied acoustic findings and graph paths.\nDo not diagnose depression. Describe this as screening-oriented decision support.\nMention PHQ-8 only as the clinical reference construct, not as an inferred questionnaire score.\n\nAudio file: 308_AUDIO.wav\n\nExtracted acoustic features:\n{'duration_seconds': 300.0, 'energy': 0.03864670544862747, 'pitch_mean': 187.6749246338377, 'pitch_std': 61.39642658273533, 'pause_ratio': 0.792, 'jitter': 0.03108775047635909, 'mfcc_mean_first_4': [-59.20485693852928, 4.020933005530261, -0.739197399400768, -1.8248473262804403], 'mfcc_std_first_4': [5.519120282870648, 2.859859857204008, 2.031704643554607, 1.641132266452639]}\n\nMatched calibrated biomarker rules:\n- High Pause Ratio: pause_ratio=0.7920, threshold=0.33980947443458004, direction=high, summary=Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.\n- High Pitch Variability: pitch_std=61.3964, threshold=42.65833713444162, direction=high, summary=Large pitch variation may suggest unstable vocal control during depression-relevant affective states.\n- High Mean Pitch: pitch_mean=187.6749, threshold=147.44227707006368, direction=high, summary=Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.\n- High MFCC 1 Mean: mfcc_mean[0]=-59.2049, threshold=-85.89946577463174, direction=high, summary=A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.\n- Low MFCC 3 Mean: mfcc_mean[2]=-0.7392, threshold=-0.3752938608783923, direction=low, summary=A low third cepstral coefficient may indicate altered spectral balance requiring contextual review.\n\nRetrieved knowledge-graph paths:\n- High Pause Ratio -> Speech Disruption -> Depression Screening Risk\n- High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> Clinical Review\n- High Pause Ratio -> Speech Disruption -> Depression Screening Risk -> PHQ-8 Follow-up\n- High Pause Ratio -> Speech Disruption -> Difficulty Concentrating -> PHQ-8 Depression Severity\n- High Pitch Variability -> Vocal Instability -> Depression Screening Risk\n- High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> Clinical Review\n- High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> PHQ-8 Follow-up\n- High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> Supportive Follow-up\n- High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity\n- High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk\n- High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review\n- High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up\n- High Mean Pitch -> Psychomotor Slowing or Agitation -> Supportive Follow-up\n- High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity\n- High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk\n- High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review\n- High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up\n- High MFCC 1 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity\n- Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk\n- Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review\n- Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up\n- Low MFCC 3 Mean -> Spectral Shift -> Depressed Mood -> PHQ-8 Depression Severity\n\nWrite a short report with these headings:\n1. Screening Interpretation\n2. Evidence From Audio\n3. Graph Reasoning\n4. Recommended Follow-up"
 }

@@ -53,8 +53,7 @@ def build_graph(path: Path | str | None = None):
         graph.add_edge(
             edge["from"],
             edge["to"],
-            relation=edge.get("relation", "related_to"),
-            weight=edge.get("weight", 1.0)
+            relation=edge.get("relation", "related_to")
         )
 
     return graph

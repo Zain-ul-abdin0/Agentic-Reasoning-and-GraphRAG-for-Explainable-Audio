@@ -7,6 +7,7 @@ from src.feature_extraction import AudioFeatureExtractor
 from src.graph.feature_mapping import assess_features
 from src.graph.knowledge_graph import build_graph, terminal_risk_nodes
 from src.rag.graph_rag import get_all_explanation_contexts
+from src.rag.llm_client import LocalLLMConfig
 from src.rag.reporter_agent import generate_report
 
 
@@ -34,8 +35,16 @@ def resolve_audio_path(input_path: str) -> Path:
     return path
 
 
-def analyze_audio(audio_file: Path):
-    extractor = AudioFeatureExtractor(str(audio_file))
+def analyze_audio(
+    audio_file: Path,
+    persona: str = "psychologist",
+    llm_config: LocalLLMConfig | None = None,
+    max_duration_seconds: float | None = None
+):
+    extractor = AudioFeatureExtractor(
+        str(audio_file),
+        max_duration_seconds=max_duration_seconds
+    )
     features = extractor.extract_all()
     graph = build_graph()
     findings = assess_features(features, graph)
@@ -55,7 +64,9 @@ def analyze_audio(audio_file: Path):
         explanations=explanations,
         features=features,
         file_name=audio_file.name,
-        findings=findings
+        findings=findings,
+        persona=persona,
+        llm_config=llm_config
     )
 
 
@@ -119,17 +130,52 @@ def save_csv(path: Path, rows):
         writer.writerows(rows)
 
 
-def run_single(audio_path: str, output_path: str | None):
+def build_llm_config(args):
+    if args.llm_provider == "none":
+        return None
+
+    return LocalLLMConfig(
+        provider=args.llm_provider,
+        model=args.llm_model,
+        base_url=args.ollama_url,
+        timeout_seconds=args.llm_timeout,
+        temperature=args.temperature
+    )
+
+
+def run_single(
+    audio_path: str,
+    output_path: str | None,
+    persona: str,
+    llm_config: LocalLLMConfig | None,
+    max_duration_seconds: float | None,
+    quiet: bool = False
+):
     audio_file = resolve_audio_path(audio_path)
-    report = analyze_audio(audio_file)
+    report = analyze_audio(
+        audio_file,
+        persona=persona,
+        llm_config=llm_config,
+        max_duration_seconds=max_duration_seconds
+    )
 
     if output_path:
-        save_json(resolve_path(output_path), report)
+        saved_path = resolve_path(output_path)
+        save_json(saved_path, report)
 
-    print(json.dumps(report, indent=2))
+    if quiet and output_path:
+        print(f"Report saved to {saved_path}")
+    else:
+        print(json.dumps(report, indent=2))
 
 
-def run_batch(dataset_dir: str, output_dir: str):
+def run_batch(
+    dataset_dir: str,
+    output_dir: str,
+    persona: str,
+    llm_config: LocalLLMConfig | None,
+    max_duration_seconds: float | None
+):
     dataset_path = resolve_path(dataset_dir)
     output_path = resolve_path(output_dir)
     audio_files = find_audio_files(dataset_path)
@@ -141,7 +187,12 @@ def run_batch(dataset_dir: str, output_dir: str):
     rows = []
 
     for audio_file in audio_files:
-        report = analyze_audio(audio_file)
+        report = analyze_audio(
+            audio_file,
+            persona=persona,
+            llm_config=llm_config,
+            max_duration_seconds=max_duration_seconds
+        )
         reports.append(report)
         rows.append(flatten_report(report))
 
@@ -176,20 +227,79 @@ def main():
     )
     parser.add_argument(
         "--output-dir",
-        default="data/month_01_baseline",
+        default="data/month_02_knowledge_graph",
         help="Where to save batch reports and feature CSV."
+    )
+    parser.add_argument(
+        "--persona",
+        choices=["psychologist", "patient"],
+        default="psychologist",
+        help="Audience used by the Reporter Agent."
+    )
+    parser.add_argument(
+        "--llm-provider",
+        choices=["ollama", "none"],
+        default="ollama",
+        help="Local LLM provider for Month 3 Graph-RAG reporting."
+    )
+    parser.add_argument(
+        "--llm-model",
+        default="gemma3",
+        help="Local Ollama model name, for example gemma3 or gemma3:4b."
+    )
+    parser.add_argument(
+        "--ollama-url",
+        default="http://localhost:11434",
+        help="Base URL for the local Ollama server."
+    )
+    parser.add_argument(
+        "--llm-timeout",
+        type=int,
+        default=60,
+        help="Seconds to wait for the local LLM response."
+    )
+    parser.add_argument(
+        "--temperature",
+        type=float,
+        default=0.2,
+        help="LLM temperature for report generation."
+    )
+    parser.add_argument(
+        "--max-duration-seconds",
+        type=float,
+        default=None,
+        help="Optional limit for quick demos; omit it for full-audio analysis."
+    )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Print only the saved report path when --output is used."
     )
 
     args = parser.parse_args()
+    llm_config = build_llm_config(args)
 
     if args.dataset_dir:
-        run_batch(args.dataset_dir, args.output_dir)
+        run_batch(
+            args.dataset_dir,
+            args.output_dir,
+            persona=args.persona,
+            llm_config=llm_config,
+            max_duration_seconds=args.max_duration_seconds
+        )
         return
 
     if not args.audio_path:
         parser.error("Provide an audio_path or use --dataset-dir.")
 
-    run_single(args.audio_path, args.output)
+    run_single(
+        args.audio_path,
+        args.output,
+        persona=args.persona,
+        llm_config=llm_config,
+        max_duration_seconds=args.max_duration_seconds,
+        quiet=args.quiet
+    )
 
 
 if __name__ == "__main__":

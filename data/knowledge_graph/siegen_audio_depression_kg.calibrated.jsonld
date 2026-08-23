@@ -15,8 +15,7 @@
     "edges": "kg:edges",
     "from": "kg:from",
     "to": "kg:to",
-    "relation": "kg:relation",
-    "weight": "kg:weight"
+    "relation": "kg:relation"
   },
   "id": "kg:siegen-audio-depression-knowledge-graph",
   "name": "Simplified Siegen Audio-Depression Knowledge Graph",
@@ -297,164 +296,137 @@
     {
       "from": "biomarker:high_jitter",
       "to": "concept:vocal_instability",
-      "relation": "indicates",
-      "weight": 0.86
+      "relation": "indicates"
     },
     {
       "from": "biomarker:high_pitch_variability",
       "to": "concept:vocal_instability",
-      "relation": "indicates",
-      "weight": 0.78
+      "relation": "indicates"
     },
     {
       "from": "biomarker:high_pitch_mean",
       "to": "symptom:psychomotor_change",
-      "relation": "may_support",
-      "weight": 0.58
+      "relation": "may_support"
     },
     {
       "from": "concept:vocal_instability",
       "to": "symptom:psychomotor_change",
-      "relation": "may_support",
-      "weight": 0.64
+      "relation": "may_support"
     },
     {
       "from": "concept:vocal_instability",
       "to": "risk:depression_screening_risk",
-      "relation": "contributes_to",
-      "weight": 0.68
+      "relation": "contributes_to"
     },
     {
       "from": "biomarker:high_pause_ratio",
       "to": "concept:speech_disruption",
-      "relation": "indicates",
-      "weight": 0.82
+      "relation": "indicates"
     },
     {
       "from": "biomarker:low_speech_rate",
       "to": "concept:speech_disruption",
-      "relation": "indicates",
-      "weight": 0.8
+      "relation": "indicates"
     },
     {
       "from": "biomarker:low_speech_rate",
       "to": "concept:reduced_expressivity",
-      "relation": "may_support",
-      "weight": 0.58
+      "relation": "may_support"
     },
     {
       "from": "concept:speech_disruption",
       "to": "symptom:concentration_difficulty",
-      "relation": "may_support",
-      "weight": 0.62
+      "relation": "may_support"
     },
     {
       "from": "concept:speech_disruption",
       "to": "risk:depression_screening_risk",
-      "relation": "contributes_to",
-      "weight": 0.57
+      "relation": "contributes_to"
     },
     {
       "from": "biomarker:low_energy",
       "to": "concept:reduced_expressivity",
-      "relation": "indicates",
-      "weight": 0.74
+      "relation": "indicates"
     },
     {
       "from": "biomarker:low_pitch_mean",
       "to": "concept:reduced_expressivity",
-      "relation": "may_support",
-      "weight": 0.55
+      "relation": "may_support"
     },
     {
       "from": "concept:reduced_expressivity",
       "to": "symptom:fatigue",
-      "relation": "may_support",
-      "weight": 0.7
+      "relation": "may_support"
     },
     {
       "from": "symptom:fatigue",
       "to": "risk:depression_screening_risk",
-      "relation": "screening_context",
-      "weight": 0.42
+      "relation": "screening_context"
     },
     {
       "from": "biomarker:high_mfcc_1_mean",
       "to": "concept:spectral_shift",
-      "relation": "indicates",
-      "weight": 0.48
+      "relation": "indicates"
     },
     {
       "from": "biomarker:high_mfcc_2_std",
       "to": "concept:spectral_shift",
-      "relation": "indicates",
-      "weight": 0.5
+      "relation": "indicates"
     },
     {
       "from": "biomarker:low_mfcc_3_mean",
       "to": "concept:spectral_shift",
-      "relation": "indicates",
-      "weight": 0.45
+      "relation": "indicates"
     },
     {
       "from": "biomarker:high_mfcc_4_std",
       "to": "concept:spectral_shift",
-      "relation": "indicates",
-      "weight": 0.44
+      "relation": "indicates"
     },
     {
       "from": "concept:spectral_shift",
       "to": "symptom:depressed_mood",
-      "relation": "requires_context_for",
-      "weight": 0.35
+      "relation": "requires_context_for"
     },
     {
       "from": "symptom:depressed_mood",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of",
-      "weight": 0.9
+      "relation": "part_of"
     },
     {
       "from": "symptom:psychomotor_change",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of",
-      "weight": 0.9
+      "relation": "part_of"
     },
     {
       "from": "symptom:fatigue",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of",
-      "weight": 0.9
+      "relation": "part_of"
     },
     {
       "from": "symptom:concentration_difficulty",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of",
-      "weight": 0.9
+      "relation": "part_of"
     },
     {
       "from": "screening:phq8_depression_severity",
       "to": "risk:depression_screening_risk",
-      "relation": "estimates",
-      "weight": 0.88
+      "relation": "estimates"
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:clinical_review",
-      "relation": "recommends",
-      "weight": 0.95
+      "relation": "recommends"
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:phq8_followup",
-      "relation": "recommends",
-      "weight": 0.9
+      "relation": "recommends"
     },
     {
       "from": "symptom:psychomotor_change",
       "to": "intervention:supportive_followup",
-      "relation": "may_benefit_from",
-      "weight": 0.52
+      "relation": "may_benefit_from"
     }
   ]
 }
