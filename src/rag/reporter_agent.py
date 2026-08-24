@@ -1,3 +1,4 @@
+from src.rag.faithfulness import check_report_faithfulness
 from src.rag.llm_client import LLMUnavailableError, LocalLLMConfig, generate_text
 
 
@@ -28,15 +29,52 @@ def _format_feature_value(finding):
     if finding.get("feature_index") is not None:
         feature_name = f"{feature_name}[{finding['feature_index']}]"
 
+    source = finding.get("feature_source") or "unknown_source"
+    calibration = ""
+    if finding.get("calibration_youden_j") is not None:
+        calibration = (
+            f", sensitivity={finding.get('calibration_sensitivity')}, "
+            f"specificity={finding.get('calibration_specificity')}, "
+            f"youden_j={finding.get('calibration_youden_j')}"
+        )
+
     return (
         f"{finding['label']}: {feature_name}={finding['value']:.4f}, "
         f"threshold={finding['threshold']}, direction={finding['direction']}, "
-        f"summary={finding['summary']}"
+        f"source={source}{calibration}, summary={finding['summary']}"
     )
 
 
-def _deterministic_summary(matched_findings, explanations):
-    summary = []
+def _format_path_sources(explanation):
+    source_lines = []
+
+    for step in explanation.get("steps", []):
+        sources = step.get("sources_to_next") or []
+        if not sources:
+            continue
+        relation = step.get("relation_to_next") or "related_to"
+        source_lines.append(
+            f"{step['name']} --{relation}--> supported by {', '.join(sources)}"
+        )
+
+    return source_lines
+
+
+def _aggregate_sentence(aggregate_evidence):
+    if not aggregate_evidence:
+        return "Aggregate evidence scoring was not computed."
+
+    return (
+        f"Aggregate evidence level: {aggregate_evidence['evidence_level']}; "
+        f"matched {aggregate_evidence['matched_biomarker_count']} of "
+        f"{aggregate_evidence['available_biomarker_count']} available calibrated biomarkers. "
+        f"Screen positive: {aggregate_evidence['screen_positive']} using the "
+        f"matched-count threshold of {aggregate_evidence['aggregate_match_threshold']}."
+    )
+
+
+def _deterministic_summary(matched_findings, explanations, aggregate_evidence=None):
+    summary = [_aggregate_sentence(aggregate_evidence)]
 
     if not matched_findings:
         summary.append(
@@ -63,7 +101,14 @@ def _deterministic_summary(matched_findings, explanations):
     return summary
 
 
-def build_report_prompt(explanations, features, file_name, findings, persona):
+def build_report_prompt(
+    explanations,
+    features,
+    file_name,
+    findings,
+    persona,
+    aggregate_evidence=None
+):
     matched_findings = [
         finding for finding in findings
         if finding["matched"]
@@ -80,6 +125,11 @@ def build_report_prompt(explanations, features, file_name, findings, persona):
         _path_to_sentence(_path_labels(explanation))
         for explanation in explanations
     ] or ["No graph path was retrieved because no biomarker rule matched."]
+    source_lines = [
+        source_line
+        for explanation in explanations
+        for source_line in _format_path_sources(explanation)
+    ] or ["No edge-level sources were retrieved."]
 
     compact_features = {
         "duration_seconds": features.get("duration_seconds"),
@@ -87,28 +137,38 @@ def build_report_prompt(explanations, features, file_name, findings, persona):
         "pitch_mean": features.get("pitch_mean"),
         "pitch_std": features.get("pitch_std"),
         "pause_ratio": features.get("pause_ratio"),
+        "speech_rate": features.get("speech_rate"),
         "jitter": features.get("jitter"),
         "mfcc_mean_first_4": features.get("mfcc_mean", [])[:4],
         "mfcc_std_first_4": features.get("mfcc_std", [])[:4],
+        "feature_sources": features.get("feature_sources", {}),
     }
 
     return "\n".join([
         "You are the Reporter Agent in a Graph-RAG system for explainable audio biomarkers.",
         persona_instruction,
-        "Use only the supplied acoustic findings and graph paths.",
+        "Use only the supplied acoustic findings, aggregate evidence, graph paths, and edge sources.",
         "Do not diagnose depression. Describe this as screening-oriented decision support.",
-        "Mention PHQ-8 only as the clinical reference construct, not as an inferred questionnaire score.",
+        "Mention PHQ-8 only as the validated reference construct used for calibration, not as an inferred questionnaire score.",
+        "Do not recommend medication, emergency action, or treatment steps unless they are explicitly present in the supplied graph evidence.",
+        "If aggregate evidence is not screen-positive, say that the acoustic evidence is below the calibrated operating point even if some markers matched.",
         "",
         f"Audio file: {file_name}",
         "",
         "Extracted acoustic features:",
         str(compact_features),
         "",
+        "Aggregate evidence:",
+        str(aggregate_evidence or {}),
+        "",
         "Matched calibrated biomarker rules:",
         "\n".join(f"- {line}" for line in finding_lines),
         "",
         "Retrieved knowledge-graph paths:",
         "\n".join(f"- {line}" for line in path_lines),
+        "",
+        "Edge-level sources:",
+        "\n".join(f"- {line}" for line in source_lines),
         "",
         "Write a short report with these headings:",
         "1. Screening Interpretation",
@@ -124,7 +184,8 @@ def generate_report(
     file_name,
     findings,
     persona="psychologist",
-    llm_config=None
+    llm_config=None,
+    aggregate_evidence=None
 ):
     matched_findings = [
         finding for finding in findings
@@ -135,8 +196,13 @@ def generate_report(
         "file": file_name,
         "biomarkers": features,
         "rule_findings": findings,
+        "aggregate_evidence": aggregate_evidence,
         "explanation_paths": explanations,
-        "clinical_summary": _deterministic_summary(matched_findings, explanations),
+        "clinical_summary": _deterministic_summary(
+            matched_findings,
+            explanations,
+            aggregate_evidence=aggregate_evidence
+        ),
         "persona": persona,
         "llm_status": {
             "provider": "none",
@@ -144,7 +210,13 @@ def generate_report(
             "used": False,
             "error": None
         },
-        "llm_report": None
+        "llm_report": None,
+        "faithfulness_check": {
+            "checked": False,
+            "supported": None,
+            "warnings": [],
+            "supported_terms_mentioned": [],
+        }
     }
 
     if llm_config is None:
@@ -155,7 +227,8 @@ def generate_report(
         features=features,
         file_name=file_name,
         findings=findings,
-        persona=persona
+        persona=persona,
+        aggregate_evidence=aggregate_evidence
     )
     report["llm_prompt"] = prompt
     report["llm_status"] = {
@@ -170,5 +243,12 @@ def generate_report(
         report["llm_status"]["used"] = True
     except LLMUnavailableError as exc:
         report["llm_status"]["error"] = str(exc)
+
+    report["faithfulness_check"] = check_report_faithfulness(
+        report["llm_report"],
+        explanations,
+        findings,
+        aggregate_evidence=aggregate_evidence
+    )
 
     return report

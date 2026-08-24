@@ -42,6 +42,10 @@ def describe_path(graph, path):
         if index < len(path) - 1:
             edge = graph.edges[node_id, path[index + 1]]
             step["relation_to_next"] = edge.get("relation")
+            if edge.get("sources"):
+                step["sources_to_next"] = edge.get("sources")
+            if edge.get("evidence_note"):
+                step["evidence_note_to_next"] = edge.get("evidence_note")
 
         steps.append(step)
 

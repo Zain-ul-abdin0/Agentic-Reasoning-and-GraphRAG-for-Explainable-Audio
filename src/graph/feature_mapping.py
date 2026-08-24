@@ -48,13 +48,20 @@ def assess_features(features, graph=None):
         findings.append({
             "feature": rule["feature_key"],
             "feature_index": rule["feature_index"],
+            "feature_source": features.get("feature_sources", {}).get(rule["feature_key"]),
             "value": value,
             "threshold": rule["threshold"],
             "direction": rule["direction"],
             "matched": matched,
             "node": rule["node"],
             "label": rule["label"],
-            "summary": rule["summary"]
+            "summary": rule["summary"],
+            "calibration_reference_label": rule.get("calibration_reference_label"),
+            "calibration_method": rule.get("calibration_method"),
+            "calibration_sensitivity": rule.get("calibration_sensitivity"),
+            "calibration_specificity": rule.get("calibration_specificity"),
+            "calibration_youden_j": rule.get("calibration_youden_j"),
+            "calibration_balanced_accuracy": rule.get("calibration_balanced_accuracy"),
         })
 
     return findings

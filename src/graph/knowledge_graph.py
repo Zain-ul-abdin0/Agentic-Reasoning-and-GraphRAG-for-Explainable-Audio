@@ -50,11 +50,13 @@ def build_graph(path: Path | str | None = None):
         graph.add_node(node_id, **attributes)
 
     for edge in document["edges"]:
-        graph.add_edge(
-            edge["from"],
-            edge["to"],
-            relation=edge.get("relation", "related_to")
-        )
+        attributes = {
+            key: value
+            for key, value in edge.items()
+            if key not in {"from", "to"}
+        }
+        attributes.setdefault("relation", "related_to")
+        graph.add_edge(edge["from"], edge["to"], **attributes)
 
     return graph
 
@@ -102,7 +104,13 @@ def get_biomarker_rules(graph=None):
             "direction": attributes["direction"],
             "node": node_id,
             "label": attributes["name"],
-            "summary": attributes["clinical_summary"]
+            "summary": attributes["clinical_summary"],
+            "calibration_reference_label": attributes.get("calibration_reference_label"),
+            "calibration_method": attributes.get("calibration_method"),
+            "calibration_sensitivity": attributes.get("calibration_sensitivity"),
+            "calibration_specificity": attributes.get("calibration_specificity"),
+            "calibration_youden_j": attributes.get("calibration_youden_j"),
+            "calibration_balanced_accuracy": attributes.get("calibration_balanced_accuracy"),
         }
 
     return rules

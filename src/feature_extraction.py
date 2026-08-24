@@ -1,3 +1,6 @@
+from pathlib import Path
+import csv
+import math
 import wave
 
 import numpy as np
@@ -5,12 +8,129 @@ import parselmouth
 from scipy.fftpack import dct
 
 
+def _parse_float(value):
+    try:
+        if value is None or value == "":
+            return None
+        number = float(value)
+        if math.isnan(number) or math.isinf(number):
+            return None
+        return number
+    except ValueError:
+        return None
+
+
+def _read_csv_rows(path):
+    path = Path(path)
+    sample = path.read_text(encoding="utf-8-sig", errors="ignore")[:2048]
+    delimiter = "\t" if sample.count("\t") > sample.count(",") else ","
+
+    with path.open(newline="", encoding="utf-8-sig") as file:
+        return list(csv.DictReader(file, delimiter=delimiter))
+
+
+def _tokenize(text):
+    return [
+        token
+        for token in text.replace("'", " ").split()
+        if token.strip()
+    ]
+
+
+def extract_transcript_features(transcript_path, max_duration_seconds=None):
+    participant_turns = []
+
+    for row in _read_csv_rows(transcript_path):
+        if row.get("speaker") != "Participant":
+            continue
+
+        start = _parse_float(row.get("start_time"))
+        stop = _parse_float(row.get("stop_time"))
+        if start is None or stop is None or stop <= start:
+            continue
+
+        if max_duration_seconds is not None:
+            if start >= max_duration_seconds:
+                continue
+            stop = min(stop, max_duration_seconds)
+            if stop <= start:
+                continue
+
+        participant_turns.append({
+            "start": start,
+            "stop": stop,
+            "words": len(_tokenize(row.get("value", ""))),
+        })
+
+    if not participant_turns:
+        return {}
+
+    speech_duration = sum(
+        turn["stop"] - turn["start"]
+        for turn in participant_turns
+    )
+    word_count = sum(turn["words"] for turn in participant_turns)
+    start_time = min(turn["start"] for turn in participant_turns)
+    stop_time = max(turn["stop"] for turn in participant_turns)
+    total_span = max(stop_time - start_time, speech_duration)
+    pause_duration = max(total_span - speech_duration, 0.0)
+
+    return {
+        "speech_rate": word_count / speech_duration if speech_duration else None,
+        "pause_ratio": pause_duration / total_span if total_span else None,
+        "participant_speech_duration": speech_duration,
+        "participant_word_count": word_count,
+    }
+
+
+def _stream_column_values(path, column_index, positive_only=False):
+    with Path(path).open(newline="", encoding="utf-8-sig") as file:
+        reader = csv.reader(file)
+        for row in reader:
+            if len(row) <= column_index:
+                continue
+
+            value = _parse_float(row[column_index])
+            if value is None:
+                continue
+            if positive_only and value <= 0:
+                continue
+
+            yield value
+
+
+def extract_covarep_features(covarep_path):
+    f0_values = list(_stream_column_values(covarep_path, 0, positive_only=True))
+    if len(f0_values) < 2:
+        return {}
+
+    f0 = np.asarray(f0_values, dtype=np.float64)
+    periods = 1.0 / f0
+    period_diffs = np.abs(np.diff(periods))
+    jitter_proxy = float(np.mean(period_diffs) / np.mean(periods))
+
+    return {
+        "pitch_mean": float(np.mean(f0)),
+        "pitch_std": float(np.std(f0)),
+        "jitter": jitter_proxy,
+    }
+
+
 class AudioFeatureExtractor:
 
-    def __init__(self, audio_path, sample_rate=16000, max_duration_seconds=None):
+    def __init__(
+        self,
+        audio_path,
+        sample_rate=16000,
+        max_duration_seconds=None,
+        transcript_path=None,
+        covarep_path=None
+    ):
         self.audio_path = audio_path
         self.sample_rate = sample_rate
         self.max_duration_seconds = max_duration_seconds
+        self.transcript_path = transcript_path
+        self.covarep_path = covarep_path
         self.audio, self.sr = self.read_wav_mono(audio_path)
         self._praat_sound = None
 
@@ -216,10 +336,22 @@ class AudioFeatureExtractor:
             return 0.0
 
     def extract_all(self):
-        pitch = self.extract_pitch()
-        mfcc = self.extract_mfcc()
+        covarep_features = {}
+        if self.covarep_path and Path(self.covarep_path).exists():
+            covarep_features = extract_covarep_features(self.covarep_path)
 
-        return {
+        if covarep_features:
+            pitch = {
+                "mean": covarep_features.get("pitch_mean", 0.0),
+                "std": covarep_features.get("pitch_std", 0.0),
+            }
+            jitter = covarep_features.get("jitter", 0.0)
+        else:
+            pitch = self.extract_pitch()
+            jitter = self.extract_jitter()
+
+        mfcc = self.extract_mfcc()
+        features = {
             "duration_seconds":
                 self.extract_duration(),
 
@@ -236,7 +368,7 @@ class AudioFeatureExtractor:
                 self.extract_pause_ratio(),
 
             "jitter":
-                self.extract_jitter(),
+                jitter,
 
             "mfcc_mean":
                 mfcc["mean"].tolist(),
@@ -244,3 +376,26 @@ class AudioFeatureExtractor:
             "mfcc_std":
                 mfcc["std"].tolist()
         }
+        feature_sources = {
+            "duration_seconds": "audio",
+            "energy": "audio",
+            "pitch_mean": "covarep" if covarep_features else "audio_praat",
+            "pitch_std": "covarep" if covarep_features else "audio_praat",
+            "pause_ratio": "audio_energy_frames",
+            "jitter": "covarep" if covarep_features else "audio_praat",
+            "mfcc_mean": "audio_mfcc",
+            "mfcc_std": "audio_mfcc",
+        }
+
+        if self.transcript_path and Path(self.transcript_path).exists():
+            transcript_features = extract_transcript_features(
+                self.transcript_path,
+                max_duration_seconds=self.max_duration_seconds
+            )
+            for key, value in transcript_features.items():
+                if value is not None:
+                    features[key] = value
+                    feature_sources[key] = "transcript"
+
+        features["feature_sources"] = feature_sources
+        return features

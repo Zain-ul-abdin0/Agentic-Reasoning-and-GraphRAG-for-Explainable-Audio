@@ -15,7 +15,9 @@
     "edges": "kg:edges",
     "from": "kg:from",
     "to": "kg:to",
-    "relation": "kg:relation"
+    "relation": "kg:relation",
+    "sources": "kg:sources",
+    "evidence_note": "kg:evidenceNote"
   },
   "id": "kg:siegen-audio-depression-knowledge-graph",
   "name": "Simplified Siegen Audio-Depression Knowledge Graph",
@@ -296,137 +298,297 @@
     {
       "from": "biomarker:high_jitter",
       "to": "concept:vocal_instability",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Speech-analysis reviews associate perturbation and voice-source instability with depression-relevant vocal control changes."
     },
     {
       "from": "biomarker:high_pitch_variability",
       "to": "concept:vocal_instability",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
     },
     {
       "from": "biomarker:high_pitch_mean",
       "to": "symptom:psychomotor_change",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
     },
     {
       "from": "concept:vocal_instability",
       "to": "symptom:psychomotor_change",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
     },
     {
       "from": "concept:vocal_instability",
       "to": "risk:depression_screening_risk",
-      "relation": "contributes_to"
+      "relation": "contributes_to",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
     },
     {
       "from": "biomarker:high_pause_ratio",
       "to": "concept:speech_disruption",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Longer silence and pause behaviour are commonly reported in speech-based depression screening work."
     },
     {
       "from": "biomarker:low_speech_rate",
       "to": "concept:speech_disruption",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Slower speech rate is linked to reduced verbal fluency, psychomotor slowing, and depression severity in prior speech studies."
     },
     {
       "from": "biomarker:low_speech_rate",
       "to": "concept:reduced_expressivity",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Slower speech rate is linked to reduced verbal fluency, psychomotor slowing, and depression severity in prior speech studies."
     },
     {
       "from": "concept:speech_disruption",
       "to": "symptom:concentration_difficulty",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Speech disruption, pausing, and slowed rhythm are linked to depression-relevant interview behaviour."
     },
     {
       "from": "concept:speech_disruption",
       "to": "risk:depression_screening_risk",
-      "relation": "contributes_to"
+      "relation": "contributes_to",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Speech disruption, pausing, and slowed rhythm are linked to depression-relevant interview behaviour."
     },
     {
       "from": "biomarker:low_energy",
       "to": "concept:reduced_expressivity",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation."
     },
     {
       "from": "biomarker:low_pitch_mean",
       "to": "concept:reduced_expressivity",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Lower pitch or reduced prosodic activation can appear with reduced expressivity and fatigue, but requires speaker-context review."
     },
     {
       "from": "concept:reduced_expressivity",
       "to": "symptom:fatigue",
-      "relation": "may_support"
+      "relation": "may_support",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ],
+      "evidence_note": "Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation."
     },
     {
       "from": "symptom:fatigue",
       "to": "risk:depression_screening_risk",
-      "relation": "screening_context"
+      "relation": "screening_context",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     },
     {
       "from": "biomarker:high_mfcc_1_mean",
       "to": "concept:spectral_shift",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "MFCCs are widely used spectral descriptors in psychiatric speech assessment, but they require semantic mapping for interpretation."
     },
     {
       "from": "biomarker:high_mfcc_2_std",
       "to": "concept:spectral_shift",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "MFCC variability captures spectral-shape changes that may reflect altered speech production or affective expression."
     },
     {
       "from": "biomarker:low_mfcc_3_mean",
       "to": "concept:spectral_shift",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "MFCC coefficients are model-facing spectral biomarkers; the graph maps them cautiously to qualitative spectral shift rather than direct diagnosis."
     },
     {
       "from": "biomarker:high_mfcc_4_std",
       "to": "concept:spectral_shift",
-      "relation": "indicates"
+      "relation": "indicates",
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ],
+      "evidence_note": "Mid-cepstral variability is retained as a calibrated spectral marker and interpreted only through graph context."
     },
     {
       "from": "concept:spectral_shift",
       "to": "symptom:depressed_mood",
-      "relation": "requires_context_for"
+      "relation": "requires_context_for",
+      "sources": [
+        "Low et al. (2020)",
+        "Cummins et al. (2015)"
+      ],
+      "evidence_note": "Spectral features are useful biomarkers but need clinical context before linking them to mood symptoms."
     },
     {
       "from": "symptom:depressed_mood",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of"
+      "relation": "part_of",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     },
     {
       "from": "symptom:psychomotor_change",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of"
+      "relation": "part_of",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     },
     {
       "from": "symptom:fatigue",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of"
+      "relation": "part_of",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     },
     {
       "from": "symptom:concentration_difficulty",
       "to": "screening:phq8_depression_severity",
-      "relation": "part_of"
+      "relation": "part_of",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     },
     {
       "from": "screening:phq8_depression_severity",
       "to": "risk:depression_screening_risk",
-      "relation": "estimates"
+      "relation": "estimates",
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ],
+      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:clinical_review",
-      "relation": "recommends"
+      "relation": "recommends",
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ],
+      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:phq8_followup",
-      "relation": "recommends"
+      "relation": "recommends",
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ],
+      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
     },
     {
       "from": "symptom:psychomotor_change",
       "to": "intervention:supportive_followup",
-      "relation": "may_benefit_from"
+      "relation": "may_benefit_from",
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ],
+      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
     }
   ]
 }
