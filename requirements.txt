@@ -1,6 +1,9 @@
+fastapi
 librosa
 networkx
 numpy
 pandas
 praat-parselmouth
+python-multipart
 scipy
+uvicorn

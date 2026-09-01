@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agentic Graph-RAG Audio Dashboard</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Agentic Graph-RAG</p>
+        <h1>Explainable Audio Biomarker Reporting</h1>
+      </div>
+      <div class="status-pill" id="apiStatus">Ready</div>
+    </header>
+
+    <section class="workbench">
+      <form id="analysisForm" class="control-panel">
+        <div class="field full">
+          <label for="datasetAudio">Dataset audio</label>
+          <select id="datasetAudio" name="dataset_audio">
+            <option value="">Loading dataset audios...</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="audioFile">Or upload WAV</label>
+          <input id="audioFile" name="audio_file" type="file" accept=".wav,audio/wav">
+        </div>
+
+        <div class="field">
+          <label for="persona">Persona</label>
+          <select id="persona" name="persona">
+            <option value="psychologist">Psychologist</option>
+            <option value="patient">Patient</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="llmProvider">Reporter</label>
+          <select id="llmProvider" name="llm_provider">
+            <option value="none">Deterministic</option>
+            <option value="ollama">Ollama / Gemma</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="llmModel">Model</label>
+          <input id="llmModel" name="llm_model" value="gemma3:1b">
+        </div>
+
+        <div class="field">
+          <label for="timeout">Timeout</label>
+          <input id="timeout" name="llm_timeout" type="number" min="10" value="180">
+        </div>
+
+        <div class="field">
+          <label for="maxDuration">Max seconds</label>
+          <input id="maxDuration" name="max_duration_seconds" type="number" min="1" placeholder="Full audio">
+        </div>
+
+        <div class="field">
+          <label for="historyWeeks">Simulated weeks</label>
+          <input id="historyWeeks" name="simulate_history_weeks" type="number" min="0" max="12" value="3">
+        </div>
+
+        <div class="field full switch-row">
+          <label class="switch-label" for="autoSidecars">Use transcript/COVAREP sidecars</label>
+          <input id="autoSidecars" name="use_auto_sidecars" type="checkbox" checked>
+        </div>
+
+        <details class="advanced full">
+          <summary>Optional files</summary>
+          <div class="advanced-grid">
+            <div class="field">
+              <label for="transcriptFile">Transcript CSV</label>
+              <input id="transcriptFile" name="transcript_file" type="file" accept=".csv,.tsv,text/csv">
+            </div>
+            <div class="field">
+              <label for="covarepFile">COVAREP CSV</label>
+              <input id="covarepFile" name="covarep_file" type="file" accept=".csv,text/csv">
+            </div>
+            <div class="field">
+              <label for="historyFile">Previous report JSON</label>
+              <input id="historyFile" name="history_file" type="file" accept=".json,application/json">
+            </div>
+          </div>
+        </details>
+
+        <button class="run-button" type="submit">Run Agentic Analysis</button>
+      </form>
+
+      <section class="summary-panel" aria-live="polite">
+        <div class="metric-strip">
+          <div class="metric">
+            <span>Screen</span>
+            <strong id="screenValue">-</strong>
+          </div>
+          <div class="metric">
+            <span>Evidence</span>
+            <strong id="evidenceValue">-</strong>
+          </div>
+          <div class="metric">
+            <span>Matched</span>
+            <strong id="matchedValue">-</strong>
+          </div>
+        </div>
+
+        <div class="report-location" id="reportLocation">Run an analysis to create a report.</div>
+
+        <div class="tabs" role="tablist">
+          <button type="button" class="tab active" data-tab="overview">Overview</button>
+          <button type="button" class="tab" data-tab="agents">Agents</button>
+          <button type="button" class="tab" data-tab="graph">Graph</button>
+          <button type="button" class="tab" data-tab="report">Report</button>
+        </div>
+
+        <div class="tab-panel active" id="overviewPanel">
+          <h2>Matched Biomarkers</h2>
+          <div class="chips" id="biomarkerChips"></div>
+          <h2>Feature Sources</h2>
+          <div class="source-grid" id="featureSources"></div>
+          <h2>Recursive Context</h2>
+          <p class="text-output" id="recursiveSummary">No context yet.</p>
+        </div>
+
+        <div class="tab-panel" id="agentsPanel">
+          <h2>Agent Flow</h2>
+          <div class="flow" id="agentFlow"></div>
+          <h2>Persona Prompt Chain</h2>
+          <ol class="chain" id="promptChain"></ol>
+          <h2>Trace</h2>
+          <div class="trace" id="traceList"></div>
+        </div>
+
+        <div class="tab-panel" id="graphPanel">
+          <h2>Retrieved Graph Paths</h2>
+          <div class="paths" id="graphPaths"></div>
+        </div>
+
+        <div class="tab-panel" id="reportPanel">
+          <h2>Clinical Summary</h2>
+          <ul class="summary-list" id="clinicalSummary"></ul>
+          <h2>LLM Report</h2>
+          <div class="llm-output" id="llmReport">Run with Ollama/Gemma to generate LLM text.</div>
+          <h2>Faithfulness Check</h2>
+          <div class="faithfulness" id="faithfulness"></div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
+

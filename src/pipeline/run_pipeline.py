@@ -3,13 +3,8 @@ import argparse
 import csv
 import json
 
-from src.feature_extraction import AudioFeatureExtractor
-from src.graph.feature_mapping import assess_features
-from src.graph.knowledge_graph import build_graph, terminal_risk_nodes
-from src.rag.evidence_scoring import score_evidence
-from src.rag.graph_rag import get_all_explanation_contexts
+from src.agentic.orchestrator import AgenticReportingEngine
 from src.rag.llm_client import LocalLLMConfig
-from src.rag.reporter_agent import generate_report
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
@@ -47,15 +42,6 @@ def resolve_audio_path(input_path: str) -> Path:
     return path
 
 
-def infer_sidecar_path(audio_file: Path, suffix: str) -> Path | None:
-    if audio_file.name.endswith("_AUDIO.wav"):
-        candidate = audio_file.with_name(audio_file.name.replace("_AUDIO.wav", suffix))
-        if candidate.exists():
-            return candidate
-
-    return None
-
-
 def analyze_audio(
     audio_file: Path,
     persona: str = "psychologist",
@@ -63,47 +49,21 @@ def analyze_audio(
     max_duration_seconds: float | None = None,
     transcript_path: Path | None = None,
     covarep_path: Path | None = None,
-    auto_sidecars: bool = True
+    auto_sidecars: bool = True,
+    history_path: Path | None = None,
+    simulated_history_weeks: int = 0,
 ):
-    if auto_sidecars:
-        transcript_path = transcript_path or infer_sidecar_path(audio_file, "_TRANSCRIPT.csv")
-        covarep_path = covarep_path or infer_sidecar_path(audio_file, "_COVAREP.csv")
-
-    extractor = AudioFeatureExtractor(
-        str(audio_file),
-        max_duration_seconds=max_duration_seconds,
-        transcript_path=str(transcript_path) if transcript_path else None,
-        covarep_path=str(covarep_path) if covarep_path else None
-    )
-    features = extractor.extract_all()
-    features["sidecar_files"] = {
-        "transcript": str(transcript_path) if transcript_path else None,
-        "covarep": str(covarep_path) if covarep_path else None,
-    }
-
-    graph = build_graph()
-    findings = assess_features(features, graph)
-    aggregate_evidence = score_evidence(findings)
-    explanations = []
-
-    for finding in findings:
-        if finding["matched"]:
-            explanations.extend(
-                get_all_explanation_contexts(
-                    graph,
-                    finding["node"],
-                    terminal_risk_nodes(graph)
-                )
-            )
-
-    return generate_report(
-        explanations=explanations,
-        features=features,
-        file_name=audio_file.name,
-        findings=findings,
+    engine = AgenticReportingEngine()
+    return engine.run(
+        audio_file=audio_file,
         persona=persona,
         llm_config=llm_config,
-        aggregate_evidence=aggregate_evidence
+        max_duration_seconds=max_duration_seconds,
+        transcript_path=transcript_path,
+        covarep_path=covarep_path,
+        auto_sidecars=auto_sidecars,
+        history_path=history_path,
+        simulated_history_weeks=simulated_history_weeks,
     )
 
 
@@ -117,6 +77,8 @@ def find_audio_files(dataset_dir: Path):
 def flatten_report(report):
     features = report["biomarkers"]
     aggregate = report.get("aggregate_evidence") or {}
+    recursive_context = report.get("recursive_context") or {}
+    agentic_engine = report.get("agentic_engine") or {}
     matched_nodes = [
         finding["node"]
         for finding in report["rule_findings"]
@@ -125,6 +87,7 @@ def flatten_report(report):
 
     return {
         "file": report["file"],
+        "persona": report.get("persona"),
         "duration_seconds": features.get("duration_seconds"),
         "energy": features.get("energy"),
         "pitch_mean": features.get("pitch_mean"),
@@ -136,6 +99,9 @@ def flatten_report(report):
         "available_biomarker_count": aggregate.get("available_biomarker_count"),
         "aggregate_screen_positive": aggregate.get("screen_positive"),
         "evidence_level": aggregate.get("evidence_level"),
+        "recursive_context_enabled": recursive_context.get("enabled"),
+        "recursive_context_simulated": recursive_context.get("simulated"),
+        "agent_flow": " -> ".join(agentic_engine.get("flow", [])),
         "matched_rules": "; ".join(matched_nodes),
         "explanation_targets": "; ".join(
             explanation["target"]
@@ -157,6 +123,7 @@ def save_csv(path: Path, rows):
 
     fieldnames = [
         "file",
+        "persona",
         "duration_seconds",
         "energy",
         "pitch_mean",
@@ -168,6 +135,9 @@ def save_csv(path: Path, rows):
         "available_biomarker_count",
         "aggregate_screen_positive",
         "evidence_level",
+        "recursive_context_enabled",
+        "recursive_context_simulated",
+        "agent_flow",
         "matched_rules",
         "explanation_targets"
     ]
@@ -200,6 +170,8 @@ def run_single(
     transcript_path: str | None,
     covarep_path: str | None,
     auto_sidecars: bool,
+    history_path: str | None,
+    simulated_history_weeks: int,
     quiet: bool = False
 ):
     audio_file = resolve_audio_path(audio_path)
@@ -210,7 +182,9 @@ def run_single(
         max_duration_seconds=max_duration_seconds,
         transcript_path=resolve_optional_path(transcript_path),
         covarep_path=resolve_optional_path(covarep_path),
-        auto_sidecars=auto_sidecars
+        auto_sidecars=auto_sidecars,
+        history_path=resolve_optional_path(history_path),
+        simulated_history_weeks=simulated_history_weeks,
     )
 
     if output_path:
@@ -229,7 +203,9 @@ def run_batch(
     persona: str,
     llm_config: LocalLLMConfig | None,
     max_duration_seconds: float | None,
-    auto_sidecars: bool
+    auto_sidecars: bool,
+    history_path: str | None,
+    simulated_history_weeks: int,
 ):
     dataset_path = resolve_path(dataset_dir)
     output_path = resolve_path(output_dir)
@@ -247,7 +223,9 @@ def run_batch(
             persona=persona,
             llm_config=llm_config,
             max_duration_seconds=max_duration_seconds,
-            auto_sidecars=auto_sidecars
+            auto_sidecars=auto_sidecars,
+            history_path=resolve_optional_path(history_path),
+            simulated_history_weeks=simulated_history_weeks,
         )
         reports.append(report)
         rows.append(flatten_report(report))
@@ -262,7 +240,7 @@ def run_batch(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Explainable audio analysis pipeline"
+        description="Agentic Graph-RAG audio reporting pipeline"
     )
 
     parser.add_argument(
@@ -283,7 +261,7 @@ def main():
     )
     parser.add_argument(
         "--output-dir",
-        default="data/month_03_graph_rag",
+        default="data/month_04_agentic_reporting_engine",
         help="Where to save batch reports and feature CSV."
     )
     parser.add_argument(
@@ -296,12 +274,12 @@ def main():
         "--llm-provider",
         choices=["ollama", "none"],
         default="ollama",
-        help="Local LLM provider for Month 3 Graph-RAG reporting."
+        help="Local LLM provider for agentic Graph-RAG reporting."
     )
     parser.add_argument(
         "--llm-model",
         default="gemma3",
-        help="Local Ollama model name, for example gemma3 or gemma3:4b."
+        help="Local Ollama model name, for example gemma3 or gemma3:1b."
     )
     parser.add_argument(
         "--ollama-url",
@@ -337,6 +315,17 @@ def main():
         help="Optional DAIC-WOZ COVAREP CSV for calibration-aligned pitch and jitter features."
     )
     parser.add_argument(
+        "--history",
+        default=None,
+        help="Optional JSON file containing previous report(s) for recursive context."
+    )
+    parser.add_argument(
+        "--simulate-history-weeks",
+        type=int,
+        default=0,
+        help="Create clearly labelled synthetic previous-week summaries for Month 4 prototype demos."
+    )
+    parser.add_argument(
         "--no-auto-sidecars",
         action="store_true",
         help="Disable automatic *_TRANSCRIPT.csv and *_COVAREP.csv lookup next to *_AUDIO.wav files."
@@ -358,7 +347,9 @@ def main():
             persona=args.persona,
             llm_config=llm_config,
             max_duration_seconds=args.max_duration_seconds,
-            auto_sidecars=auto_sidecars
+            auto_sidecars=auto_sidecars,
+            history_path=args.history,
+            simulated_history_weeks=args.simulate_history_weeks,
         )
         return
 
@@ -374,6 +365,8 @@ def main():
         transcript_path=args.transcript,
         covarep_path=args.covarep,
         auto_sidecars=auto_sidecars,
+        history_path=args.history,
+        simulated_history_weeks=args.simulate_history_weeks,
         quiet=args.quiet
     )
 
