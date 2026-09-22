@@ -1,0 +1,33 @@
+{
+  "milestone": "Month 5: Evaluation and User Study",
+  "dataset": "D:\\After Coming to Germany\\Study\\Thesis\\Agentic Reasoning and GraphRAG for Explainable Audio\\Dataset",
+  "reference_label": "PHQ-8 >= 10",
+  "participants_evaluated": 113,
+  "llm_mode": "disabled for deterministic batch evaluation",
+  "classification_metrics": {
+    "n": 113,
+    "true_positive": 41,
+    "true_negative": 41,
+    "false_positive": 16,
+    "false_negative": 15,
+    "accuracy": 0.7256637168141593,
+    "sensitivity": 0.7321428571428571,
+    "specificity": 0.7192982456140351,
+    "precision": 0.7192982456140351,
+    "f1_score": 0.7256637168141592,
+    "balanced_accuracy": 0.7257205513784462
+  },
+  "retrieval_comparison": {
+    "top_k": 3,
+    "graph_rag_mean_precision": 1.0,
+    "graph_rag_mean_source_backed_ratio": 1.0,
+    "vector_mean_precision_at_k": 0.3888888888888911,
+    "retrieval_rows": 606
+  },
+  "mock_qualitative_review": {
+    "review_type": "mock qualitative rubric",
+    "psychologist_mean_score": 4.377212389380531,
+    "patient_mean_score": 4.377212389380531,
+    "rows": 226
+  }
+}

@@ -4,12 +4,14 @@ import json
 import re
 import shutil
 import tempfile
+from types import SimpleNamespace
 from typing import Optional
 
 from fastapi import FastAPI, File, Form, HTTPException, UploadFile
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from src.evaluation.evaluate_month_05 import evaluate as run_month_05_evaluation
 from src.pipeline.run_pipeline import analyze_audio, resolve_path
 from src.rag.llm_client import LocalLLMConfig
 
@@ -18,6 +20,7 @@ BASE_DIR = Path(__file__).resolve().parents[2]
 DATASET_DIR = BASE_DIR / "Dataset"
 WEB_REPORT_DIR = BASE_DIR / "data" / "month_04_agentic_reporting_engine" / "web_reports"
 UPLOAD_DIR = BASE_DIR / "data" / "month_04_agentic_reporting_engine" / "uploads"
+EVALUATION_DIR = BASE_DIR / "data" / "month_05_evaluation"
 STATIC_DIR = Path(__file__).resolve().parent / "static"
 
 app = FastAPI(
@@ -78,11 +81,68 @@ def _compact_report(report: dict, report_path: Path) -> dict:
         "persona_prompt_chain": report.get("persona_prompt_chain", []),
         "recursive_context": recursive,
         "clinical_summary": report.get("clinical_summary", []),
+        "user_facing_summary": report.get("user_facing_summary", report.get("clinical_summary", [])),
+        "display_report": report.get("display_report"),
         "llm_status": report.get("llm_status", {}),
         "llm_report": report.get("llm_report"),
         "faithfulness_check": report.get("faithfulness_check", {}),
         "graph_paths": report.get("explanation_paths", [])[:8],
         "matched_findings": matched_findings,
+    }
+
+
+def _read_json_if_exists(path: Path) -> dict | None:
+    if not path.exists():
+        return None
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _read_text_if_exists(path: Path) -> str | None:
+    if not path.exists():
+        return None
+    return path.read_text(encoding="utf-8")
+
+
+def _read_csv_rows(path: Path, limit: int | None = None) -> list[dict]:
+    if not path.exists():
+        return []
+
+    import csv
+
+    with path.open(newline="", encoding="utf-8") as file:
+        reader = csv.DictReader(file)
+        rows = []
+        for row in reader:
+            rows.append(row)
+            if limit is not None and len(rows) >= limit:
+                break
+        return rows
+
+
+def _evaluation_payload(output_dir: Path = EVALUATION_DIR) -> dict:
+    summary_path = output_dir / "evaluation_summary.json"
+    participant_path = output_dir / "participant_results.csv"
+    retrieval_path = output_dir / "retrieval_comparison.csv"
+    review_path = output_dir / "mock_review_scores.csv"
+    analysis_path = output_dir / "comparative_analysis.md"
+
+    return {
+        "available": summary_path.exists(),
+        "output_dir": _relative(output_dir),
+        "summary": _read_json_if_exists(summary_path),
+        "comparative_analysis": _read_text_if_exists(analysis_path),
+        "tables": {
+            "participants": _read_csv_rows(participant_path),
+            "retrieval": _read_csv_rows(retrieval_path),
+            "mock_review": _read_csv_rows(review_path),
+        },
+        "files": {
+            "summary": _relative(summary_path),
+            "participant_results": _relative(participant_path),
+            "retrieval_comparison": _relative(retrieval_path),
+            "mock_review_scores": _relative(review_path),
+            "comparative_analysis": _relative(analysis_path),
+        },
     }
 
 
@@ -136,6 +196,36 @@ def read_report(path: str):
     report_path = _resolve_report_path(path)
     report = json.loads(report_path.read_text(encoding="utf-8"))
     return _compact_report(report, report_path)
+
+
+@app.get("/api/evaluation")
+def read_evaluation():
+    return _evaluation_payload()
+
+
+@app.post("/api/evaluation/run")
+def run_evaluation(
+    limit: Optional[int] = Form(None),
+    max_duration_seconds: Optional[float] = Form(None),
+    top_k: int = Form(3),
+):
+    try:
+        args = SimpleNamespace(
+            dataset_dir="Dataset",
+            output_dir="data/month_05_evaluation",
+            phq_cutoff=10,
+            top_k=top_k,
+            limit=limit,
+            max_duration_seconds=max_duration_seconds,
+            simulate_history_weeks=3,
+            label_file=None,
+        )
+        result = run_month_05_evaluation(args)
+        payload = _evaluation_payload()
+        payload["latest_run"] = result
+        return payload
+    except Exception as exc:
+        raise HTTPException(status_code=500, detail=str(exc)) from exc
 
 
 @app.post("/api/analyze")

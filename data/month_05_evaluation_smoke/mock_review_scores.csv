@@ -1,0 +1,9 @@
+actionability,biomarker_completeness,clinical_caution,evidence_grounding,evidence_level,graph_traceability,note,overall_mean,participant_id,persona,persona_fit,recursive_context_use,review_type,screen_positive,source_support
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,300,psychologist,5,5,mock qualitative rubric,False,5
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,300,patient,5,5,mock qualitative rubric,False,5
+4,4,3,3,limited,3,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,3.75,301,psychologist,5,5,mock qualitative rubric,False,3
+4,4,3,3,limited,3,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,3.75,301,patient,5,5,mock qualitative rubric,False,3
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,302,psychologist,5,5,mock qualitative rubric,False,5
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,302,patient,5,5,mock qualitative rubric,False,5
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,303,psychologist,5,5,mock qualitative rubric,False,5
+4,4,3,4,borderline,5,Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.,4.375,303,patient,5,5,mock qualitative rubric,False,5

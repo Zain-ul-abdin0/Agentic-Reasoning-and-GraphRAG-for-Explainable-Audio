@@ -1,0 +1,1330 @@
+{
+  "file": "311_AUDIO.wav",
+  "biomarkers": {
+    "duration_seconds": 4.0,
+    "energy": 0.0010006926022469997,
+    "pitch_mean": 287.0450475439312,
+    "pitch_std": 103.36897648547196,
+    "pause_ratio": 0.14070351758793975,
+    "jitter": 0.05829323990021232,
+    "mfcc_mean": [
+      -91.688088462777,
+      -4.847297550555124,
+      -0.029763217445863497,
+      -0.26556301231752677,
+      -0.766648748034917,
+      0.13378048032678308,
+      -0.7267391323217143,
+      0.33490446241217536,
+      0.2379818647874829,
+      0.7971372340806042,
+      0.33633113726758684,
+      0.2947068064390947,
+      0.12226434552141995
+    ],
+    "mfcc_std": [
+      3.952119828785884,
+      3.479987496064447,
+      1.552678780050451,
+      1.6962982858953843,
+      1.4093713925533407,
+      1.6373782347502834,
+      1.1627727096805982,
+      1.1681598930748762,
+      1.155049843262589,
+      0.9057218672575976,
+      0.7827295198052834,
+      0.7654632460311742,
+      0.6838361341807146
+    ],
+    "feature_sources": {
+      "duration_seconds": "audio",
+      "energy": "audio",
+      "pitch_mean": "audio_praat",
+      "pitch_std": "audio_praat",
+      "pause_ratio": "audio_energy_frames",
+      "jitter": "audio_praat",
+      "mfcc_mean": "audio_mfcc",
+      "mfcc_std": "audio_mfcc"
+    },
+    "sidecar_files": {
+      "transcript": null,
+      "covarep": null
+    }
+  },
+  "rule_findings": [
+    {
+      "feature": "jitter",
+      "feature_index": null,
+      "feature_source": "audio_praat",
+      "value": 0.05829323990021232,
+      "threshold": 0.13194497433207755,
+      "direction": "high",
+      "matched": false,
+      "node": "biomarker:high_jitter",
+      "label": "High Jitter",
+      "summary": "Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.10909090909090909,
+      "calibration_specificity": 0.9821428571428571,
+      "calibration_youden_j": 0.09123376623376611,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "pause_ratio",
+      "feature_index": null,
+      "feature_source": "audio_energy_frames",
+      "value": 0.14070351758793975,
+      "threshold": 0.33980947443458004,
+      "direction": "high",
+      "matched": false,
+      "node": "biomarker:high_pause_ratio",
+      "label": "High Pause Ratio",
+      "summary": "Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.9423076923076923,
+      "calibration_specificity": 0.19642857142857142,
+      "calibration_youden_j": 0.1387362637362637,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "energy",
+      "feature_index": null,
+      "feature_source": "audio",
+      "value": 0.0010006926022469997,
+      "threshold": 0.004403299186378717,
+      "direction": "low",
+      "matched": true,
+      "node": "biomarker:low_energy",
+      "label": "Low Vocal Energy",
+      "summary": "Reduced vocal intensity may indicate flattened expression, fatigue, withdrawal, or low activation.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.2727272727272727,
+      "calibration_specificity": 0.8928571428571429,
+      "calibration_youden_j": 0.16558441558441572,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "pitch_std",
+      "feature_index": null,
+      "feature_source": "audio_praat",
+      "value": 103.36897648547196,
+      "threshold": 42.65833713444162,
+      "direction": "high",
+      "matched": true,
+      "node": "biomarker:high_pitch_variability",
+      "label": "High Pitch Variability",
+      "summary": "Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.7636363636363637,
+      "calibration_specificity": 0.5535714285714286,
+      "calibration_youden_j": 0.31720779220779227,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "pitch_mean",
+      "feature_index": null,
+      "feature_source": "audio_praat",
+      "value": 287.0450475439312,
+      "threshold": 147.44227707006368,
+      "direction": "high",
+      "matched": true,
+      "node": "biomarker:high_pitch_mean",
+      "label": "High Mean Pitch",
+      "summary": "Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.7272727272727273,
+      "calibration_specificity": 0.5714285714285714,
+      "calibration_youden_j": 0.2987012987012987,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "pitch_mean",
+      "feature_index": null,
+      "feature_source": "audio_praat",
+      "value": 287.0450475439312,
+      "threshold": 122.94135465289503,
+      "direction": "low",
+      "matched": false,
+      "node": "biomarker:low_pitch_mean",
+      "label": "Low Mean Pitch",
+      "summary": "Lowered average pitch can appear with reduced expressivity, fatigue, or psychomotor slowing.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.14545454545454545,
+      "calibration_specificity": 0.9285714285714286,
+      "calibration_youden_j": 0.0740259740259741,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "mfcc_mean",
+      "feature_index": 0,
+      "feature_source": "audio_mfcc",
+      "value": -91.688088462777,
+      "threshold": -85.89946577463174,
+      "direction": "high",
+      "matched": false,
+      "node": "biomarker:high_mfcc_1_mean",
+      "label": "High MFCC 1 Mean",
+      "summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.5818181818181818,
+      "calibration_specificity": 0.4642857142857143,
+      "calibration_youden_j": 0.04610389610389598,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "mfcc_std",
+      "feature_index": 1,
+      "feature_source": "audio_mfcc",
+      "value": 3.479987496064447,
+      "threshold": 4.798454658265069,
+      "direction": "high",
+      "matched": false,
+      "node": "biomarker:high_mfcc_2_std",
+      "label": "High MFCC 2 Variability",
+      "summary": "Greater spectral-shape variability can indicate inconsistent articulation or affective instability.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.6909090909090909,
+      "calibration_specificity": 0.44642857142857145,
+      "calibration_youden_j": 0.13733766233766231,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "mfcc_mean",
+      "feature_index": 2,
+      "feature_source": "audio_mfcc",
+      "value": -0.029763217445863497,
+      "threshold": -0.3752938608783923,
+      "direction": "low",
+      "matched": false,
+      "node": "biomarker:low_mfcc_3_mean",
+      "label": "Low MFCC 3 Mean",
+      "summary": "A low third cepstral coefficient may indicate altered spectral balance requiring contextual review.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.8,
+      "calibration_specificity": 0.3392857142857143,
+      "calibration_youden_j": 0.13928571428571423,
+      "calibration_balanced_accuracy": null
+    },
+    {
+      "feature": "mfcc_std",
+      "feature_index": 3,
+      "feature_source": "audio_mfcc",
+      "value": 1.6962982858953843,
+      "threshold": 2.556283375895461,
+      "direction": "high",
+      "matched": false,
+      "node": "biomarker:high_mfcc_4_std",
+      "label": "High MFCC 4 Variability",
+      "summary": "Higher mid-cepstral variability may reflect unstable speech production across the recording.",
+      "calibration_reference_label": "PHQ-8 >= 10",
+      "calibration_method": null,
+      "calibration_sensitivity": 0.16363636363636364,
+      "calibration_specificity": 0.9285714285714286,
+      "calibration_youden_j": 0.09220779220779218,
+      "calibration_balanced_accuracy": null
+    }
+  ],
+  "aggregate_evidence": {
+    "screen_positive": false,
+    "evidence_level": "limited",
+    "matched_biomarker_count": 3,
+    "available_biomarker_count": 10,
+    "aggregate_match_threshold": 6,
+    "calibration_support_score": 0.7815,
+    "matched_biomarkers": [
+      "Low Vocal Energy",
+      "High Pitch Variability",
+      "High Mean Pitch"
+    ],
+    "interpretation": "Aggregate acoustic evidence does not meet the calibrated screening operating point.",
+    "calibration": {
+      "reference_label": "PHQ-8 >= 10",
+      "dataset": "DAIC-WOZ participant-level feature matrix",
+      "method": "Rule-count threshold selected by balanced accuracy after single-feature ROC/Youden calibration.",
+      "matched_count_threshold": 6,
+      "true_positive": 38,
+      "true_negative": 41,
+      "false_positive": 15,
+      "false_negative": 17,
+      "sensitivity": 0.6909,
+      "specificity": 0.7321,
+      "balanced_accuracy": 0.7115
+    }
+  },
+  "recursive_context": {
+    "enabled": true,
+    "source_types": [
+      "simulated_previous_week"
+    ],
+    "simulated": true,
+    "warning": "Previous-week entries marked simulated_previous_week are synthetic prototype context, not real patient history.",
+    "snapshots": [
+      {
+        "week_label": "simulated_week_minus_3",
+        "source": "simulated_previous_week",
+        "screen_positive": false,
+        "evidence_level": "limited",
+        "matched_biomarker_count": 1,
+        "available_biomarker_count": 10,
+        "matched_biomarkers": [
+          "Low Vocal Energy"
+        ]
+      },
+      {
+        "week_label": "simulated_week_minus_2",
+        "source": "simulated_previous_week",
+        "screen_positive": false,
+        "evidence_level": "limited",
+        "matched_biomarker_count": 2,
+        "available_biomarker_count": 10,
+        "matched_biomarkers": [
+          "Low Vocal Energy",
+          "High Pitch Variability"
+        ]
+      },
+      {
+        "week_label": "simulated_week_minus_1",
+        "source": "simulated_previous_week",
+        "screen_positive": false,
+        "evidence_level": "limited",
+        "matched_biomarker_count": 2,
+        "available_biomarker_count": 10,
+        "matched_biomarkers": [
+          "Low Vocal Energy",
+          "High Pitch Variability"
+        ]
+      }
+    ],
+    "summary": "The current matched-biomarker count is 3; it has increased compared with the most recent previous week and is higher than the earliest available previous week. This trend context is supportive only and must not be treated as diagnosis.",
+    "current_week": {
+      "screen_positive": false,
+      "evidence_level": "limited",
+      "matched_biomarker_count": 3,
+      "available_biomarker_count": 10,
+      "matched_biomarkers": [
+        "Low Vocal Energy",
+        "High Pitch Variability",
+        "High Mean Pitch"
+      ]
+    }
+  },
+  "explanation_paths": [
+    {
+      "start": "biomarker:low_energy",
+      "target": "risk:depression_screening_risk",
+      "path": [
+        "biomarker:low_energy",
+        "concept:reduced_expressivity",
+        "symptom:fatigue",
+        "risk:depression_screening_risk"
+      ],
+      "path_labels": [
+        "Low Vocal Energy",
+        "Reduced Expressivity",
+        "Fatigue or Low Energy",
+        "Depression Screening Risk"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:low_energy",
+          "name": "Low Vocal Energy",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation."
+        },
+        {
+          "id": "concept:reduced_expressivity",
+          "name": "Reduced Expressivity",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation."
+        },
+        {
+          "id": "symptom:fatigue",
+          "name": "Fatigue or Low Energy",
+          "type": "Symptom",
+          "relation_to_next": "screening_context",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:low_energy",
+      "target": "intervention:clinical_review",
+      "path": [
+        "biomarker:low_energy",
+        "concept:reduced_expressivity",
+        "symptom:fatigue",
+        "risk:depression_screening_risk",
+        "intervention:clinical_review"
+      ],
+      "path_labels": [
+        "Low Vocal Energy",
+        "Reduced Expressivity",
+        "Fatigue or Low Energy",
+        "Depression Screening Risk",
+        "Clinical Review"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:low_energy",
+          "name": "Low Vocal Energy",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation."
+        },
+        {
+          "id": "concept:reduced_expressivity",
+          "name": "Reduced Expressivity",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation."
+        },
+        {
+          "id": "symptom:fatigue",
+          "name": "Fatigue or Low Energy",
+          "type": "Symptom",
+          "relation_to_next": "screening_context",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:clinical_review",
+          "name": "Clinical Review",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:low_energy",
+      "target": "intervention:phq8_followup",
+      "path": [
+        "biomarker:low_energy",
+        "concept:reduced_expressivity",
+        "symptom:fatigue",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
+      ],
+      "path_labels": [
+        "Low Vocal Energy",
+        "Reduced Expressivity",
+        "Fatigue or Low Energy",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:low_energy",
+          "name": "Low Vocal Energy",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation."
+        },
+        {
+          "id": "concept:reduced_expressivity",
+          "name": "Reduced Expressivity",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation."
+        },
+        {
+          "id": "symptom:fatigue",
+          "name": "Fatigue or Low Energy",
+          "type": "Symptom",
+          "relation_to_next": "screening_context",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:low_energy",
+      "target": "screening:phq8_depression_severity",
+      "path": [
+        "biomarker:low_energy",
+        "concept:reduced_expressivity",
+        "symptom:fatigue",
+        "screening:phq8_depression_severity"
+      ],
+      "path_labels": [
+        "Low Vocal Energy",
+        "Reduced Expressivity",
+        "Fatigue or Low Energy",
+        "PHQ-8 Depression Severity"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:low_energy",
+          "name": "Low Vocal Energy",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation."
+        },
+        {
+          "id": "concept:reduced_expressivity",
+          "name": "Reduced Expressivity",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Al Hanai et al. (2018)",
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation."
+        },
+        {
+          "id": "symptom:fatigue",
+          "name": "Fatigue or Low Energy",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_variability",
+      "target": "risk:depression_screening_risk",
+      "path": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability",
+        "risk:depression_screening_risk"
+      ],
+      "path_labels": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Depression Screening Risk"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_variability",
+          "name": "High Pitch Variability",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
+        },
+        {
+          "id": "concept:vocal_instability",
+          "name": "Vocal Instability",
+          "type": "ClinicalConcept",
+          "relation_to_next": "contributes_to",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_variability",
+      "target": "intervention:clinical_review",
+      "path": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability",
+        "risk:depression_screening_risk",
+        "intervention:clinical_review"
+      ],
+      "path_labels": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Depression Screening Risk",
+        "Clinical Review"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_variability",
+          "name": "High Pitch Variability",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
+        },
+        {
+          "id": "concept:vocal_instability",
+          "name": "Vocal Instability",
+          "type": "ClinicalConcept",
+          "relation_to_next": "contributes_to",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:clinical_review",
+          "name": "Clinical Review",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_variability",
+      "target": "intervention:phq8_followup",
+      "path": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
+      ],
+      "path_labels": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_variability",
+          "name": "High Pitch Variability",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
+        },
+        {
+          "id": "concept:vocal_instability",
+          "name": "Vocal Instability",
+          "type": "ClinicalConcept",
+          "relation_to_next": "contributes_to",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_variability",
+      "target": "intervention:supportive_followup",
+      "path": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability",
+        "symptom:psychomotor_change",
+        "intervention:supportive_followup"
+      ],
+      "path_labels": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Psychomotor Slowing or Agitation",
+        "Supportive Follow-up"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_variability",
+          "name": "High Pitch Variability",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
+        },
+        {
+          "id": "concept:vocal_instability",
+          "name": "Vocal Instability",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "may_benefit_from",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "intervention:supportive_followup",
+          "name": "Supportive Follow-up",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_variability",
+      "target": "screening:phq8_depression_severity",
+      "path": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity"
+      ],
+      "path_labels": [
+        "High Pitch Variability",
+        "Vocal Instability",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_variability",
+          "name": "High Pitch Variability",
+          "type": "Biomarker",
+          "relation_to_next": "indicates",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)",
+            "Mundt et al. (2007)"
+          ],
+          "evidence_note_to_next": "Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline."
+        },
+        {
+          "id": "concept:vocal_instability",
+          "name": "Vocal Instability",
+          "type": "ClinicalConcept",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_mean",
+      "target": "risk:depression_screening_risk",
+      "path": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk"
+      ],
+      "path_labels": [
+        "High Mean Pitch",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_mean",
+          "name": "High Mean Pitch",
+          "type": "Biomarker",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct",
+          "relation_to_next": "estimates",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_mean",
+      "target": "intervention:clinical_review",
+      "path": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
+        "intervention:clinical_review"
+      ],
+      "path_labels": [
+        "High Mean Pitch",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
+        "Clinical Review"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_mean",
+          "name": "High Mean Pitch",
+          "type": "Biomarker",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct",
+          "relation_to_next": "estimates",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:clinical_review",
+          "name": "Clinical Review",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_mean",
+      "target": "intervention:phq8_followup",
+      "path": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity",
+        "risk:depression_screening_risk",
+        "intervention:phq8_followup"
+      ],
+      "path_labels": [
+        "High Mean Pitch",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity",
+        "Depression Screening Risk",
+        "PHQ-8 Follow-up"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_mean",
+          "name": "High Mean Pitch",
+          "type": "Biomarker",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct",
+          "relation_to_next": "estimates",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "risk:depression_screening_risk",
+          "name": "Depression Screening Risk",
+          "type": "Risk",
+          "relation_to_next": "recommends",
+          "sources_to_next": [
+            "Tjoa and Guan (2020)",
+            "Ji et al. (2023)",
+            "Lewis et al. (2020)",
+            "Hamilton et al. (2024)"
+          ],
+          "evidence_note_to_next": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+        },
+        {
+          "id": "intervention:phq8_followup",
+          "name": "PHQ-8 Follow-up",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_mean",
+      "target": "intervention:supportive_followup",
+      "path": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change",
+        "intervention:supportive_followup"
+      ],
+      "path_labels": [
+        "High Mean Pitch",
+        "Psychomotor Slowing or Agitation",
+        "Supportive Follow-up"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_mean",
+          "name": "High Mean Pitch",
+          "type": "Biomarker",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "may_benefit_from",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "intervention:supportive_followup",
+          "name": "Supportive Follow-up",
+          "type": "Intervention"
+        }
+      ]
+    },
+    {
+      "start": "biomarker:high_pitch_mean",
+      "target": "screening:phq8_depression_severity",
+      "path": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change",
+        "screening:phq8_depression_severity"
+      ],
+      "path_labels": [
+        "High Mean Pitch",
+        "Psychomotor Slowing or Agitation",
+        "PHQ-8 Depression Severity"
+      ],
+      "steps": [
+        {
+          "id": "biomarker:high_pitch_mean",
+          "name": "High Mean Pitch",
+          "type": "Biomarker",
+          "relation_to_next": "may_support",
+          "sources_to_next": [
+            "Cummins et al. (2015)",
+            "Low et al. (2020)"
+          ],
+          "evidence_note_to_next": "Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation."
+        },
+        {
+          "id": "symptom:psychomotor_change",
+          "name": "Psychomotor Slowing or Agitation",
+          "type": "Symptom",
+          "relation_to_next": "part_of",
+          "sources_to_next": [
+            "Kroenke et al. (2009)",
+            "Gratch et al. (2014)",
+            "DAIC-WOZ/AVEC PHQ-8 labels"
+          ],
+          "evidence_note_to_next": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+        },
+        {
+          "id": "screening:phq8_depression_severity",
+          "name": "PHQ-8 Depression Severity",
+          "type": "ScreeningConstruct"
+        }
+      ]
+    }
+  ],
+  "clinical_summary": [
+    "Aggregate evidence level: limited; matched 3 of 10 available calibrated biomarkers. Screen positive: False using the matched-count threshold of 6.",
+    "Recursive context: The current matched-biomarker count is 3; it has increased compared with the most recent previous week and is higher than the earliest available previous week. This trend context is supportive only and must not be treated as diagnosis. Note: Previous-week entries marked simulated_previous_week are synthetic prototype context, not real patient history.",
+    "Low Vocal Energy (energy=0.0010) crossed the low threshold of 0.004403299186378717. Reduced vocal intensity may indicate flattened expression, fatigue, withdrawal, or low activation.",
+    "High Pitch Variability (pitch_std=103.3690) crossed the high threshold of 42.65833713444162. Large pitch variation may suggest unstable vocal control during depression-relevant affective states.",
+    "High Mean Pitch (pitch_mean=287.0450) crossed the high threshold of 147.44227707006368. Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline.",
+    "Graph explanation: Low Vocal Energy -> Reduced Expressivity -> Fatigue or Low Energy -> Depression Screening Risk.",
+    "Graph explanation: Low Vocal Energy -> Reduced Expressivity -> Fatigue or Low Energy -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: Low Vocal Energy -> Reduced Expressivity -> Fatigue or Low Energy -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: Low Vocal Energy -> Reduced Expressivity -> Fatigue or Low Energy -> PHQ-8 Depression Severity.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> Supportive Follow-up.",
+    "Graph explanation: High Pitch Variability -> Vocal Instability -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> Clinical Review.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity -> Depression Screening Risk -> PHQ-8 Follow-up.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> Supportive Follow-up.",
+    "Graph explanation: High Mean Pitch -> Psychomotor Slowing or Agitation -> PHQ-8 Depression Severity."
+  ],
+  "persona": "psychologist",
+  "persona_prompt_chain": [
+    {
+      "step": "clinical_scope",
+      "instruction": "Write for a psychologist using concise clinical language. Frame the result as screening-oriented decision support, not diagnosis."
+    },
+    {
+      "step": "biomarker_interpretation",
+      "instruction": "Name the matched acoustic biomarkers, their thresholds, feature sources, and aggregate evidence level."
+    },
+    {
+      "step": "graph_reasoning",
+      "instruction": "Explain the retrieved graph paths from biomarkers to clinical concepts, screening constructs, risk, and follow-up. Mention edge-level sources when useful."
+    },
+    {
+      "step": "longitudinal_context",
+      "instruction": "If previous-week context is supplied, compare the current aggregate evidence with prior weeks while clearly marking simulated context as synthetic."
+    },
+    {
+      "step": "clinical_safety",
+      "instruction": "Avoid inferred PHQ-8 scores, diagnosis, medication advice, or unsupported high-risk claims."
+    }
+  ],
+  "llm_status": {
+    "provider": "none",
+    "model": null,
+    "used": false,
+    "error": null
+  },
+  "llm_report": null,
+  "faithfulness_check": {
+    "checked": false,
+    "supported": null,
+    "warnings": [],
+    "supported_terms_mentioned": []
+  },
+  "agentic_engine": {
+    "name": "Agentic Reporting Engine",
+    "version": "2026-09-month-04",
+    "flow": [
+      "AnalyzerAgent",
+      "GraphRetrieverAgent",
+      "EvidenceScorerAgent",
+      "ContextAgent",
+      "ReporterAgent"
+    ],
+    "elapsed_seconds": 0.0286,
+    "trace": [
+      {
+        "agent": "OrchestratorAgent",
+        "action": "resolved inputs and sidecar files",
+        "status": "completed",
+        "details": {
+          "audio_file": "D:\\After Coming to Germany\\Study\\Thesis\\Agentic Reasoning and GraphRAG for Explainable Audio\\data\\month_04_agentic_reporting_engine\\uploads\\agentic_audio_t2_6f0iu\\311_AUDIO.wav",
+          "transcript_path": null,
+          "covarep_path": null,
+          "persona": "psychologist",
+          "max_duration_seconds": 4.0
+        }
+      },
+      {
+        "agent": "AnalyzerAgent",
+        "action": "extracted aligned acoustic biomarkers",
+        "status": "completed",
+        "details": {
+          "feature_count": 10,
+          "feature_sources": {
+            "duration_seconds": "audio",
+            "energy": "audio",
+            "pitch_mean": "audio_praat",
+            "pitch_std": "audio_praat",
+            "pause_ratio": "audio_energy_frames",
+            "jitter": "audio_praat",
+            "mfcc_mean": "audio_mfcc",
+            "mfcc_std": "audio_mfcc"
+          }
+        }
+      },
+      {
+        "agent": "GraphRetrieverAgent",
+        "action": "mapped features to calibrated biomarker nodes",
+        "status": "completed",
+        "details": {
+          "available_rules": 10,
+          "matched_rules": 3,
+          "matched_nodes": [
+            "biomarker:low_energy",
+            "biomarker:high_pitch_variability",
+            "biomarker:high_pitch_mean"
+          ]
+        }
+      },
+      {
+        "agent": "EvidenceScorerAgent",
+        "action": "computed aggregate screening evidence",
+        "status": "completed",
+        "details": {
+          "screen_positive": false,
+          "evidence_level": "limited",
+          "matched_biomarker_count": 3,
+          "aggregate_match_threshold": 6
+        }
+      },
+      {
+        "agent": "GraphRetrieverAgent",
+        "action": "retrieved graph reasoning paths from matched biomarkers",
+        "status": "completed",
+        "details": {
+          "explanation_path_count": 14,
+          "target_nodes": [
+            "risk:depression_screening_risk",
+            "intervention:clinical_review",
+            "intervention:phq8_followup",
+            "intervention:supportive_followup",
+            "screening:phq8_depression_severity"
+          ]
+        }
+      },
+      {
+        "agent": "ContextAgent",
+        "action": "built recursive previous-week context",
+        "status": "completed",
+        "details": {
+          "enabled": true,
+          "simulated": true,
+          "snapshot_count": 3
+        }
+      },
+      {
+        "agent": "ReporterAgent",
+        "action": "generated persona-tailored report and faithfulness check",
+        "status": "completed",
+        "details": {
+          "llm_used": false,
+          "faithfulness_supported": null
+        }
+      }
+    ]
+  }
+}

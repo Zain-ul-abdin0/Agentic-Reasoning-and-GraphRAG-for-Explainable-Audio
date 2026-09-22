@@ -1,0 +1,114 @@
+aggregate_threshold,available_biomarker_count,calibration_support_score,evidence_level,explanation_path_count,faithfulness_supported,faithfulness_warnings,file,matched_biomarker_count,matched_biomarkers,participant_id,phq8_label,phq8_score,prediction
+6,11,0.8859,borderline,22,,,300_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean,300,0,2.0,0
+6,11,0.5466,borderline,20,,,301_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,301,0,3.0,0
+6,11,0.6784,borderline,22,,,302_AUDIO.wav,5,High Jitter; High Pause Ratio; Low Speech Rate; High Pitch Variability; High MFCC 1 Mean,302,0,4.0,0
+6,11,0.8865,borderline,22,,,303_AUDIO.wav,5,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,303,0,0.0,0
+6,11,1.0252,elevated,26,,,304_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,304,0,6.0,1
+6,11,0.5878,borderline,17,,,305_AUDIO.wav,4,Low Speech Rate; High Pitch Variability; High MFCC 1 Mean; Low MFCC 3 Mean,305,0,7.0,0
+6,11,0.8865,borderline,22,,,306_AUDIO.wav,5,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,306,0,0.0,0
+6,11,0.8865,borderline,22,,,307_AUDIO.wav,5,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,307,0,4.0,0
+6,11,1.1164,elevated,31,,,308_AUDIO.wav,7,High Jitter; High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,308,1,22.0,1
+6,11,0.2589,limited,12,,,310_AUDIO.wav,3,High Pause Ratio; Low Mean Pitch; High MFCC 1 Mean,310,0,4.0,0
+6,11,1.1447,elevated,26,,,311_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,311,1,21.0,1
+6,11,0.7134,borderline,21,,,312_AUDIO.wav,5,High Pause Ratio; High Pitch Variability; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability,312,0,2.0,0
+6,11,0.5005,borderline,16,,,313_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability; Low MFCC 3 Mean,313,0,7.0,0
+6,11,0.4996,borderline,20,,,315_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; High MFCC 4 Variability,315,0,2.0,0
+6,11,0.2239,limited,8,,,316_AUDIO.wav,2,High Pause Ratio; Low Speech Rate,316,0,6.0,0
+6,11,0.3612,limited,12,,,317_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability,317,0,8.0,0
+6,11,0.6207,elevated,24,,,318_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,318,0,3.0,1
+6,11,0.8177,borderline,21,,,319_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High MFCC 2 Variability; Low MFCC 3 Mean,319,1,13.0,0
+6,11,0.9791,borderline,22,,,320_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,320,1,11.0,0
+6,11,1.282,elevated,30,,,321_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,321,1,20.0,1
+6,11,0.3612,limited,12,,,322_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability,322,0,5.0,0
+6,11,0.27,limited,12,,,324_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean,324,0,5.0,0
+6,11,1.1625,elevated,30,,,325_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,325,1,10.0,1
+6,11,0.6804,borderline,17,,,326_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; High Pitch Variability; Low MFCC 3 Mean,326,0,2.0,0
+6,11,0.9791,borderline,22,,,327_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,327,0,4.0,0
+6,11,0.7988,elevated,25,,,328_AUDIO.wav,6,Low Speech Rate; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,328,0,4.0,1
+6,11,0.5466,borderline,20,,,329_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,329,0,1.0,0
+6,11,0.5284,borderline,21,,,330_AUDIO.wav,5,High Jitter; High Pause Ratio; Low Speech Rate; Low Mean Pitch; Low MFCC 3 Mean,330,1,12.0,0
+6,11,0.4615,borderline,16,,,331_AUDIO.wav,4,High Pause Ratio; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,331,0,8.0,0
+6,11,1.0252,elevated,26,,,332_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,332,1,18.0,1
+6,11,0.5005,borderline,16,,,333_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability; Low MFCC 3 Mean,333,0,5.0,0
+6,11,1.1625,elevated,30,,,335_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,335,1,12.0,1
+6,11,0.5005,borderline,16,,,336_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability; Low MFCC 3 Mean,336,0,7.0,0
+6,11,1.0238,elevated,26,,,337_AUDIO.wav,6,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,337,1,10.0,1
+6,11,1.0252,elevated,26,,,338_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,338,1,15.0,1
+6,11,0.6207,elevated,24,,,339_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,339,1,11.0,1
+6,11,0.2979,limited,12,,,340_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low Mean Pitch,340,0,1.0,0
+6,11,0.8859,borderline,22,,,341_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean,341,0,7.0,0
+6,11,0.5288,borderline,16,,,343_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; Low Vocal Energy; Low MFCC 3 Mean,343,0,9.0,0
+6,11,0.7129,elevated,28,,,344_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,344,1,11.0,1
+6,11,1.2547,elevated,34,,,345_AUDIO.wav,8,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,345,1,15.0,1
+6,11,1.1625,elevated,30,,,346_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,346,1,23.0,1
+6,11,1.2359,elevated,31,,,347_AUDIO.wav,7,High Jitter; High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,347,1,16.0,1
+6,11,1.1625,elevated,30,,,348_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,348,1,20.0,1
+6,11,0.3895,limited,12,,,349_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low Vocal Energy,349,0,5.0,0
+6,11,1.282,elevated,30,,,350_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,350,1,11.0,1
+6,11,1.0252,elevated,26,,,351_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,351,1,14.0,1
+6,11,1.116,elevated,30,,,352_AUDIO.wav,7,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,352,1,10.0,1
+6,11,1.1625,elevated,30,,,353_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,353,1,11.0,1
+6,11,0.694,elevated,25,,,354_AUDIO.wav,6,High Jitter; High Pause Ratio; Low Speech Rate; Low Vocal Energy; Low Mean Pitch; Low MFCC 3 Mean,354,1,18.0,1
+6,11,1.1625,elevated,30,,,355_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,355,1,10.0,1
+6,11,0.4073,borderline,16,,,356_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability,356,1,10.0,0
+6,11,0.3632,limited,12,,,357_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low MFCC 3 Mean,357,0,7.0,0
+6,11,1.1164,elevated,26,,,358_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,358,0,7.0,1
+6,11,1.0774,elevated,26,,,359_AUDIO.wav,6,High Pause Ratio; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,359,1,13.0,1
+6,11,1.1625,elevated,30,,,360_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,360,0,4.0,1
+6,11,1.0252,elevated,26,,,362_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,362,1,20.0,1
+6,11,0.4079,borderline,16,,,363_AUDIO.wav,4,Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,363,0,0.0,0
+6,11,0.5741,elevated,24,,,364_AUDIO.wav,6,Low Speech Rate; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,364,0,0.0,1
+6,11,0.7589,borderline,17,,,365_AUDIO.wav,4,High Pause Ratio; Low Vocal Energy; High Pitch Variability; High MFCC 2 Variability,365,1,12.0,0
+6,11,0.5466,borderline,20,,,366_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,366,0,0.0,0
+6,11,0.5466,borderline,20,,,367_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,367,1,19.0,0
+6,11,0.9386,borderline,22,,,368_AUDIO.wav,5,High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,368,0,7.0,0
+6,11,1.116,elevated,30,,,369_AUDIO.wav,7,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,369,0,0.0,1
+6,11,0.4149,borderline,16,,,370_AUDIO.wav,4,High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,370,0,0.0,0
+6,11,1.0252,elevated,26,,,372_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,372,1,13.0,1
+6,11,1.2547,elevated,34,,,376_AUDIO.wav,8,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,376,1,12.0,1
+6,11,1.1427,elevated,26,,,377_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability,377,1,16.0,1
+6,11,0.6388,elevated,24,,,380_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,380,1,10.0,1
+6,11,0.6008,borderline,20,,,381_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; Low Vocal Energy; Low Mean Pitch; High MFCC 2 Variability,381,1,16.0,0
+6,11,0.2761,limited,8,,,382_AUDIO.wav,2,High Pause Ratio; High MFCC 2 Variability,382,0,0.0,0
+6,11,1.1625,elevated,30,,,384_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,384,1,15.0,1
+6,11,1.2547,elevated,34,,,386_AUDIO.wav,8,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,386,1,11.0,1
+6,11,0.931,borderline,23,,,388_AUDIO.wav,5,High Jitter; High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch,388,1,17.0,0
+6,11,0.931,borderline,23,,,389_AUDIO.wav,5,High Jitter; High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch,389,1,14.0,0
+6,11,0.3612,limited,12,,,390_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability,390,0,9.0,0
+6,11,1.282,elevated,30,,,395_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,395,0,7.0,1
+6,11,1.1164,elevated,26,,,402_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,402,1,11.0,1
+6,11,1.0252,elevated,26,,,403_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,403,0,0.0,1
+6,11,0.3612,limited,12,,,404_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability,404,0,0.0,0
+6,11,1.1625,elevated,30,,,405_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,405,1,17.0,1
+6,11,1.1625,elevated,30,,,406_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,406,0,2.0,1
+6,11,0.6277,elevated,24,,,409_AUDIO.wav,6,High Pause Ratio; Low Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,409,1,10.0,1
+6,11,1.1908,elevated,30,,,410_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,410,1,12.0,1
+6,11,0.9771,borderline,22,,,412_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability,412,1,12.0,0
+6,11,1.2547,elevated,34,,,413_AUDIO.wav,8,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,413,1,10.0,1
+6,11,1.1625,elevated,30,,,414_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,414,1,16.0,1
+6,11,0.9791,borderline,22,,,417_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,417,0,7.0,0
+6,11,1.1625,elevated,30,,,418_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,418,1,10.0,1
+6,11,0.3612,limited,12,,,420_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; High MFCC 2 Variability,420,0,3.0,0
+6,11,1.1164,elevated,26,,,421_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,421,1,10.0,1
+6,11,1.0252,elevated,26,,,422_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,422,1,12.0,1
+6,11,0.9771,borderline,22,,,426_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability,426,1,20.0,0
+6,11,0.7401,elevated,24,,,433_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Vocal Energy; Low Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,433,1,10.0,1
+6,11,0.4436,limited,12,,,436_AUDIO.wav,3,High Pause Ratio; Low Vocal Energy; Low MFCC 3 Mean,436,0,0.0,0
+6,11,1.0238,elevated,26,,,439_AUDIO.wav,6,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,439,0,1.0,1
+6,11,1.282,elevated,30,,,440_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,440,1,19.0,1
+6,11,1.0054,borderline,22,,,441_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch,441,1,18.0,0
+6,11,1.116,elevated,30,,,448_AUDIO.wav,7,Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean; High MFCC 4 Variability,448,1,18.0,1
+6,11,1.0233,elevated,26,,,451_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability,451,0,4.0,1
+6,11,0.6008,borderline,20,,,453_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; Low Vocal Energy; Low Mean Pitch; High MFCC 2 Variability,453,1,17.0,0
+6,11,1.1625,elevated,30,,,458_AUDIO.wav,7,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,458,0,5.0,1
+6,11,0.6661,borderline,20,,,459_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High MFCC 2 Variability; Low MFCC 3 Mean,459,1,16.0,0
+6,11,0.3895,limited,12,,,461_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low Vocal Energy,461,1,17.0,0
+6,11,1.1164,elevated,26,,,472_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability; Low MFCC 3 Mean,472,0,3.0,1
+6,11,0.6882,borderline,17,,,476_AUDIO.wav,4,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Mean Pitch,476,0,3.0,0
+6,11,1.0774,elevated,26,,,477_AUDIO.wav,6,High Pause Ratio; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,477,0,2.0,1
+6,11,0.3222,limited,12,,,482_AUDIO.wav,3,High Pause Ratio; High MFCC 1 Mean; High MFCC 2 Variability,482,0,1.0,0
+6,11,0.8453,elevated,25,,,483_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; High Mean Pitch; High MFCC 1 Mean; High MFCC 2 Variability; Low MFCC 3 Mean,483,1,15.0,1
+6,11,1.1447,elevated,26,,,484_AUDIO.wav,6,High Pause Ratio; Low Speech Rate; Low Vocal Energy; High Pitch Variability; High Mean Pitch; Low MFCC 3 Mean,484,0,9.0,1
+6,11,0.3632,limited,12,,,489_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low MFCC 3 Mean,489,0,3.0,0
+6,11,0.3632,limited,12,,,490_AUDIO.wav,3,High Pause Ratio; Low Speech Rate; Low MFCC 3 Mean,490,0,2.0,0
+6,11,0.9771,borderline,22,,,492_AUDIO.wav,5,High Pause Ratio; Low Speech Rate; High Pitch Variability; High Mean Pitch; High MFCC 2 Variability,492,0,0.0,0

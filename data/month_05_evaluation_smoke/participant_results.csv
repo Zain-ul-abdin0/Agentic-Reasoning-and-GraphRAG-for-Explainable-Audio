@@ -1,0 +1,5 @@
+aggregate_threshold,available_biomarker_count,calibration_support_score,evidence_level,explanation_path_count,faithfulness_supported,faithfulness_warnings,file,matched_biomarker_count,matched_biomarkers,participant_id,phq8_label,phq8_score,prediction
+6,10,0.9663,borderline,22,,,300_AUDIO.wav,5,High Pause Ratio; Low Vocal Energy; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean,300,0,2.0,0
+6,10,0.1848,limited,8,,,301_AUDIO.wav,2,High Pause Ratio; High MFCC 1 Mean,301,0,3.0,0
+6,10,0.7326,borderline,22,,,302_AUDIO.wav,5,High Jitter; High Pause Ratio; High Pitch Variability; High MFCC 1 Mean; Low MFCC 3 Mean,302,0,4.0,0
+6,10,0.94,borderline,22,,,303_AUDIO.wav,5,High Pause Ratio; High Pitch Variability; High Mean Pitch; High MFCC 1 Mean; Low MFCC 3 Mean,303,0,0.0,0

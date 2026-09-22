@@ -452,3 +452,140 @@ input[type="file"] {
   left: -13px;
   top: 9px;
 }
+
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.section-note {
+  margin: -4px 0 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.secondary-button {
+  min-height: 38px;
+  border: 1px solid #b8c9da;
+  border-radius: 7px;
+  background: #f0f5f8;
+  color: var(--blue);
+  cursor: pointer;
+  font-weight: 720;
+  padding: 8px 12px;
+}
+
+.secondary-button:hover {
+  background: #e6eef4;
+}
+
+.secondary-button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.evaluation-controls {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  align-items: end;
+  margin: 14px 0 16px;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.run-eval {
+  min-height: 40px;
+}
+
+.eval-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.eval-card {
+  min-height: 92px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 13px;
+  background: #fbfcfa;
+}
+
+.eval-card span,
+.eval-card small {
+  display: block;
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 650;
+}
+
+.eval-card strong {
+  display: block;
+  margin: 7px 0 4px;
+  font-size: 24px;
+  line-height: 1.12;
+}
+
+.analysis-box {
+  max-height: 260px;
+  overflow: auto;
+  white-space: pre-wrap;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fbfcfa;
+  padding: 13px;
+}
+
+.table-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 8px 9px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: #39434a;
+  background: #f5f7f3;
+  font-weight: 760;
+}
+
+td {
+  color: #293137;
+}
+
+@media (max-width: 920px) {
+  .evaluation-controls,
+  .eval-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 620px) {
+  .section-header {
+    flex-direction: column;
+  }
+
+  .evaluation-controls,
+  .eval-grid {
+    grid-template-columns: 1fr;
+  }
+}

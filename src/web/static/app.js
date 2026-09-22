@@ -8,6 +8,7 @@ const panels = {
   agents: document.getElementById("agentsPanel"),
   graph: document.getElementById("graphPanel"),
   report: document.getElementById("reportPanel"),
+  evaluation: document.getElementById("evaluationPanel"),
 };
 
 function setStatus(text, state = "") {
@@ -197,9 +198,9 @@ function renderGraph(report) {
 function renderReport(report) {
   const summary = document.getElementById("clinicalSummary");
   clear(summary);
-  (report.clinical_summary || []).forEach((line) => summary.appendChild(make("li", "", line)));
+  (report.user_facing_summary || report.clinical_summary || []).forEach((line) => summary.appendChild(make("li", "", line)));
 
-  document.getElementById("llmReport").innerHTML = renderMarkdownLite(report.llm_report);
+  document.getElementById("llmReport").innerHTML = renderMarkdownLite(report.display_report || report.llm_report);
 
   const faithfulness = document.getElementById("faithfulness");
   clear(faithfulness);
@@ -216,6 +217,138 @@ function renderAll(report) {
   renderAgents(report);
   renderGraph(report);
   renderReport(report);
+}
+
+function formatNumber(value, digits = 3) {
+  const number = Number(value);
+  if (Number.isNaN(number)) return text(value);
+  return number.toFixed(digits);
+}
+
+function metricCard(label, value, detail = "") {
+  const card = make("div", "eval-card");
+  card.innerHTML = `<span>${label}</span><strong>${value}</strong>${detail ? `<small>${detail}</small>` : ""}`;
+  return card;
+}
+
+function renderSimpleTable(table, rows, columns) {
+  clear(table);
+  if (!rows || rows.length === 0) {
+    const row = table.insertRow();
+    const cell = row.insertCell();
+    cell.textContent = "No rows available.";
+    return;
+  }
+
+  const header = table.createTHead().insertRow();
+  columns.forEach((column) => {
+    const cell = document.createElement("th");
+    cell.textContent = column.label;
+    header.appendChild(cell);
+  });
+
+  const body = table.createTBody();
+  rows.forEach((item) => {
+    const row = body.insertRow();
+    columns.forEach((column) => {
+      const cell = row.insertCell();
+      cell.textContent = text(item[column.key]);
+    });
+  });
+}
+
+function renderEvaluation(payload) {
+  const metricsNode = document.getElementById("evaluationMetrics");
+  clear(metricsNode);
+
+  if (!payload.available || !payload.summary) {
+    metricsNode.appendChild(metricCard("Status", "No results", "Run Month 5 evaluation first"));
+    document.getElementById("evaluationAnalysis").textContent = "No Month 5 evaluation files were found yet.";
+    return;
+  }
+
+  const summary = payload.summary;
+  const metrics = summary.classification_metrics || {};
+  const retrieval = summary.retrieval_comparison || {};
+  const review = summary.mock_qualitative_review || {};
+
+  metricsNode.appendChild(metricCard("Participants", text(summary.participants_evaluated), summary.reference_label));
+  metricsNode.appendChild(metricCard("Accuracy", formatNumber(metrics.accuracy)));
+  metricsNode.appendChild(metricCard("Sensitivity", formatNumber(metrics.sensitivity)));
+  metricsNode.appendChild(metricCard("Specificity", formatNumber(metrics.specificity)));
+  metricsNode.appendChild(metricCard("Balanced Accuracy", formatNumber(metrics.balanced_accuracy)));
+  metricsNode.appendChild(metricCard("F1 Score", formatNumber(metrics.f1_score)));
+  metricsNode.appendChild(metricCard("Graph-RAG Precision", formatNumber(retrieval.graph_rag_mean_precision), "path precision"));
+  metricsNode.appendChild(metricCard("Vector Precision", formatNumber(retrieval.vector_mean_precision_at_k), `precision@${retrieval.top_k || 3}`));
+  metricsNode.appendChild(metricCard("Mock Review", formatNumber(review.psychologist_mean_score), "psychologist mean"));
+
+  document.getElementById("evaluationAnalysis").textContent = payload.comparative_analysis || "Comparative analysis file not found.";
+
+  renderSimpleTable(
+    document.getElementById("participantTable"),
+    payload.tables?.participants || [],
+    [
+      { key: "participant_id", label: "ID" },
+      { key: "phq8_score", label: "PHQ-8" },
+      { key: "phq8_label", label: "Label" },
+      { key: "prediction", label: "Prediction" },
+      { key: "evidence_level", label: "Evidence" },
+      { key: "matched_biomarker_count", label: "Matched" },
+    ],
+  );
+
+  renderSimpleTable(
+    document.getElementById("retrievalTable"),
+    payload.tables?.retrieval || [],
+    [
+      { key: "participant_id", label: "ID" },
+      { key: "matched_biomarker", label: "Biomarker" },
+      { key: "precision_at_k", label: "Vector P@K" },
+      { key: "graph_rag_precision", label: "Graph P" },
+      { key: "top_chunks", label: "Top Chunks" },
+    ],
+  );
+}
+
+async function loadEvaluation() {
+  try {
+    const response = await fetch("/api/evaluation");
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail || "Could not load evaluation");
+    renderEvaluation(payload);
+  } catch (error) {
+    document.getElementById("evaluationAnalysis").textContent = error.message;
+  }
+}
+
+async function runEvaluationFromUi() {
+  const button = document.getElementById("runEvaluation");
+  setStatus("Evaluating", "busy");
+  button.disabled = true;
+
+  try {
+    const formData = new FormData();
+    const limit = document.getElementById("evalLimit").value;
+    const maxDuration = document.getElementById("evalMaxDuration").value;
+    const topK = document.getElementById("evalTopK").value;
+    if (limit) formData.append("limit", limit);
+    if (maxDuration) formData.append("max_duration_seconds", maxDuration);
+    if (topK) formData.append("top_k", topK);
+
+    const response = await fetch("/api/evaluation/run", {
+      method: "POST",
+      body: formData,
+    });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail || "Evaluation failed");
+    renderEvaluation(payload);
+    setStatus("Complete");
+  } catch (error) {
+    setStatus("Error", "error");
+    document.getElementById("evaluationAnalysis").textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function submitAnalysis(event) {
@@ -242,4 +375,7 @@ async function submitAnalysis(event) {
 
 setTabs();
 loadDatasetAudios();
+loadEvaluation();
 form.addEventListener("submit", submitAnalysis);
+document.getElementById("refreshEvaluation").addEventListener("click", loadEvaluation);
+document.getElementById("runEvaluation").addEventListener("click", runEvaluationFromUi);

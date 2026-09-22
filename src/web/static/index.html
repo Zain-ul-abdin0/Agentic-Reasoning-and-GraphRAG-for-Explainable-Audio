@@ -115,6 +115,7 @@
           <button type="button" class="tab" data-tab="agents">Agents</button>
           <button type="button" class="tab" data-tab="graph">Graph</button>
           <button type="button" class="tab" data-tab="report">Report</button>
+          <button type="button" class="tab" data-tab="evaluation">Evaluation</button>
         </div>
 
         <div class="tab-panel active" id="overviewPanel">
@@ -141,12 +142,50 @@
         </div>
 
         <div class="tab-panel" id="reportPanel">
-          <h2>Clinical Summary</h2>
+          <h2>Report Summary</h2>
           <ul class="summary-list" id="clinicalSummary"></ul>
           <h2>LLM Report</h2>
           <div class="llm-output" id="llmReport">Run with Ollama/Gemma to generate LLM text.</div>
           <h2>Faithfulness Check</h2>
           <div class="faithfulness" id="faithfulness"></div>
+        </div>
+
+        <div class="tab-panel" id="evaluationPanel">
+          <div class="section-header">
+            <div>
+              <h2>Month 5 Evaluation</h2>
+              <p class="section-note">DAIC-WOZ evaluation against PHQ-8 and Graph-RAG retrieval comparison.</p>
+            </div>
+            <button class="secondary-button" type="button" id="refreshEvaluation">Refresh</button>
+          </div>
+
+          <div class="evaluation-controls">
+            <div class="field">
+              <label for="evalLimit">Quick-run limit</label>
+              <input id="evalLimit" type="number" min="1" placeholder="Full dataset">
+            </div>
+            <div class="field">
+              <label for="evalMaxDuration">Max seconds</label>
+              <input id="evalMaxDuration" type="number" min="1" placeholder="Full audio">
+            </div>
+            <div class="field">
+              <label for="evalTopK">Top K</label>
+              <input id="evalTopK" type="number" min="1" value="3">
+            </div>
+            <button class="secondary-button run-eval" type="button" id="runEvaluation">Run Evaluation</button>
+          </div>
+
+          <div class="eval-grid" id="evaluationMetrics"></div>
+          <h2>Comparative Analysis</h2>
+          <div class="text-output analysis-box" id="evaluationAnalysis">Loading evaluation results...</div>
+          <h2>Participant Results</h2>
+          <div class="table-wrap">
+            <table id="participantTable"></table>
+          </div>
+          <h2>Retrieval Results</h2>
+          <div class="table-wrap">
+            <table id="retrievalTable"></table>
+          </div>
         </div>
       </section>
     </section>
