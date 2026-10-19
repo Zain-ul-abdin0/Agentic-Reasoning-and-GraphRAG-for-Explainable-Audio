@@ -95,7 +95,9 @@
       "feature_index": 0,
       "threshold": -85.89946577463174,
       "direction": "high",
-      "clinical_summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice."
+      "clinical_summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.",
+      "active_for_threshold_detection": false,
+      "exclusion_reason": "Disabled following exploratory 113-participant ablation; independent validation pending."
     },
     {
       "id": "biomarker:high_mfcc_2_std",

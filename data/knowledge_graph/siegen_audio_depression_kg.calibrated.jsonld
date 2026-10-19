@@ -153,13 +153,14 @@
       "direction": "high",
       "clinical_summary": "A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice.",
       "calibration_status": "calibrated",
-      "active_for_threshold_detection": true,
+      "active_for_threshold_detection": false,
       "threshold_source": "DAIC-WOZ PHQ-8 ROC calibration",
       "calibration_reference_label": "PHQ-8 >= 10",
       "calibration_n": 111,
       "calibration_sensitivity": 0.5818181818181818,
       "calibration_specificity": 0.4642857142857143,
-      "calibration_youden_j": 0.04610389610389598
+      "calibration_youden_j": 0.04610389610389598,
+      "exclusion_reason": "Disabled following exploratory 113-participant ablation; independent validation pending."
     },
     {
       "id": "biomarker:high_mfcc_2_std",

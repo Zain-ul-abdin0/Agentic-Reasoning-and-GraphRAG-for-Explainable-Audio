@@ -1,17 +1,21 @@
-AGGREGATE_MATCH_THRESHOLD = 6
+AGGREGATE_MATCH_THRESHOLD = 5
 
 AGGREGATE_CALIBRATION = {
     "reference_label": "PHQ-8 >= 10",
-    "dataset": "DAIC-WOZ participant-level feature matrix",
-    "method": "Rule-count threshold selected by balanced accuracy after single-feature ROC/Youden calibration.",
-    "matched_count_threshold": AGGREGATE_MATCH_THRESHOLD,
-    "true_positive": 38,
-    "true_negative": 41,
-    "false_positive": 15,
-    "false_negative": 17,
-    "sensitivity": 0.6909,
-    "specificity": 0.7321,
-    "balanced_accuracy": 0.7115,
+    "dataset": "113 saved DAIC-WOZ participant results",
+    "method": "Exploratory count-threshold optimization after excluding High MFCC 1 Mean.",
+    "validation_status": "Same-sample feature selection and tuning; independent validation pending.",
+    "excluded_biomarkers": [
+        "High MFCC 1 Mean"
+    ],
+    "matched_count_threshold": 5,
+    "true_positive": 52,
+    "true_negative": 38,
+    "false_positive": 19,
+    "false_negative": 4,
+    "sensitivity": 0.9285714285714286,
+    "specificity": 0.6666666666666666,
+    "balanced_accuracy": 0.7976190476190477
 }
 
 

@@ -9,27 +9,27 @@
 
 ## Depression Screening Metrics
 
-- Accuracy: 0.726
-- Sensitivity: 0.732
-- Specificity: 0.719
-- Balanced accuracy: 0.726
-- Precision: 0.719
-- F1 score: 0.726
-- Confusion matrix: TP=41, TN=41, FP=16, FN=15
+- Accuracy: 0.796
+- Sensitivity: 0.929
+- Specificity: 0.667
+- Balanced accuracy: 0.798
+- Precision: 0.732
+- F1 score: 0.819
+- Confusion matrix: TP=52, TN=38, FP=19, FN=4
 
 ## Retrieval Precision
 
 - Graph-RAG mean path precision: 1.000
 - Graph-RAG source-backed path ratio: 1.000
-- Vector baseline mean precision@k: 0.389
+- Vector baseline mean precision@k: 0.395
 
 Graph-RAG is evaluated as path retrieval: a retrieved path is relevant when it starts from a matched biomarker node and reaches a clinical target node. The vector baseline retrieves edge chunks using lexical TF-IDF cosine similarity, then checks whether the retrieved chunks are directly connected to the matched biomarker.
 
 ## Mock Qualitative Review
 
 - Review type: mock qualitative rubric
-- Mean psychologist score: 4.377
-- Mean patient score: 4.377
+- Mean psychologist score: 4.332
+- Mean patient score: 4.332
 
 The qualitative review is a deterministic proxy rubric for thesis development. It should be replaced or complemented by human review in the final study.
 

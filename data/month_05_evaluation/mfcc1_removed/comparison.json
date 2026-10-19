@@ -1,0 +1,35 @@
+{
+  "participants": 113,
+  "active_biomarkers": 10,
+  "excluded_biomarkers": [
+    "High MFCC 1 Mean"
+  ],
+  "aggregate_threshold": 5,
+  "baseline_metrics": {
+    "n": 113,
+    "true_positive": 41,
+    "true_negative": 41,
+    "false_positive": 16,
+    "false_negative": 15,
+    "accuracy": 0.7256637168141593,
+    "sensitivity": 0.7321428571428571,
+    "specificity": 0.7192982456140351,
+    "precision": 0.7192982456140351,
+    "f1_score": 0.7256637168141592,
+    "balanced_accuracy": 0.7257205513784462
+  },
+  "reduced_metrics": {
+    "n": 113,
+    "true_positive": 52,
+    "true_negative": 38,
+    "false_positive": 19,
+    "false_negative": 4,
+    "accuracy": 0.7964601769911505,
+    "sensitivity": 0.9285714285714286,
+    "specificity": 0.6666666666666666,
+    "precision": 0.7323943661971831,
+    "f1_score": 0.8188976377952756,
+    "balanced_accuracy": 0.7976190476190477
+  },
+  "validation_status": "Exploratory re-scoring of saved participant matches, not a fresh audio run or independent test."
+}
