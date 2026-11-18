@@ -12,6 +12,7 @@ from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
 from src.evaluation.evaluate_month_05 import evaluate as run_month_05_evaluation
+from src.evaluation.retrieval_benchmark import DEFAULT_OUTPUT, evaluate_retrieval, write_results
 from src.pipeline.run_pipeline import analyze_audio, resolve_path
 from src.rag.llm_client import LocalLLMConfig
 
@@ -203,11 +204,26 @@ def read_evaluation():
     return _evaluation_payload()
 
 
+@app.get("/api/retrieval-benchmark")
+def read_retrieval_benchmark():
+    return {"result": _read_json_if_exists(DEFAULT_OUTPUT / "retrieval_summary.json")}
+
+
+@app.post("/api/retrieval-benchmark/run")
+def run_retrieval_benchmark(top_k: int = Form(3, ge=1, le=100)):
+    try:
+        result = evaluate_retrieval(top_k=top_k)
+        write_results(result)
+        return {"result": result}
+    except ValueError as exc:
+        raise HTTPException(status_code=400, detail=str(exc)) from exc
+
+
 @app.post("/api/evaluation/run")
 def run_evaluation(
     limit: Optional[int] = Form(None),
     max_duration_seconds: Optional[float] = Form(None),
-    top_k: int = Form(3),
+    top_k: int = Form(3, ge=1, le=27),
 ):
     try:
         args = SimpleNamespace(

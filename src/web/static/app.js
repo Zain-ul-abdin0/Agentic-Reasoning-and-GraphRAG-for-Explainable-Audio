@@ -278,9 +278,11 @@ function renderEvaluation(payload) {
   metricsNode.appendChild(metricCard("Specificity", formatNumber(metrics.specificity)));
   metricsNode.appendChild(metricCard("Balanced Accuracy", formatNumber(metrics.balanced_accuracy)));
   metricsNode.appendChild(metricCard("F1 Score", formatNumber(metrics.f1_score)));
-  metricsNode.appendChild(metricCard("Graph-RAG Precision", formatNumber(retrieval.graph_rag_mean_precision), "path precision"));
-  metricsNode.appendChild(metricCard("Vector Precision", formatNumber(retrieval.vector_mean_precision_at_k), `precision@${retrieval.top_k || 3}`));
   metricsNode.appendChild(metricCard("Mock Review", formatNumber(review.psychologist_mean_score), "psychologist mean"));
+  renderSimpleTable(document.getElementById("legacyRetrievalMetrics"), [
+    { diagnostic: "Graph path structural consistency", value: formatNumber(retrieval.graph_rag_mean_precision) },
+    { diagnostic: `TF-IDF incident-edge precision@${retrieval.top_k || 3}`, value: formatNumber(retrieval.vector_mean_precision_at_k) },
+  ], [{ key: "diagnostic", label: "Diagnostic (different criteria)" }, { key: "value", label: "Value" }]);
 
   document.getElementById("evaluationAnalysis").textContent = payload.comparative_analysis || "Comparative analysis file not found.";
 
@@ -303,11 +305,74 @@ function renderEvaluation(payload) {
     [
       { key: "participant_id", label: "ID" },
       { key: "matched_biomarker", label: "Biomarker" },
-      { key: "precision_at_k", label: "Vector P@K" },
-      { key: "graph_rag_precision", label: "Graph P" },
+      { key: "precision_at_k", label: "TF-IDF incident-edge P@K" },
+      { key: "graph_rag_precision", label: "Graph structural consistency" },
       { key: "top_chunks", label: "Top Chunks" },
     ],
   );
+}
+
+function renderRetrievalBenchmark(result) {
+  const status = document.getElementById("retrievalBenchmarkStatus");
+  const limitations = document.getElementById("retrievalBenchmarkLimitations");
+  clear(limitations);
+  if (!result) {
+    status.textContent = "No shared-criteria comparison saved.";
+    clear(document.getElementById("sharedRetrievalMetrics"));
+    clear(document.getElementById("sharedRetrievalQueries"));
+    return;
+  }
+  status.textContent = `${result.query_count} questions | ${result.corpus_size} graph-derived chunks | k=${result.top_k} | ${result.annotation_status}`;
+  renderSimpleTable(document.getElementById("sharedRetrievalMetrics"), Object.entries(result.methods).map(([method, values]) => ({
+    method: method === "graph" ? "Graph path retrieval" : "TF-IDF lexical retrieval",
+    ...Object.fromEntries(Object.entries(values).map(([key, value]) => [key, formatNumber(value)])),
+  })), [
+    { key: "method", label: "Retriever" },
+    { key: "precision_at_k", label: `Precision@${result.top_k}` },
+    { key: "recall_at_k", label: `Recall@${result.top_k}` },
+    { key: "mrr_at_k", label: `MRR@${result.top_k}` },
+    { key: "ndcg_at_k", label: `nDCG@${result.top_k}` },
+    { key: "latency_ms", label: "Query ms" },
+  ]);
+  renderSimpleTable(document.getElementById("sharedRetrievalQueries"), result.rows.map(row => ({
+    ...row, precision_at_k: formatNumber(row.precision_at_k), recall_at_k: formatNumber(row.recall_at_k),
+    retrieved_ids: row.retrieved_ids.join("; "), relevant_ids: row.relevant_ids.join("; "),
+  })), [
+    { key: "query_id", label: "Query" }, { key: "question", label: "Question" },
+    { key: "method", label: "Retriever" }, { key: "precision_at_k", label: "P@k" },
+    { key: "recall_at_k", label: "R@k" }, { key: "retrieved_ids", label: "Retrieved IDs" },
+    { key: "relevant_ids", label: "Reference IDs" },
+  ]);
+  (result.limitations || []).forEach(value => limitations.appendChild(make("li", "", value)));
+}
+
+async function loadRetrievalBenchmark() {
+  try {
+    const response = await fetch("/api/retrieval-benchmark");
+    const payload = await response.json();
+    if (!response.ok) throw new Error(payload.detail || "Could not load retrieval comparison");
+    renderRetrievalBenchmark(payload.result);
+  } catch (error) {
+    document.getElementById("retrievalBenchmarkStatus").textContent = error.message;
+  }
+}
+
+async function runRetrievalBenchmark() {
+  const button = document.getElementById("runRetrievalBenchmark");
+  button.disabled = true;
+  document.getElementById("retrievalBenchmarkStatus").textContent = "Running retrieval comparison...";
+  try {
+    const data = new FormData();
+    data.append("top_k", document.getElementById("evalTopK").value || "3");
+    const response = await fetch("/api/retrieval-benchmark/run", { method: "POST", body: data });
+    const payload = await response.json();
+    if (!response.ok) throw new Error(typeof payload.detail === "string" ? payload.detail : "Invalid top-k or benchmark");
+    renderRetrievalBenchmark(payload.result);
+  } catch (error) {
+    document.getElementById("retrievalBenchmarkStatus").textContent = error.message;
+  } finally {
+    button.disabled = false;
+  }
 }
 
 async function loadEvaluation() {
@@ -316,6 +381,7 @@ async function loadEvaluation() {
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.detail || "Could not load evaluation");
     renderEvaluation(payload);
+    loadRetrievalBenchmark();
   } catch (error) {
     document.getElementById("evaluationAnalysis").textContent = error.message;
   }
@@ -342,6 +408,7 @@ async function runEvaluationFromUi() {
     const payload = await response.json();
     if (!response.ok) throw new Error(payload.detail || "Evaluation failed");
     renderEvaluation(payload);
+    await loadRetrievalBenchmark();
     setStatus("Complete");
   } catch (error) {
     setStatus("Error", "error");
@@ -379,3 +446,4 @@ loadEvaluation();
 form.addEventListener("submit", submitAnalysis);
 document.getElementById("refreshEvaluation").addEventListener("click", loadEvaluation);
 document.getElementById("runEvaluation").addEventListener("click", runEvaluationFromUi);
+document.getElementById("runRetrievalBenchmark").addEventListener("click", runRetrievalBenchmark);

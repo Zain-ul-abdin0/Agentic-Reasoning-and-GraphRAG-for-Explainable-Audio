@@ -176,13 +176,28 @@
           </div>
 
           <div class="eval-grid" id="evaluationMetrics"></div>
+          <div class="section-header">
+            <h2>Shared-Criteria Retrieval</h2>
+            <button class="secondary-button" type="button" id="runRetrievalBenchmark">Run Retrieval Comparison</button>
+          </div>
+          <p class="section-note" id="retrievalBenchmarkStatus" role="status">No shared-criteria results loaded.</p>
+          <div class="table-wrap"><table id="sharedRetrievalMetrics"></table></div>
+          <h3>Per-Question Results</h3>
+          <div class="table-wrap"><table id="sharedRetrievalQueries"></table></div>
+          <details>
+            <summary>Benchmark limitations</summary>
+            <ul id="retrievalBenchmarkLimitations"></ul>
+          </details>
+          <h3>Historical Diagnostics</h3>
+          <p class="section-note">Different criteria; these historical scores are not directly comparable.</p>
+          <div class="table-wrap"><table id="legacyRetrievalMetrics"></table></div>
           <h2>Comparative Analysis</h2>
           <div class="text-output analysis-box" id="evaluationAnalysis">Loading evaluation results...</div>
           <h2>Participant Results</h2>
           <div class="table-wrap">
             <table id="participantTable"></table>
           </div>
-          <h2>Retrieval Results</h2>
+          <h2>Historical Retrieval Diagnostics</h2>
           <div class="table-wrap">
             <table id="retrievalTable"></table>
           </div>

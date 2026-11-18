@@ -1,0 +1,9 @@
+{
+  "review_type": "author-led formative evaluation",
+  "source": "data\\month_04_agentic_reporting_engine\\web_reports\\300_AUDIO_psychologist_20261019_214122.json",
+  "source_sha256": "a23bc694cf3af5cc1cef7ab71093f0590a3975e8b8e54714bb501cb770fa1c7a",
+  "generation": "deterministic; no LLM; saved features reused; audio not re-extracted",
+  "selection": "near-cutoff example, 4 matches, cutoff 5; purposive not representative sampling",
+  "review_status": "awaiting user responses",
+  "ratings": null
+}

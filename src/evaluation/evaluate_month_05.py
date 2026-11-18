@@ -7,6 +7,7 @@ from src.calibration.calibrate_acoustic_thresholds import load_phq_labels
 from src.evaluation.metrics import binary_classification_metrics, mean
 from src.evaluation.mock_review import build_mock_review_row
 from src.evaluation.vector_baseline import compare_vector_baseline
+from src.evaluation.retrieval_benchmark import evaluate_retrieval, write_results
 from src.graph.knowledge_graph import build_graph
 from src.pipeline.run_pipeline import analyze_audio, find_audio_files, resolve_path
 from src.rag.reporter_agent import PERSONA_PROMPT_CHAINS
@@ -93,13 +94,25 @@ def build_comparative_markdown(summary, output_files):
         f"- F1 score: {metrics['f1_score']:.3f}",
         f"- Confusion matrix: TP={metrics['true_positive']}, TN={metrics['true_negative']}, FP={metrics['false_positive']}, FN={metrics['false_negative']}",
         "",
-        "## Retrieval Precision",
+        "## Historical Structural and Lexical Diagnostics (Not Comparable)",
         "",
-        f"- Graph-RAG mean path precision: {retrieval['graph_rag_mean_precision']:.3f}",
+        f"- Graph path structural consistency: {retrieval['graph_rag_mean_precision']:.3f}",
         f"- Graph-RAG source-backed path ratio: {retrieval['graph_rag_mean_source_backed_ratio']:.3f}",
-        f"- Vector baseline mean precision@k: {retrieval['vector_mean_precision_at_k']:.3f}",
+        f"- Legacy TF-IDF incident-edge precision@k: {retrieval['vector_mean_precision_at_k']:.3f}",
         "",
-        "Graph-RAG is evaluated as path retrieval: a retrieved path is relevant when it starts from a matched biomarker node and reaches a clinical target node. The vector baseline retrieves edge chunks using lexical TF-IDF cosine similarity, then checks whether the retrieved chunks are directly connected to the matched biomarker.",
+        "The historical graph check counts paths that start at a matched biomarker and contain more than one node. It does not verify clinical correctness. The lexical TF-IDF diagnostic checks whether retrieved edge chunks are directly connected to the matched biomarker.",
+        "These legacy diagnostics use different definitions and must not be interpreted as a performance difference.",
+        "",
+        "## Shared-Criteria Retrieval Pilot",
+        "",
+        f"- Annotation status: {summary['shared_criteria_retrieval']['annotation_status']}",
+        f"- Questions: {summary['shared_criteria_retrieval']['query_count']}",
+        f"- Shared top-k: {summary['shared_criteria_retrieval']['top_k']}",
+        *[
+            f"- {method}: P@k={values['precision_at_k']:.3f}, R@k={values['recall_at_k']:.3f}, MRR@k={values['mrr_at_k']:.3f}, nDCG@k={values['ndcg_at_k']:.3f}"
+            for method, values in summary['shared_criteria_retrieval']['methods'].items()
+        ],
+        "Both methods use identical questions, seed metadata, corpus, item budget and relevance labels. Labels are provisional, not independent clinical judgments.",
         "",
         "## Mock Qualitative Review",
         "",
@@ -133,6 +146,7 @@ def evaluate(args):
             "No PHQ-8 labels were loaded. Pass --label-file with the DAIC-WOZ split CSV files."
         )
     graph = build_graph()
+    shared_retrieval = evaluate_retrieval(top_k=args.top_k, graph=graph)
     audio_files = [
         path
         for path in find_audio_files(dataset_dir)
@@ -217,7 +231,9 @@ def evaluate(args):
         "participants_evaluated": len(audio_files),
         "llm_mode": "disabled for deterministic batch evaluation",
         "classification_metrics": metrics,
+        "shared_criteria_retrieval": shared_retrieval,
         "retrieval_comparison": {
+            "status": "legacy diagnostics; different relevance criteria; not a head-to-head comparison",
             "top_k": args.top_k,
             "graph_rag_mean_precision": mean(graph_precisions),
             "graph_rag_mean_source_backed_ratio": mean(graph_source_ratios),
@@ -241,6 +257,7 @@ def evaluate(args):
     }
 
     write_json(output_dir / "evaluation_summary.json", summary)
+    write_results(shared_retrieval)
     write_csv(output_dir / "participant_results.csv", participant_rows)
     write_csv(output_dir / "retrieval_comparison.csv", retrieval_rows)
     write_csv(output_dir / "mock_review_scores.csv", review_rows)

@@ -87,6 +87,27 @@ def retrieve_chunks(query, corpus, top_k=3):
     return sorted(scored, key=lambda item: item["score"], reverse=True)[:top_k]
 
 
+class TfidfIndex:
+    """Fit the shared corpus once; query latency excludes index construction."""
+
+    def __init__(self, corpus):
+        self.corpus = corpus
+        tokens = [tokenize(item["text"]) for item in corpus]
+        self.idf = _idf(tokens)
+        self.vectors = [_tfidf(item, self.idf) for item in tokens]
+
+    def search(self, query, top_k):
+        query_vector = _tfidf(tokenize(query), self.idf)
+        scored = [
+            {**item, "score": _cosine(query_vector, vector)}
+            for item, vector in zip(self.corpus, self.vectors)
+        ]
+        return sorted(
+            (item for item in scored if item["score"] > 0),
+            key=lambda item: (-item["score"], item["chunk_id"]),
+        )[:top_k]
+
+
 def graph_path_precision(explanations, matched_node_ids):
     if not explanations:
         return None

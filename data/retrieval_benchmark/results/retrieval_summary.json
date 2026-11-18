@@ -1,0 +1,1484 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-11-09T18:58:06.779963+00:00",
+  "benchmark_name": "Seed-conditioned graph explanation retrieval pilot v1",
+  "annotation_status": "Provisional AI-assisted draft relevance labels; not independently reviewed or held out",
+  "query_count": 15,
+  "corpus_size": 27,
+  "top_k": 3,
+  "unit": "unique graph-derived edge text chunk",
+  "protocol": {
+    "same_queries_corpus_qrels_budget": true,
+    "query_inputs": "Question text and identical known seed IDs/names; no answer labels",
+    "graph_ranking": "Existing shortest paths; unique edges ranked by hop then ID",
+    "tfidf_ranking": "TF-IDF cosine similarity, then chunk ID; zero-score hits omitted",
+    "precision_denominator": "k, including unfilled retrieval slots",
+    "aggregation": "Macro average over distinct questions, not participants",
+    "latency": "Single warm-process query time; TF-IDF fitting excluded; descriptive only",
+    "interval": "Paired query bootstrap, 2000 replicates, seed 20261107; not external validity",
+    "generation": "Not evaluated; no LLM involved"
+  },
+  "limitations": [
+    "This is a pilot on graph-derived text chunks, not original paper passages or clinical truth.",
+    "Questions and relevance labels were authored during development; independent blinded review is still required.",
+    "Labels express intended relevance within the current graph, not scientific validity of its relationships. Unlisted chunks are provisionally judged nonrelevant.",
+    "The shared corpus comes from the graph, so this comparison is conditional on that representation and may favour graph retrieval.",
+    "Both methods receive known seed-node metadata; results do not measure entity linking or open-ended document search.",
+    "The baseline is lexical TF-IDF, not dense-vector or hybrid RAG. Report generation and clinical usefulness are not evaluated.",
+    "Small, related questions limit uncertainty estimates. The bootstrap intervals are descriptive, not independent validation."
+  ],
+  "provenance": {
+    "corpus_sha256": "758ca15c6acc7f7dae3670540e6509c7326d23659be34ceba11f57b199613dac",
+    "benchmark_sha256": "e576e45359500d1266fc03376537e2202a6ae0b1893d2a40b9efceceefcaff1e",
+    "graph_path": "D:\\After Coming to Germany\\Study\\Thesis\\Agentic Reasoning and GraphRAG for Explainable Audio\\data\\knowledge_graph\\siegen_audio_depression_kg.calibrated.jsonld"
+  },
+  "methods": {
+    "graph": {
+      "precision_at_k": 0.5555555555555556,
+      "recall_at_k": 0.7333333333333333,
+      "mrr_at_k": 0.8666666666666667,
+      "ndcg_at_k": 0.7587103025126988,
+      "latency_ms": 0.14805332757532597
+    },
+    "tfidf": {
+      "precision_at_k": 0.6,
+      "recall_at_k": 0.7388888888888889,
+      "mrr_at_k": 0.8888888888888888,
+      "ndcg_at_k": 0.7623932544067273,
+      "latency_ms": 0.32043999526649714
+    }
+  },
+  "paired_differences": {
+    "precision_at_k": {
+      "graph_minus_tfidf": -0.044444444444444446,
+      "bootstrap_95_interval": [
+        -0.24444444444444444,
+        0.15555555555555553
+      ]
+    },
+    "recall_at_k": {
+      "graph_minus_tfidf": -0.005555555555555558,
+      "bootstrap_95_interval": [
+        -0.23333333333333334,
+        0.23333333333333334
+      ]
+    },
+    "mrr_at_k": {
+      "graph_minus_tfidf": -0.02222222222222222,
+      "bootstrap_95_interval": [
+        -0.2222222222222222,
+        0.17777777777777778
+      ]
+    },
+    "ndcg_at_k": {
+      "graph_minus_tfidf": -0.0036829518940285338,
+      "bootstrap_95_interval": [
+        -0.22257918640153512,
+        0.22648963284342702
+      ]
+    }
+  },
+  "rows": [
+    {
+      "query_id": "q01",
+      "question": "Which stored relationships connect high pause ratio to the screening risk and clinical review?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 0.6666666666666666,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.7653606369886217,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.9148999815806746,
+      "retrieved_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "concept:speech_disruption->symptom:concentration_difficulty"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "risk:depression_screening_risk->intervention:clinical_review"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "query_text": "Which stored relationships connect high pause ratio to the screening risk and clinical review? biomarker:high_pause_ratio High Pause Ratio"
+    },
+    {
+      "query_id": "q01",
+      "question": "Which stored relationships connect high pause ratio to the screening risk and clinical review?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 0.6666666666666666,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.7653606369886217,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.7004999788478017,
+      "retrieved_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "symptom:fatigue->risk:depression_screening_risk"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "risk:depression_screening_risk->intervention:clinical_review"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "query_text": "Which stored relationships connect high pause ratio to the screening risk and clinical review? biomarker:high_pause_ratio High Pause Ratio"
+    },
+    {
+      "query_id": "q02",
+      "question": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 0.6666666666666666,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.7039180890341347,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.1311999512836337,
+      "retrieved_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "concept:speech_disruption->symptom:concentration_difficulty"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->symptom:concentration_difficulty",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "query_text": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content? biomarker:high_pause_ratio High Pause Ratio"
+    },
+    {
+      "query_id": "q02",
+      "question": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 3,
+      "retrieved_count": 3,
+      "latency_ms": 0.29340002220124006,
+      "retrieved_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity",
+        "concept:speech_disruption->symptom:concentration_difficulty"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->symptom:concentration_difficulty",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "query_text": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content? biomarker:high_pause_ratio High Pause Ratio"
+    },
+    {
+      "query_id": "q03",
+      "question": "What two descriptive concepts are connected directly to low speech rate?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.6131471927654584,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.08060003165155649,
+      "retrieved_ids": [
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "concept:speech_disruption->symptom:concentration_difficulty"
+      ],
+      "relevant_ids": [
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:reduced_expressivity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_speech_rate"
+      ],
+      "query_text": "What two descriptive concepts are connected directly to low speech rate? biomarker:low_speech_rate Low Speech Rate"
+    },
+    {
+      "query_id": "q03",
+      "question": "What two descriptive concepts are connected directly to low speech rate?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.2188000362366438,
+      "retrieved_ids": [
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:reduced_expressivity",
+        "concept:speech_disruption->risk:depression_screening_risk"
+      ],
+      "relevant_ids": [
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:reduced_expressivity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_speech_rate"
+      ],
+      "query_text": "What two descriptive concepts are connected directly to low speech rate? biomarker:low_speech_rate Low Speech Rate"
+    },
+    {
+      "query_id": "q04",
+      "question": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 0.6666666666666666,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.7653606369886217,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.0825000461190939,
+      "retrieved_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->risk:depression_screening_risk"
+      ],
+      "relevant_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_energy"
+      ],
+      "query_text": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content? biomarker:low_energy Low Vocal Energy"
+    },
+    {
+      "query_id": "q04",
+      "question": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 3,
+      "retrieved_count": 3,
+      "latency_ms": 0.22950000129640102,
+      "retrieved_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_energy"
+      ],
+      "query_text": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content? biomarker:low_energy Low Vocal Energy"
+    },
+    {
+      "query_id": "q05",
+      "question": "What stored interpretation links high jitter to vocal instability and psychomotor change?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.9197207891481876,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.12949993833899498,
+      "retrieved_ids": [
+        "biomarker:high_jitter->concept:vocal_instability",
+        "concept:vocal_instability->risk:depression_screening_risk",
+        "concept:vocal_instability->symptom:psychomotor_change"
+      ],
+      "relevant_ids": [
+        "biomarker:high_jitter->concept:vocal_instability",
+        "concept:vocal_instability->symptom:psychomotor_change"
+      ],
+      "seed_nodes": [
+        "biomarker:high_jitter"
+      ],
+      "query_text": "What stored interpretation links high jitter to vocal instability and psychomotor change? biomarker:high_jitter High Jitter"
+    },
+    {
+      "query_id": "q05",
+      "question": "What stored interpretation links high jitter to vocal instability and psychomotor change?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.3969999961555004,
+      "retrieved_ids": [
+        "biomarker:high_jitter->concept:vocal_instability",
+        "concept:vocal_instability->symptom:psychomotor_change",
+        "biomarker:high_pitch_variability->concept:vocal_instability"
+      ],
+      "relevant_ids": [
+        "biomarker:high_jitter->concept:vocal_instability",
+        "concept:vocal_instability->symptom:psychomotor_change"
+      ],
+      "seed_nodes": [
+        "biomarker:high_jitter"
+      ],
+      "query_text": "What stored interpretation links high jitter to vocal instability and psychomotor change? biomarker:high_jitter High Jitter"
+    },
+    {
+      "query_id": "q06",
+      "question": "Which stored branch connects high pitch variability to the screening risk?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.09860005229711533,
+      "retrieved_ids": [
+        "biomarker:high_pitch_variability->concept:vocal_instability",
+        "concept:vocal_instability->risk:depression_screening_risk",
+        "concept:vocal_instability->symptom:psychomotor_change"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pitch_variability->concept:vocal_instability",
+        "concept:vocal_instability->risk:depression_screening_risk"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pitch_variability"
+      ],
+      "query_text": "Which stored branch connects high pitch variability to the screening risk? biomarker:high_pitch_variability High Pitch Variability"
+    },
+    {
+      "query_id": "q06",
+      "question": "Which stored branch connects high pitch variability to the screening risk?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.6131471927654584,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.4355000564828515,
+      "retrieved_ids": [
+        "biomarker:high_pitch_variability->concept:vocal_instability",
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "biomarker:high_pitch_mean->symptom:psychomotor_change"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pitch_variability->concept:vocal_instability",
+        "concept:vocal_instability->risk:depression_screening_risk"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pitch_variability"
+      ],
+      "query_text": "Which stored branch connects high pitch variability to the screening risk? biomarker:high_pitch_variability High Pitch Variability"
+    },
+    {
+      "query_id": "q07",
+      "question": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.07850001566112041,
+      "retrieved_ids": [
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "symptom:psychomotor_change->intervention:supportive_followup",
+        "symptom:psychomotor_change->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "symptom:psychomotor_change->intervention:supportive_followup"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pitch_mean"
+      ],
+      "query_text": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph? biomarker:high_pitch_mean High Mean Pitch"
+    },
+    {
+      "query_id": "q07",
+      "question": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.6131471927654584,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.32849994022399187,
+      "retrieved_ids": [
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "biomarker:high_pitch_variability->concept:vocal_instability"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "symptom:psychomotor_change->intervention:supportive_followup"
+      ],
+      "seed_nodes": [
+        "biomarker:high_pitch_mean"
+      ],
+      "query_text": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph? biomarker:high_pitch_mean High Mean Pitch"
+    },
+    {
+      "query_id": "q08",
+      "question": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.12959993910044432,
+      "retrieved_ids": [
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->risk:depression_screening_risk"
+      ],
+      "relevant_ids": [
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue"
+      ],
+      "seed_nodes": [
+        "biomarker:low_pitch_mean"
+      ],
+      "query_text": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue? biomarker:low_pitch_mean Low Mean Pitch"
+    },
+    {
+      "query_id": "q08",
+      "question": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.9197207891481876,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.4963000537827611,
+      "retrieved_ids": [
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "concept:reduced_expressivity->symptom:fatigue"
+      ],
+      "relevant_ids": [
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue"
+      ],
+      "seed_nodes": [
+        "biomarker:low_pitch_mean"
+      ],
+      "query_text": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue? biomarker:low_pitch_mean Low Mean Pitch"
+    },
+    {
+      "query_id": "q09",
+      "question": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.0852999510243535,
+      "retrieved_ids": [
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
+      "seed_nodes": [
+        "biomarker:high_mfcc_2_std"
+      ],
+      "query_text": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood? biomarker:high_mfcc_2_std High MFCC 2 Variability"
+    },
+    {
+      "query_id": "q09",
+      "question": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.6131471927654584,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.2680000616237521,
+      "retrieved_ids": [
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift"
+      ],
+      "relevant_ids": [
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
+      "seed_nodes": [
+        "biomarker:high_mfcc_2_std"
+      ],
+      "query_text": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood? biomarker:high_mfcc_2_std High MFCC 2 Variability"
+    },
+    {
+      "query_id": "q10",
+      "question": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 1.0,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 3,
+      "retrieved_count": 3,
+      "latency_ms": 0.08789997082203627,
+      "retrieved_ids": [
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_mfcc_3_mean"
+      ],
+      "query_text": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire? biomarker:low_mfcc_3_mean Low MFCC 3 Mean"
+    },
+    {
+      "query_id": "q10",
+      "question": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 0.6666666666666666,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.7653606369886217,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.2623000182211399,
+      "retrieved_ids": [
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "biomarker:high_mfcc_4_std->concept:spectral_shift"
+      ],
+      "relevant_ids": [
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_mfcc_3_mean"
+      ],
+      "query_text": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire? biomarker:low_mfcc_3_mean Low MFCC 3 Mean"
+    },
+    {
+      "query_id": "q11",
+      "question": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.08700008038431406,
+      "retrieved_ids": [
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
+      "seed_nodes": [
+        "biomarker:high_mfcc_4_std"
+      ],
+      "query_text": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified? biomarker:high_mfcc_4_std High MFCC 4 Variability"
+    },
+    {
+      "query_id": "q11",
+      "question": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.9197207891481876,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.2634999109432101,
+      "retrieved_ids": [
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
+      "relevant_ids": [
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
+      "seed_nodes": [
+        "biomarker:high_mfcc_4_std"
+      ],
+      "query_text": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified? biomarker:high_mfcc_4_std High MFCC 4 Variability"
+    },
+    {
+      "query_id": "q12",
+      "question": "Which follow-up actions are linked directly to the depression screening risk node?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 2,
+      "retrieved_count": 2,
+      "latency_ms": 0.06849993951618671,
+      "retrieved_ids": [
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "risk:depression_screening_risk->intervention:phq8_followup"
+      ],
+      "relevant_ids": [
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "risk:depression_screening_risk->intervention:phq8_followup"
+      ],
+      "seed_nodes": [
+        "risk:depression_screening_risk"
+      ],
+      "query_text": "Which follow-up actions are linked directly to the depression screening risk node? risk:depression_screening_risk Depression Screening Risk"
+    },
+    {
+      "query_id": "q12",
+      "question": "Which follow-up actions are linked directly to the depression screening risk node?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "relevant_retrieved": 0,
+      "retrieved_count": 3,
+      "latency_ms": 0.2294000005349517,
+      "retrieved_ids": [
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "concept:vocal_instability->risk:depression_screening_risk",
+        "symptom:fatigue->risk:depression_screening_risk"
+      ],
+      "relevant_ids": [
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "risk:depression_screening_risk->intervention:phq8_followup"
+      ],
+      "seed_nodes": [
+        "risk:depression_screening_risk"
+      ],
+      "query_text": "Which follow-up actions are linked directly to the depression screening risk node? risk:depression_screening_risk Depression Screening Risk"
+    },
+    {
+      "query_id": "q13",
+      "question": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "relevant_retrieved": 0,
+      "retrieved_count": 3,
+      "latency_ms": 0.05959998816251755,
+      "retrieved_ids": [
+        "screening:phq8_depression_severity->risk:depression_screening_risk",
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "risk:depression_screening_risk->intervention:phq8_followup"
+      ],
+      "relevant_ids": [
+        "symptom:depressed_mood->screening:phq8_depression_severity",
+        "symptom:psychomotor_change->screening:phq8_depression_severity",
+        "symptom:fatigue->screening:phq8_depression_severity",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "screening:phq8_depression_severity"
+      ],
+      "query_text": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content? screening:phq8_depression_severity PHQ-8 Depression Severity"
+    },
+    {
+      "query_id": "q13",
+      "question": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 1.0,
+      "recall_at_k": 0.75,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 1.0,
+      "relevant_retrieved": 3,
+      "retrieved_count": 3,
+      "latency_ms": 0.2503999276086688,
+      "retrieved_ids": [
+        "symptom:fatigue->screening:phq8_depression_severity",
+        "symptom:psychomotor_change->screening:phq8_depression_severity",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
+      "relevant_ids": [
+        "symptom:depressed_mood->screening:phq8_depression_severity",
+        "symptom:psychomotor_change->screening:phq8_depression_severity",
+        "symptom:fatigue->screening:phq8_depression_severity",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
+      "seed_nodes": [
+        "screening:phq8_depression_severity"
+      ],
+      "query_text": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content? screening:phq8_depression_severity PHQ-8 Depression Severity"
+    },
+    {
+      "query_id": "q14",
+      "question": "Which acoustic rules share the speech disruption interpretation?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0,
+      "mrr_at_k": 0.0,
+      "ndcg_at_k": 0.0,
+      "relevant_retrieved": 0,
+      "retrieved_count": 3,
+      "latency_ms": 0.06590003613382578,
+      "retrieved_ids": [
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "concept:speech_disruption->symptom:concentration_difficulty",
+        "risk:depression_screening_risk->intervention:clinical_review"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:speech_disruption"
+      ],
+      "seed_nodes": [
+        "concept:speech_disruption"
+      ],
+      "query_text": "Which acoustic rules share the speech disruption interpretation? concept:speech_disruption Speech Disruption"
+    },
+    {
+      "query_id": "q14",
+      "question": "Which acoustic rules share the speech disruption interpretation?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 0.3333333333333333,
+      "ndcg_at_k": 0.3065735963827292,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.21009996999055147,
+      "retrieved_ids": [
+        "concept:speech_disruption->symptom:concentration_difficulty",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "biomarker:low_speech_rate->concept:speech_disruption"
+      ],
+      "relevant_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:speech_disruption"
+      ],
+      "seed_nodes": [
+        "concept:speech_disruption"
+      ],
+      "query_text": "Which acoustic rules share the speech disruption interpretation? concept:speech_disruption Speech Disruption"
+    },
+    {
+      "query_id": "q15",
+      "question": "How do low speech rate and low vocal energy share the reduced expressivity interpretation?",
+      "method": "graph",
+      "top_k": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.6131471927654584,
+      "relevant_retrieved": 1,
+      "retrieved_count": 3,
+      "latency_ms": 0.12119999155402184,
+      "retrieved_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "concept:reduced_expressivity->symptom:fatigue"
+      ],
+      "relevant_ids": [
+        "biomarker:low_speech_rate->concept:reduced_expressivity",
+        "biomarker:low_energy->concept:reduced_expressivity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_speech_rate",
+        "biomarker:low_energy"
+      ],
+      "query_text": "How do low speech rate and low vocal energy share the reduced expressivity interpretation? biomarker:low_speech_rate Low Speech Rate biomarker:low_energy Low Vocal Energy"
+    },
+    {
+      "query_id": "q15",
+      "question": "How do low speech rate and low vocal energy share the reduced expressivity interpretation?",
+      "method": "tfidf",
+      "top_k": 3,
+      "precision_at_k": 0.6666666666666666,
+      "recall_at_k": 1.0,
+      "mrr_at_k": 1.0,
+      "ndcg_at_k": 0.9197207891481876,
+      "relevant_retrieved": 2,
+      "retrieved_count": 3,
+      "latency_ms": 0.22339995484799147,
+      "retrieved_ids": [
+        "biomarker:low_speech_rate->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "biomarker:low_energy->concept:reduced_expressivity"
+      ],
+      "relevant_ids": [
+        "biomarker:low_speech_rate->concept:reduced_expressivity",
+        "biomarker:low_energy->concept:reduced_expressivity"
+      ],
+      "seed_nodes": [
+        "biomarker:low_speech_rate",
+        "biomarker:low_energy"
+      ],
+      "query_text": "How do low speech rate and low vocal energy share the reduced expressivity interpretation? biomarker:low_speech_rate Low Speech Rate biomarker:low_energy Low Vocal Energy"
+    }
+  ],
+  "benchmark_snapshot": {
+    "name": "Seed-conditioned graph explanation retrieval pilot v1",
+    "annotation_status": "Provisional AI-assisted draft relevance labels; not independently reviewed or held out",
+    "corpus_sha256": "758ca15c6acc7f7dae3670540e6509c7326d23659be34ceba11f57b199613dac",
+    "limitations": [
+      "This is a pilot on graph-derived text chunks, not original paper passages or clinical truth.",
+      "Questions and relevance labels were authored during development; independent blinded review is still required.",
+      "Labels express intended relevance within the current graph, not scientific validity of its relationships. Unlisted chunks are provisionally judged nonrelevant.",
+      "The shared corpus comes from the graph, so this comparison is conditional on that representation and may favour graph retrieval.",
+      "Both methods receive known seed-node metadata; results do not measure entity linking or open-ended document search.",
+      "The baseline is lexical TF-IDF, not dense-vector or hybrid RAG. Report generation and clinical usefulness are not evaluated.",
+      "Small, related questions limit uncertainty estimates. The bootstrap intervals are descriptive, not independent validation."
+    ],
+    "questions": [
+      {
+        "id": "q01",
+        "question": "Which stored relationships connect high pause ratio to the screening risk and clinical review?",
+        "seed_nodes": [
+          "biomarker:high_pause_ratio"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_pause_ratio->concept:speech_disruption",
+          "concept:speech_disruption->risk:depression_screening_risk",
+          "risk:depression_screening_risk->intervention:clinical_review"
+        ],
+        "rationale": "The question requests the pause-to-review branch, not the questionnaire or concentration branch. Relevance is to the stored explanation, not causality."
+      },
+      {
+        "id": "q02",
+        "question": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content?",
+        "seed_nodes": [
+          "biomarker:high_pause_ratio"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_pause_ratio->concept:speech_disruption",
+          "concept:speech_disruption->symptom:concentration_difficulty",
+          "symptom:concentration_difficulty->screening:phq8_depression_severity"
+        ],
+        "rationale": "The concentration branch and PHQ-8 item membership answer this question; risk and follow-up edges alone do not."
+      },
+      {
+        "id": "q03",
+        "question": "What two descriptive concepts are connected directly to low speech rate?",
+        "seed_nodes": [
+          "biomarker:low_speech_rate"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:low_speech_rate->concept:speech_disruption",
+          "biomarker:low_speech_rate->concept:reduced_expressivity"
+        ],
+        "rationale": "Only the two direct conceptual interpretations are requested, not downstream symptoms or recommendations."
+      },
+      {
+        "id": "q04",
+        "question": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content?",
+        "seed_nodes": [
+          "biomarker:low_energy"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:low_energy->concept:reduced_expressivity",
+          "concept:reduced_expressivity->symptom:fatigue",
+          "symptom:fatigue->screening:phq8_depression_severity"
+        ],
+        "rationale": "These connect the measured descriptor to the fatigue interpretation and questionnaire node. They do not establish subjective fatigue from RMS."
+      },
+      {
+        "id": "q05",
+        "question": "What stored interpretation links high jitter to vocal instability and psychomotor change?",
+        "seed_nodes": [
+          "biomarker:high_jitter"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_jitter->concept:vocal_instability",
+          "concept:vocal_instability->symptom:psychomotor_change"
+        ],
+        "rationale": "The two interpretive links address the question; they are not validation of the frame-level jitter proxy."
+      },
+      {
+        "id": "q06",
+        "question": "Which stored branch connects high pitch variability to the screening risk?",
+        "seed_nodes": [
+          "biomarker:high_pitch_variability"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_pitch_variability->concept:vocal_instability",
+          "concept:vocal_instability->risk:depression_screening_risk"
+        ],
+        "rationale": "Requests the risk branch rather than the psychomotor or follow-up branches."
+      },
+      {
+        "id": "q07",
+        "question": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph?",
+        "seed_nodes": [
+          "biomarker:high_pitch_mean"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_pitch_mean->symptom:psychomotor_change",
+          "symptom:psychomotor_change->intervention:supportive_followup"
+        ],
+        "rationale": "The requested follow-up is supportive follow-up, not the other intervention nodes."
+      },
+      {
+        "id": "q08",
+        "question": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue?",
+        "seed_nodes": [
+          "biomarker:low_pitch_mean"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:low_pitch_mean->concept:reduced_expressivity",
+          "concept:reduced_expressivity->symptom:fatigue"
+        ],
+        "rationale": "These two relations provide the requested conceptual chain, without claiming clinical confirmation."
+      },
+      {
+        "id": "q09",
+        "question": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood?",
+        "seed_nodes": [
+          "biomarker:high_mfcc_2_std"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_mfcc_2_std->concept:spectral_shift",
+          "concept:spectral_shift->symptom:depressed_mood"
+        ],
+        "rationale": "The spectral descriptor and requires_context_for relation answer the local interpretation question."
+      },
+      {
+        "id": "q10",
+        "question": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire?",
+        "seed_nodes": [
+          "biomarker:low_mfcc_3_mean"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+          "concept:spectral_shift->symptom:depressed_mood",
+          "symptom:depressed_mood->screening:phq8_depression_severity"
+        ],
+        "rationale": "All three relations are needed for the requested stored path to questionnaire content."
+      },
+      {
+        "id": "q11",
+        "question": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified?",
+        "seed_nodes": [
+          "biomarker:high_mfcc_4_std"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_mfcc_4_std->concept:spectral_shift",
+          "concept:spectral_shift->symptom:depressed_mood"
+        ],
+        "rationale": "The requires_context_for relation supplies the qualification; questionnaire membership alone does not."
+      },
+      {
+        "id": "q12",
+        "question": "Which follow-up actions are linked directly to the depression screening risk node?",
+        "seed_nodes": [
+          "risk:depression_screening_risk"
+        ],
+        "relevant_chunk_ids": [
+          "risk:depression_screening_risk->intervention:clinical_review",
+          "risk:depression_screening_risk->intervention:phq8_followup"
+        ],
+        "rationale": "Both outgoing recommendation edges are relevant. These are project reporting policies, not treatment prescriptions."
+      },
+      {
+        "id": "q13",
+        "question": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content?",
+        "seed_nodes": [
+          "screening:phq8_depression_severity"
+        ],
+        "relevant_chunk_ids": [
+          "symptom:depressed_mood->screening:phq8_depression_severity",
+          "symptom:psychomotor_change->screening:phq8_depression_severity",
+          "symptom:fatigue->screening:phq8_depression_severity",
+          "symptom:concentration_difficulty->screening:phq8_depression_severity"
+        ],
+        "rationale": "All four incoming part_of relations are relevant. This reverse-direction query deliberately tests a limitation of forward-path retrieval."
+      },
+      {
+        "id": "q14",
+        "question": "Which acoustic rules share the speech disruption interpretation?",
+        "seed_nodes": [
+          "concept:speech_disruption"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:high_pause_ratio->concept:speech_disruption",
+          "biomarker:low_speech_rate->concept:speech_disruption"
+        ],
+        "rationale": "The two incoming biomarker edges answer the question; downstream symptoms do not."
+      },
+      {
+        "id": "q15",
+        "question": "How do low speech rate and low vocal energy share the reduced expressivity interpretation?",
+        "seed_nodes": [
+          "biomarker:low_speech_rate",
+          "biomarker:low_energy"
+        ],
+        "relevant_chunk_ids": [
+          "biomarker:low_speech_rate->concept:reduced_expressivity",
+          "biomarker:low_energy->concept:reduced_expressivity"
+        ],
+        "rationale": "Both incoming reduced-expressivity edges are required; the separate speech-disruption branch is not requested."
+      }
+    ]
+  },
+  "corpus_snapshot": [
+    {
+      "chunk_id": "biomarker:high_jitter->concept:vocal_instability",
+      "text": "biomarker:high_jitter High Jitter Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal. indicates concept:vocal_instability Vocal Instability Irregular or unstable vocal production.  Speech-analysis reviews associate perturbation and voice-source instability with depression-relevant vocal control changes. Cummins et al. (2015) Low et al. (2020)",
+      "source": "biomarker:high_jitter",
+      "target": "concept:vocal_instability",
+      "related_nodes": [
+        "biomarker:high_jitter",
+        "concept:vocal_instability"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_mfcc_1_mean->concept:spectral_shift",
+      "text": "biomarker:high_mfcc_1_mean High MFCC 1 Mean A shifted first cepstral coefficient may reflect broad spectral-energy changes in the voice. indicates concept:spectral_shift Spectral Shift Changes in cepstral or spectral balance that can cue altered voice quality.  MFCCs are widely used spectral descriptors in psychiatric speech assessment, but they require semantic mapping for interpretation. Al Hanai et al. (2018) Low et al. (2020)",
+      "source": "biomarker:high_mfcc_1_mean",
+      "target": "concept:spectral_shift",
+      "related_nodes": [
+        "biomarker:high_mfcc_1_mean",
+        "concept:spectral_shift"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_mfcc_2_std->concept:spectral_shift",
+      "text": "biomarker:high_mfcc_2_std High MFCC 2 Variability Greater spectral-shape variability can indicate inconsistent articulation or affective instability. indicates concept:spectral_shift Spectral Shift Changes in cepstral or spectral balance that can cue altered voice quality.  MFCC variability captures spectral-shape changes that may reflect altered speech production or affective expression. Al Hanai et al. (2018) Low et al. (2020)",
+      "source": "biomarker:high_mfcc_2_std",
+      "target": "concept:spectral_shift",
+      "related_nodes": [
+        "biomarker:high_mfcc_2_std",
+        "concept:spectral_shift"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_mfcc_4_std->concept:spectral_shift",
+      "text": "biomarker:high_mfcc_4_std High MFCC 4 Variability Higher mid-cepstral variability may reflect unstable speech production across the recording. indicates concept:spectral_shift Spectral Shift Changes in cepstral or spectral balance that can cue altered voice quality.  Mid-cepstral variability is retained as a calibrated spectral marker and interpreted only through graph context. Al Hanai et al. (2018) Low et al. (2020)",
+      "source": "biomarker:high_mfcc_4_std",
+      "target": "concept:spectral_shift",
+      "related_nodes": [
+        "biomarker:high_mfcc_4_std",
+        "concept:spectral_shift"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_pause_ratio->concept:speech_disruption",
+      "text": "biomarker:high_pause_ratio High Pause Ratio Frequent or extended pauses may reflect hesitation, cognitive load, avoidance, or disrupted speech flow. indicates concept:speech_disruption Speech Disruption Interrupted, hesitant, or slowed speech flow.  Longer silence and pause behaviour are commonly reported in speech-based depression screening work. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020)",
+      "source": "biomarker:high_pause_ratio",
+      "target": "concept:speech_disruption",
+      "related_nodes": [
+        "biomarker:high_pause_ratio",
+        "concept:speech_disruption"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_pitch_mean->symptom:psychomotor_change",
+      "text": "biomarker:high_pitch_mean High Mean Pitch Raised average pitch can be consistent with affective tension or altered activation, depending on speaker baseline. may_support symptom:psychomotor_change Psychomotor Slowing or Agitation   Mean pitch is treated as an activation-sensitive prosodic marker requiring contextual interpretation. Cummins et al. (2015) Low et al. (2020)",
+      "source": "biomarker:high_pitch_mean",
+      "target": "symptom:psychomotor_change",
+      "related_nodes": [
+        "biomarker:high_pitch_mean",
+        "symptom:psychomotor_change"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:high_pitch_variability->concept:vocal_instability",
+      "text": "biomarker:high_pitch_variability High Pitch Variability Large pitch variation may suggest unstable vocal control during depression-relevant affective states. indicates concept:vocal_instability Vocal Instability Irregular or unstable vocal production.  Pitch and frequency variability are repeatedly discussed as depression-relevant prosodic markers, although direction depends on context and speaker baseline. Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "biomarker:high_pitch_variability",
+      "target": "concept:vocal_instability",
+      "related_nodes": [
+        "biomarker:high_pitch_variability",
+        "concept:vocal_instability"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:low_energy->concept:reduced_expressivity",
+      "text": "biomarker:low_energy Low Vocal Energy Reduced vocal intensity may indicate flattened expression, fatigue, withdrawal, or low activation. indicates concept:reduced_expressivity Reduced Expressivity Lower vocal activation or flattened prosodic expression.  Reduced vocal intensity and energy are commonly treated as markers of flattened affect, fatigue, or reduced activation. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "biomarker:low_energy",
+      "target": "concept:reduced_expressivity",
+      "related_nodes": [
+        "biomarker:low_energy",
+        "concept:reduced_expressivity"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+      "text": "biomarker:low_mfcc_3_mean Low MFCC 3 Mean A low third cepstral coefficient may indicate altered spectral balance requiring contextual review. indicates concept:spectral_shift Spectral Shift Changes in cepstral or spectral balance that can cue altered voice quality.  MFCC coefficients are model-facing spectral biomarkers; the graph maps them cautiously to qualitative spectral shift rather than direct diagnosis. Al Hanai et al. (2018) Low et al. (2020)",
+      "source": "biomarker:low_mfcc_3_mean",
+      "target": "concept:spectral_shift",
+      "related_nodes": [
+        "biomarker:low_mfcc_3_mean",
+        "concept:spectral_shift"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:low_pitch_mean->concept:reduced_expressivity",
+      "text": "biomarker:low_pitch_mean Low Mean Pitch Lowered average pitch can appear with reduced expressivity, fatigue, or psychomotor slowing. may_support concept:reduced_expressivity Reduced Expressivity Lower vocal activation or flattened prosodic expression.  Lower pitch or reduced prosodic activation can appear with reduced expressivity and fatigue, but requires speaker-context review. Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "biomarker:low_pitch_mean",
+      "target": "concept:reduced_expressivity",
+      "related_nodes": [
+        "biomarker:low_pitch_mean",
+        "concept:reduced_expressivity"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:low_speech_rate->concept:reduced_expressivity",
+      "text": "biomarker:low_speech_rate Low Speech Rate Reduced words per second may reflect slowed speech production, psychomotor slowing, or reduced verbal fluency. may_support concept:reduced_expressivity Reduced Expressivity Lower vocal activation or flattened prosodic expression.  Slower speech rate is linked to reduced verbal fluency, psychomotor slowing, and depression severity in prior speech studies. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "biomarker:low_speech_rate",
+      "target": "concept:reduced_expressivity",
+      "related_nodes": [
+        "biomarker:low_speech_rate",
+        "concept:reduced_expressivity"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "biomarker:low_speech_rate->concept:speech_disruption",
+      "text": "biomarker:low_speech_rate Low Speech Rate Reduced words per second may reflect slowed speech production, psychomotor slowing, or reduced verbal fluency. indicates concept:speech_disruption Speech Disruption Interrupted, hesitant, or slowed speech flow.  Slower speech rate is linked to reduced verbal fluency, psychomotor slowing, and depression severity in prior speech studies. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "biomarker:low_speech_rate",
+      "target": "concept:speech_disruption",
+      "related_nodes": [
+        "biomarker:low_speech_rate",
+        "concept:speech_disruption"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "concept:reduced_expressivity->symptom:fatigue",
+      "text": "concept:reduced_expressivity Reduced Expressivity  may_support symptom:fatigue Fatigue or Low Energy   Reduced expressivity connects low energy and prosodic flattening to fatigue or low activation in clinical interpretation. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020) Mundt et al. (2007)",
+      "source": "concept:reduced_expressivity",
+      "target": "symptom:fatigue",
+      "related_nodes": [
+        "concept:reduced_expressivity",
+        "symptom:fatigue"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)",
+        "Mundt et al. (2007)"
+      ]
+    },
+    {
+      "chunk_id": "concept:spectral_shift->symptom:depressed_mood",
+      "text": "concept:spectral_shift Spectral Shift  requires_context_for symptom:depressed_mood Depressed Mood   Spectral features are useful biomarkers but need clinical context before linking them to mood symptoms. Low et al. (2020) Cummins et al. (2015)",
+      "source": "concept:spectral_shift",
+      "target": "symptom:depressed_mood",
+      "related_nodes": [
+        "concept:spectral_shift",
+        "symptom:depressed_mood"
+      ],
+      "sources": [
+        "Low et al. (2020)",
+        "Cummins et al. (2015)"
+      ]
+    },
+    {
+      "chunk_id": "concept:speech_disruption->risk:depression_screening_risk",
+      "text": "concept:speech_disruption Speech Disruption  contributes_to risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  Speech disruption, pausing, and slowed rhythm are linked to depression-relevant interview behaviour. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020)",
+      "source": "concept:speech_disruption",
+      "target": "risk:depression_screening_risk",
+      "related_nodes": [
+        "concept:speech_disruption",
+        "risk:depression_screening_risk"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "concept:speech_disruption->symptom:concentration_difficulty",
+      "text": "concept:speech_disruption Speech Disruption  may_support symptom:concentration_difficulty Difficulty Concentrating   Speech disruption, pausing, and slowed rhythm are linked to depression-relevant interview behaviour. Al Hanai et al. (2018) Cummins et al. (2015) Low et al. (2020)",
+      "source": "concept:speech_disruption",
+      "target": "symptom:concentration_difficulty",
+      "related_nodes": [
+        "concept:speech_disruption",
+        "symptom:concentration_difficulty"
+      ],
+      "sources": [
+        "Al Hanai et al. (2018)",
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "concept:vocal_instability->risk:depression_screening_risk",
+      "text": "concept:vocal_instability Vocal Instability  contributes_to risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone. Cummins et al. (2015) Low et al. (2020)",
+      "source": "concept:vocal_instability",
+      "target": "risk:depression_screening_risk",
+      "related_nodes": [
+        "concept:vocal_instability",
+        "risk:depression_screening_risk"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "concept:vocal_instability->symptom:psychomotor_change",
+      "text": "concept:vocal_instability Vocal Instability  may_support symptom:psychomotor_change Psychomotor Slowing or Agitation   Voice instability can contribute to depression-relevant screening evidence but is not diagnostic alone. Cummins et al. (2015) Low et al. (2020)",
+      "source": "concept:vocal_instability",
+      "target": "symptom:psychomotor_change",
+      "related_nodes": [
+        "concept:vocal_instability",
+        "symptom:psychomotor_change"
+      ],
+      "sources": [
+        "Cummins et al. (2015)",
+        "Low et al. (2020)"
+      ]
+    },
+    {
+      "chunk_id": "risk:depression_screening_risk->intervention:clinical_review",
+      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:clinical_review Clinical Review Review the acoustic explanation alongside interview, questionnaire, and contextual information.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "source": "risk:depression_screening_risk",
+      "target": "intervention:clinical_review",
+      "related_nodes": [
+        "intervention:clinical_review",
+        "risk:depression_screening_risk"
+      ],
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ]
+    },
+    {
+      "chunk_id": "risk:depression_screening_risk->intervention:phq8_followup",
+      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:phq8_followup PHQ-8 Follow-up Use PHQ-8 or clinician-administered assessment as structured follow-up rather than treating audio as a diagnosis.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "source": "risk:depression_screening_risk",
+      "target": "intervention:phq8_followup",
+      "related_nodes": [
+        "intervention:phq8_followup",
+        "risk:depression_screening_risk"
+      ],
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ]
+    },
+    {
+      "chunk_id": "screening:phq8_depression_severity->risk:depression_screening_risk",
+      "text": "screening:phq8_depression_severity PHQ-8 Depression Severity  estimates risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "source": "screening:phq8_depression_severity",
+      "target": "risk:depression_screening_risk",
+      "related_nodes": [
+        "risk:depression_screening_risk",
+        "screening:phq8_depression_severity"
+      ],
+      "sources": [
+        "Tjoa and Guan (2020)",
+        "Ji et al. (2023)",
+        "Lewis et al. (2020)",
+        "Hamilton et al. (2024)"
+      ]
+    },
+    {
+      "chunk_id": "symptom:concentration_difficulty->screening:phq8_depression_severity",
+      "text": "symptom:concentration_difficulty Difficulty Concentrating  part_of screening:phq8_depression_severity PHQ-8 Depression Severity   PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:concentration_difficulty",
+      "target": "screening:phq8_depression_severity",
+      "related_nodes": [
+        "screening:phq8_depression_severity",
+        "symptom:concentration_difficulty"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    },
+    {
+      "chunk_id": "symptom:depressed_mood->screening:phq8_depression_severity",
+      "text": "symptom:depressed_mood Depressed Mood  part_of screening:phq8_depression_severity PHQ-8 Depression Severity   PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:depressed_mood",
+      "target": "screening:phq8_depression_severity",
+      "related_nodes": [
+        "screening:phq8_depression_severity",
+        "symptom:depressed_mood"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    },
+    {
+      "chunk_id": "symptom:fatigue->risk:depression_screening_risk",
+      "text": "symptom:fatigue Fatigue or Low Energy  screening_context risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:fatigue",
+      "target": "risk:depression_screening_risk",
+      "related_nodes": [
+        "risk:depression_screening_risk",
+        "symptom:fatigue"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    },
+    {
+      "chunk_id": "symptom:fatigue->screening:phq8_depression_severity",
+      "text": "symptom:fatigue Fatigue or Low Energy  part_of screening:phq8_depression_severity PHQ-8 Depression Severity   PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:fatigue",
+      "target": "screening:phq8_depression_severity",
+      "related_nodes": [
+        "screening:phq8_depression_severity",
+        "symptom:fatigue"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    },
+    {
+      "chunk_id": "symptom:psychomotor_change->intervention:supportive_followup",
+      "text": "symptom:psychomotor_change Psychomotor Slowing or Agitation  may_benefit_from intervention:supportive_followup Supportive Follow-up Encourage supportive clinical discussion when speech patterns suggest distress, fatigue, or slowed expression.  PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:psychomotor_change",
+      "target": "intervention:supportive_followup",
+      "related_nodes": [
+        "intervention:supportive_followup",
+        "symptom:psychomotor_change"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    },
+    {
+      "chunk_id": "symptom:psychomotor_change->screening:phq8_depression_severity",
+      "text": "symptom:psychomotor_change Psychomotor Slowing or Agitation  part_of screening:phq8_depression_severity PHQ-8 Depression Severity   PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "source": "symptom:psychomotor_change",
+      "target": "screening:phq8_depression_severity",
+      "related_nodes": [
+        "screening:phq8_depression_severity",
+        "symptom:psychomotor_change"
+      ],
+      "sources": [
+        "Kroenke et al. (2009)",
+        "Gratch et al. (2014)",
+        "DAIC-WOZ/AVEC PHQ-8 labels"
+      ]
+    }
+  ]
+}
