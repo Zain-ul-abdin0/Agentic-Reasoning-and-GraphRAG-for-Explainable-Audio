@@ -1,6 +1,8 @@
 AGGREGATE_MATCH_THRESHOLD = 5
 
 AGGREGATE_CALIBRATION = {
+    "record_type": "historical_development_result",
+    "not_recomputed_for_this_recording": True,
     "reference_label": "PHQ-8 >= 10",
     "dataset": "113 saved DAIC-WOZ participant results",
     "method": "Exploratory count-threshold optimization after excluding High MFCC 1 Mean.",
@@ -64,5 +66,9 @@ def score_evidence(findings, threshold=AGGREGATE_MATCH_THRESHOLD):
             if screen_positive
             else "Aggregate acoustic evidence does not meet the calibrated screening operating point."
         ),
-        "calibration": AGGREGATE_CALIBRATION,
+        "calibration": {
+            **AGGREGATE_CALIBRATION,
+            "historical_cutoff_matches_current_cutoff": threshold == AGGREGATE_CALIBRATION["matched_count_threshold"],
+            "current_match_threshold": threshold,
+        },
     }

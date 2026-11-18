@@ -4,3 +4,16 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 *.wav
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+.vscode/
+data/private/
+data/local_runs/
+data/formative_review/
+data/month_*/
+documentations/
+Documentations/
+*.log

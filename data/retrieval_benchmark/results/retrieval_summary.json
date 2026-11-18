@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "created_at": "2026-11-09T18:58:06.779963+00:00",
-  "benchmark_name": "Seed-conditioned graph explanation retrieval pilot v1",
+  "created_at": "2026-11-18T23:45:08.872516+00:00",
+  "benchmark_name": "Seed-conditioned graph explanation retrieval pilot v2 (release annotations)",
   "annotation_status": "Provisional AI-assisted draft relevance labels; not independently reviewed or held out",
   "query_count": 15,
   "corpus_size": 27,
@@ -28,9 +28,9 @@
     "Small, related questions limit uncertainty estimates. The bootstrap intervals are descriptive, not independent validation."
   ],
   "provenance": {
-    "corpus_sha256": "758ca15c6acc7f7dae3670540e6509c7326d23659be34ceba11f57b199613dac",
-    "benchmark_sha256": "e576e45359500d1266fc03376537e2202a6ae0b1893d2a40b9efceceefcaff1e",
-    "graph_path": "D:\\After Coming to Germany\\Study\\Thesis\\Agentic Reasoning and GraphRAG for Explainable Audio\\data\\knowledge_graph\\siegen_audio_depression_kg.calibrated.jsonld"
+    "corpus_sha256": "9e5fe6f2d99396f71abaa8b2e04fb114d9860a24b169b4c1dfcbf6e05a6229f1",
+    "benchmark_sha256": "1356948dcc1916b2bf775e30507f80e68e9624738f02653efef88be14ad9c0ad",
+    "graph_path": "data/knowledge_graph/siegen_audio_depression_kg.calibrated.jsonld"
   },
   "methods": {
     "graph": {
@@ -38,43 +38,43 @@
       "recall_at_k": 0.7333333333333333,
       "mrr_at_k": 0.8666666666666667,
       "ndcg_at_k": 0.7587103025126988,
-      "latency_ms": 0.14805332757532597
+      "latency_ms": 0.137560007472833
     },
     "tfidf": {
-      "precision_at_k": 0.6,
-      "recall_at_k": 0.7388888888888889,
-      "mrr_at_k": 0.8888888888888888,
-      "ndcg_at_k": 0.7623932544067273,
-      "latency_ms": 0.32043999526649714
+      "precision_at_k": 0.6222222222222222,
+      "recall_at_k": 0.7722222222222223,
+      "mrr_at_k": 0.9222222222222223,
+      "ndcg_at_k": 0.7935353889458177,
+      "latency_ms": 0.3028666600584984
     }
   },
   "paired_differences": {
     "precision_at_k": {
-      "graph_minus_tfidf": -0.044444444444444446,
+      "graph_minus_tfidf": -0.06666666666666667,
       "bootstrap_95_interval": [
-        -0.24444444444444444,
-        0.15555555555555553
+        -0.24444444444444446,
+        0.1111111111111111
       ]
     },
     "recall_at_k": {
-      "graph_minus_tfidf": -0.005555555555555558,
+      "graph_minus_tfidf": -0.03888888888888889,
       "bootstrap_95_interval": [
-        -0.23333333333333334,
-        0.23333333333333334
+        -0.24444444444444444,
+        0.16111111111111112
       ]
     },
     "mrr_at_k": {
-      "graph_minus_tfidf": -0.02222222222222222,
+      "graph_minus_tfidf": -0.05555555555555555,
       "bootstrap_95_interval": [
         -0.2222222222222222,
-        0.17777777777777778
+        0.07777777777777778
       ]
     },
     "ndcg_at_k": {
-      "graph_minus_tfidf": -0.0036829518940285338,
+      "graph_minus_tfidf": -0.0348250864331188,
       "bootstrap_95_interval": [
-        -0.22257918640153512,
-        0.22648963284342702
+        -0.24044713793041675,
+        0.1548842367562435
       ]
     }
   },
@@ -90,7 +90,7 @@
       "ndcg_at_k": 0.7653606369886217,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.9148999815806746,
+      "latency_ms": 0.583800021559,
       "retrieved_ids": [
         "biomarker:high_pause_ratio->concept:speech_disruption",
         "concept:speech_disruption->risk:depression_screening_risk",
@@ -117,7 +117,7 @@
       "ndcg_at_k": 0.7653606369886217,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.7004999788478017,
+      "latency_ms": 0.23500015959143639,
       "retrieved_ids": [
         "biomarker:high_pause_ratio->concept:speech_disruption",
         "risk:depression_screening_risk->intervention:clinical_review",
@@ -144,7 +144,7 @@
       "ndcg_at_k": 0.7039180890341347,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.1311999512836337,
+      "latency_ms": 0.10020006448030472,
       "retrieved_ids": [
         "biomarker:high_pause_ratio->concept:speech_disruption",
         "concept:speech_disruption->risk:depression_screening_risk",
@@ -171,7 +171,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 3,
       "retrieved_count": 3,
-      "latency_ms": 0.29340002220124006,
+      "latency_ms": 0.24889991618692875,
       "retrieved_ids": [
         "biomarker:high_pause_ratio->concept:speech_disruption",
         "symptom:concentration_difficulty->screening:phq8_depression_severity",
@@ -198,7 +198,7 @@
       "ndcg_at_k": 0.6131471927654584,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.08060003165155649,
+      "latency_ms": 0.0801000278443098,
       "retrieved_ids": [
         "biomarker:low_speech_rate->concept:speech_disruption",
         "concept:speech_disruption->risk:depression_screening_risk",
@@ -224,7 +224,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.2188000362366438,
+      "latency_ms": 0.21999981254339218,
       "retrieved_ids": [
         "biomarker:low_speech_rate->concept:speech_disruption",
         "biomarker:low_speech_rate->concept:reduced_expressivity",
@@ -250,7 +250,7 @@
       "ndcg_at_k": 0.7653606369886217,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.0825000461190939,
+      "latency_ms": 0.08320016786456108,
       "retrieved_ids": [
         "biomarker:low_energy->concept:reduced_expressivity",
         "concept:reduced_expressivity->symptom:fatigue",
@@ -277,7 +277,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 3,
       "retrieved_count": 3,
-      "latency_ms": 0.22950000129640102,
+      "latency_ms": 0.2319000195711851,
       "retrieved_ids": [
         "biomarker:low_energy->concept:reduced_expressivity",
         "concept:reduced_expressivity->symptom:fatigue",
@@ -304,7 +304,7 @@
       "ndcg_at_k": 0.9197207891481876,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.12949993833899498,
+      "latency_ms": 0.06220000796020031,
       "retrieved_ids": [
         "biomarker:high_jitter->concept:vocal_instability",
         "concept:vocal_instability->risk:depression_screening_risk",
@@ -330,7 +330,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.3969999961555004,
+      "latency_ms": 0.2166999038308859,
       "retrieved_ids": [
         "biomarker:high_jitter->concept:vocal_instability",
         "concept:vocal_instability->symptom:psychomotor_change",
@@ -356,7 +356,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.09860005229711533,
+      "latency_ms": 0.0591999851167202,
       "retrieved_ids": [
         "biomarker:high_pitch_variability->concept:vocal_instability",
         "concept:vocal_instability->risk:depression_screening_risk",
@@ -382,11 +382,11 @@
       "ndcg_at_k": 0.6131471927654584,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.4355000564828515,
+      "latency_ms": 0.18609990365803242,
       "retrieved_ids": [
         "biomarker:high_pitch_variability->concept:vocal_instability",
-        "biomarker:high_mfcc_4_std->concept:spectral_shift",
-        "biomarker:high_pitch_mean->symptom:psychomotor_change"
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "biomarker:high_mfcc_4_std->concept:spectral_shift"
       ],
       "relevant_ids": [
         "biomarker:high_pitch_variability->concept:vocal_instability",
@@ -408,7 +408,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.07850001566112041,
+      "latency_ms": 0.055900076404213905,
       "retrieved_ids": [
         "biomarker:high_pitch_mean->symptom:psychomotor_change",
         "symptom:psychomotor_change->intervention:supportive_followup",
@@ -434,7 +434,7 @@
       "ndcg_at_k": 0.6131471927654584,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.32849994022399187,
+      "latency_ms": 0.21190010011196136,
       "retrieved_ids": [
         "biomarker:high_pitch_mean->symptom:psychomotor_change",
         "biomarker:low_pitch_mean->concept:reduced_expressivity",
@@ -460,7 +460,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.12959993910044432,
+      "latency_ms": 0.07069995626807213,
       "retrieved_ids": [
         "biomarker:low_pitch_mean->concept:reduced_expressivity",
         "concept:reduced_expressivity->symptom:fatigue",
@@ -486,7 +486,7 @@
       "ndcg_at_k": 0.9197207891481876,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.4963000537827611,
+      "latency_ms": 0.19540009088814259,
       "retrieved_ids": [
         "biomarker:low_pitch_mean->concept:reduced_expressivity",
         "biomarker:high_pitch_mean->symptom:psychomotor_change",
@@ -512,7 +512,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.0852999510243535,
+      "latency_ms": 0.0671998132020235,
       "retrieved_ids": [
         "biomarker:high_mfcc_2_std->concept:spectral_shift",
         "concept:spectral_shift->symptom:depressed_mood",
@@ -538,7 +538,7 @@
       "ndcg_at_k": 0.6131471927654584,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.2680000616237521,
+      "latency_ms": 0.2296001184731722,
       "retrieved_ids": [
         "biomarker:high_mfcc_2_std->concept:spectral_shift",
         "biomarker:high_mfcc_4_std->concept:spectral_shift",
@@ -564,7 +564,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 3,
       "retrieved_count": 3,
-      "latency_ms": 0.08789997082203627,
+      "latency_ms": 0.07720012217760086,
       "retrieved_ids": [
         "biomarker:low_mfcc_3_mean->concept:spectral_shift",
         "concept:spectral_shift->symptom:depressed_mood",
@@ -591,7 +591,7 @@
       "ndcg_at_k": 0.7653606369886217,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.2623000182211399,
+      "latency_ms": 0.23300014436244965,
       "retrieved_ids": [
         "biomarker:low_mfcc_3_mean->concept:spectral_shift",
         "concept:spectral_shift->symptom:depressed_mood",
@@ -618,7 +618,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.08700008038431406,
+      "latency_ms": 0.07019983604550362,
       "retrieved_ids": [
         "biomarker:high_mfcc_4_std->concept:spectral_shift",
         "concept:spectral_shift->symptom:depressed_mood",
@@ -644,7 +644,7 @@
       "ndcg_at_k": 0.9197207891481876,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.2634999109432101,
+      "latency_ms": 0.3132999408990145,
       "retrieved_ids": [
         "biomarker:high_mfcc_4_std->concept:spectral_shift",
         "biomarker:high_mfcc_2_std->concept:spectral_shift",
@@ -670,7 +670,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 2,
-      "latency_ms": 0.06849993951618671,
+      "latency_ms": 0.07239985279738903,
       "retrieved_ids": [
         "risk:depression_screening_risk->intervention:clinical_review",
         "risk:depression_screening_risk->intervention:phq8_followup"
@@ -689,17 +689,17 @@
       "question": "Which follow-up actions are linked directly to the depression screening risk node?",
       "method": "tfidf",
       "top_k": 3,
-      "precision_at_k": 0.0,
-      "recall_at_k": 0.0,
-      "mrr_at_k": 0.0,
-      "ndcg_at_k": 0.0,
-      "relevant_retrieved": 0,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.5,
+      "mrr_at_k": 0.5,
+      "ndcg_at_k": 0.38685280723454163,
+      "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.2294000005349517,
+      "latency_ms": 0.24259998463094234,
       "retrieved_ids": [
         "concept:speech_disruption->risk:depression_screening_risk",
-        "concept:vocal_instability->risk:depression_screening_risk",
-        "symptom:fatigue->risk:depression_screening_risk"
+        "risk:depression_screening_risk->intervention:phq8_followup",
+        "concept:vocal_instability->risk:depression_screening_risk"
       ],
       "relevant_ids": [
         "risk:depression_screening_risk->intervention:clinical_review",
@@ -721,7 +721,7 @@
       "ndcg_at_k": 0.0,
       "relevant_retrieved": 0,
       "retrieved_count": 3,
-      "latency_ms": 0.05959998816251755,
+      "latency_ms": 0.06330013275146484,
       "retrieved_ids": [
         "screening:phq8_depression_severity->risk:depression_screening_risk",
         "risk:depression_screening_risk->intervention:clinical_review",
@@ -749,7 +749,7 @@
       "ndcg_at_k": 1.0,
       "relevant_retrieved": 3,
       "retrieved_count": 3,
-      "latency_ms": 0.2503999276086688,
+      "latency_ms": 0.6182999350130558,
       "retrieved_ids": [
         "symptom:fatigue->screening:phq8_depression_severity",
         "symptom:psychomotor_change->screening:phq8_depression_severity",
@@ -777,7 +777,7 @@
       "ndcg_at_k": 0.0,
       "relevant_retrieved": 0,
       "retrieved_count": 3,
-      "latency_ms": 0.06590003613382578,
+      "latency_ms": 0.1656000968068838,
       "retrieved_ids": [
         "concept:speech_disruption->risk:depression_screening_risk",
         "concept:speech_disruption->symptom:concentration_difficulty",
@@ -803,7 +803,7 @@
       "ndcg_at_k": 0.3065735963827292,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.21009996999055147,
+      "latency_ms": 0.5015998613089323,
       "retrieved_ids": [
         "concept:speech_disruption->symptom:concentration_difficulty",
         "concept:speech_disruption->risk:depression_screening_risk",
@@ -829,7 +829,7 @@
       "ndcg_at_k": 0.6131471927654584,
       "relevant_retrieved": 1,
       "retrieved_count": 3,
-      "latency_ms": 0.12119999155402184,
+      "latency_ms": 0.45219995081424713,
       "retrieved_ids": [
         "biomarker:low_energy->concept:reduced_expressivity",
         "biomarker:low_speech_rate->concept:speech_disruption",
@@ -853,14 +853,14 @@
       "precision_at_k": 0.6666666666666666,
       "recall_at_k": 1.0,
       "mrr_at_k": 1.0,
-      "ndcg_at_k": 0.9197207891481876,
+      "ndcg_at_k": 1.0,
       "relevant_retrieved": 2,
       "retrieved_count": 3,
-      "latency_ms": 0.22339995484799147,
+      "latency_ms": 0.6587000098079443,
       "retrieved_ids": [
         "biomarker:low_speech_rate->concept:reduced_expressivity",
-        "concept:reduced_expressivity->symptom:fatigue",
-        "biomarker:low_energy->concept:reduced_expressivity"
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue"
       ],
       "relevant_ids": [
         "biomarker:low_speech_rate->concept:reduced_expressivity",
@@ -874,9 +874,9 @@
     }
   ],
   "benchmark_snapshot": {
-    "name": "Seed-conditioned graph explanation retrieval pilot v1",
+    "name": "Seed-conditioned graph explanation retrieval pilot v2 (release annotations)",
     "annotation_status": "Provisional AI-assisted draft relevance labels; not independently reviewed or held out",
-    "corpus_sha256": "758ca15c6acc7f7dae3670540e6509c7326d23659be34ceba11f57b199613dac",
+    "corpus_sha256": "9e5fe6f2d99396f71abaa8b2e04fb114d9860a24b169b4c1dfcbf6e05a6229f1",
     "limitations": [
       "This is a pilot on graph-derived text chunks, not original paper passages or clinical truth.",
       "Questions and relevance labels were authored during development; independent blinded review is still required.",
@@ -1074,12 +1074,13 @@
         ],
         "rationale": "Both incoming reduced-expressivity edges are required; the separate speech-disruption branch is not requested."
       }
-    ]
+    ],
+    "revision_note": "Release graph descriptions corrected. Edge IDs, questions and provisional relevance sets retained; no independent relevance review performed. Historical v1 is archived separately."
   },
   "corpus_snapshot": [
     {
       "chunk_id": "biomarker:high_jitter->concept:vocal_instability",
-      "text": "biomarker:high_jitter High Jitter Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal. indicates concept:vocal_instability Vocal Instability Irregular or unstable vocal production.  Speech-analysis reviews associate perturbation and voice-source instability with depression-relevant vocal control changes. Cummins et al. (2015) Low et al. (2020)",
+      "text": "biomarker:high_jitter High Jitter Elevated pitch-period instability across retained voiced frames. This implemented proxy is not conventional cycle-to-cycle jitter and does not establish arousal or a clinical symptom. indicates concept:vocal_instability Vocal Instability Irregular or unstable vocal production.  Speech-analysis reviews associate perturbation and voice-source instability with depression-relevant vocal control changes. Cummins et al. (2015) Low et al. (2020)",
       "source": "biomarker:high_jitter",
       "target": "concept:vocal_instability",
       "related_nodes": [
@@ -1344,51 +1345,36 @@
     },
     {
       "chunk_id": "risk:depression_screening_risk->intervention:clinical_review",
-      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:clinical_review Clinical Review Review the acoustic explanation alongside interview, questionnaire, and contextual information.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:clinical_review Clinical Review Review the acoustic explanation alongside interview, questionnaire, and contextual information.  Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation. ",
       "source": "risk:depression_screening_risk",
       "target": "intervention:clinical_review",
       "related_nodes": [
         "intervention:clinical_review",
         "risk:depression_screening_risk"
       ],
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ]
+      "sources": []
     },
     {
       "chunk_id": "risk:depression_screening_risk->intervention:phq8_followup",
-      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:phq8_followup PHQ-8 Follow-up Use PHQ-8 or clinician-administered assessment as structured follow-up rather than treating audio as a diagnosis.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "text": "risk:depression_screening_risk Depression Screening Risk  recommends intervention:phq8_followup PHQ-8 Follow-up Use PHQ-8 or clinician-administered assessment as structured follow-up rather than treating audio as a diagnosis.  Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation. ",
       "source": "risk:depression_screening_risk",
       "target": "intervention:phq8_followup",
       "related_nodes": [
         "intervention:phq8_followup",
         "risk:depression_screening_risk"
       ],
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ]
+      "sources": []
     },
     {
       "chunk_id": "screening:phq8_depression_severity->risk:depression_screening_risk",
-      "text": "screening:phq8_depression_severity PHQ-8 Depression Severity  estimates risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic. Tjoa and Guan (2020) Ji et al. (2023) Lewis et al. (2020) Hamilton et al. (2024)",
+      "text": "screening:phq8_depression_severity PHQ-8 Depression Severity  estimates risk:depression_screening_risk Depression Screening Risk Non-diagnostic signal that depression-relevant speech patterns may be present.  Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation. ",
       "source": "screening:phq8_depression_severity",
       "target": "risk:depression_screening_risk",
       "related_nodes": [
         "risk:depression_screening_risk",
         "screening:phq8_depression_severity"
       ],
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ]
+      "sources": []
     },
     {
       "chunk_id": "symptom:concentration_difficulty->screening:phq8_depression_severity",
@@ -1452,18 +1438,14 @@
     },
     {
       "chunk_id": "symptom:psychomotor_change->intervention:supportive_followup",
-      "text": "symptom:psychomotor_change Psychomotor Slowing or Agitation  may_benefit_from intervention:supportive_followup Supportive Follow-up Encourage supportive clinical discussion when speech patterns suggest distress, fatigue, or slowed expression.  PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation. Kroenke et al. (2009) Gratch et al. (2014) DAIC-WOZ/AVEC PHQ-8 labels",
+      "text": "symptom:psychomotor_change Psychomotor Slowing or Agitation  may_benefit_from intervention:supportive_followup Supportive Follow-up Encourage supportive clinical discussion when speech patterns suggest distress, fatigue, or slowed expression.  Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation. ",
       "source": "symptom:psychomotor_change",
       "target": "intervention:supportive_followup",
       "related_nodes": [
         "intervention:supportive_followup",
         "symptom:psychomotor_change"
       ],
-      "sources": [
-        "Kroenke et al. (2009)",
-        "Gratch et al. (2014)",
-        "DAIC-WOZ/AVEC PHQ-8 labels"
-      ]
+      "sources": []
     },
     {
       "chunk_id": "symptom:psychomotor_change->screening:phq8_depression_severity",

@@ -6,9 +6,9 @@ import wave
 
 import numpy as np
 from scipy.fftpack import dct
+from src.calibration.label_paths import default_label_files
 
 from src.calibration.calibrate_acoustic_thresholds import (
-    DEFAULT_LABEL_FILES,
     extract_transcript_features,
     load_phq_labels,
     parse_float,
@@ -218,7 +218,9 @@ def main():
     )
 
     args = parser.parse_args()
-    labels = load_phq_labels(args.label_file or DEFAULT_LABEL_FILES, args.phq_cutoff)
+    labels = load_phq_labels(args.label_file or default_label_files(), args.phq_cutoff)
+    if not labels:
+        raise ValueError("No PHQ-8 labels found. Pass --label-file or place label CSVs in data/private/labels/.")
     rows = build_matrix(args.dataset_dir, labels, args.limit)
     write_matrix(resolve_path(args.output), rows)
 

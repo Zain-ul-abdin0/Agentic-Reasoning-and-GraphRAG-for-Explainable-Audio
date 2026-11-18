@@ -6,14 +6,10 @@ import math
 import statistics
 
 from src.graph.knowledge_graph import SEED_GRAPH_PATH, load_graph_document
+from src.calibration.label_paths import default_label_files
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_LABEL_FILES = [
-    BASE_DIR / "documentations" / "train_split_Depression_AVEC2017.csv",
-    BASE_DIR / "documentations" / "dev_split_Depression_AVEC2017.csv",
-    BASE_DIR / "documentations" / "full_test_split.csv",
-]
 
 
 def resolve_path(path):
@@ -537,7 +533,7 @@ def main():
 
     args = parser.parse_args()
     output_dir = resolve_path(args.output_dir)
-    label_files = args.label_file or DEFAULT_LABEL_FILES
+    label_files = args.label_file or default_label_files()
 
     labels = load_phq_labels(label_files, args.phq_cutoff)
     if not labels:

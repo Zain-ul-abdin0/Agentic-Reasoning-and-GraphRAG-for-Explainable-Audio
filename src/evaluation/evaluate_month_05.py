@@ -4,6 +4,7 @@ import csv
 import json
 
 from src.calibration.calibrate_acoustic_thresholds import load_phq_labels
+from src.calibration.label_paths import default_label_files
 from src.evaluation.metrics import binary_classification_metrics, mean
 from src.evaluation.mock_review import build_mock_review_row
 from src.evaluation.vector_baseline import compare_vector_baseline
@@ -14,14 +15,6 @@ from src.rag.reporter_agent import PERSONA_PROMPT_CHAINS
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
-DEFAULT_LABEL_FILES = [
-    BASE_DIR / "documentations" / "train_split_Depression_AVEC2017.csv",
-    BASE_DIR / "documentations" / "dev_split_Depression_AVEC2017.csv",
-    BASE_DIR / "documentations" / "full_test_split.csv",
-    BASE_DIR.parent / "Documentations" / "train_split_Depression_AVEC2017.csv",
-    BASE_DIR.parent / "Documentations" / "dev_split_Depression_AVEC2017.csv",
-    BASE_DIR.parent / "Documentations" / "full_test_split.csv",
-]
 
 
 def participant_id_from_audio(path):
@@ -114,7 +107,7 @@ def build_comparative_markdown(summary, output_files):
         ],
         "Both methods use identical questions, seed metadata, corpus, item budget and relevance labels. Labels are provisional, not independent clinical judgments.",
         "",
-        "## Mock Qualitative Review",
+        "## Automated Checklist (Not Human Review)",
         "",
         f"- Review type: {qualitative['review_type']}",
         f"- Mean psychologist score: {qualitative['psychologist_mean_score']:.3f}",
@@ -139,7 +132,7 @@ def persona_view(report, persona):
 def evaluate(args):
     dataset_dir = resolve_path(args.dataset_dir)
     output_dir = resolve_path(args.output_dir)
-    label_files = [Path(path) for path in args.label_file] if args.label_file else DEFAULT_LABEL_FILES
+    label_files = [Path(path) for path in args.label_file] if args.label_file else default_label_files()
     labels = load_phq_labels(label_files, args.phq_cutoff)
     if not labels:
         raise FileNotFoundError(
@@ -241,7 +234,8 @@ def evaluate(args):
             "retrieval_rows": len(retrieval_rows),
         },
         "mock_qualitative_review": {
-            "review_type": "mock qualitative rubric",
+            "review_type": "automated checklist; not human review or clinical validation",
+            "rubric_version": "release-v2-no-synthetic-context-credit",
             "psychologist_mean_score": mean(psychologist_scores),
             "patient_mean_score": mean(patient_scores),
             "rows": len(review_rows),
@@ -288,7 +282,7 @@ def parse_args():
     )
     parser.add_argument("--limit", type=int, default=None)
     parser.add_argument("--max-duration-seconds", type=float, default=None)
-    parser.add_argument("--simulate-history-weeks", type=int, default=3)
+    parser.add_argument("--simulate-history-weeks", type=int, default=0)
     return parser.parse_args()
 
 

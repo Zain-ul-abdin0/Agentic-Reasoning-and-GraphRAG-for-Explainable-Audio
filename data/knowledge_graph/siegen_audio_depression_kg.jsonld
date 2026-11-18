@@ -1,6 +1,6 @@
 {
   "@context": {
-    "kg": "https://example.org/siegen-audio-depression#",
+    "kg": "https://github.com/Zain-ul-abdin0/Agentic-Reasoning-and-GraphRAG-for-Explainable-Audio#",
     "id": "@id",
     "type": "@type",
     "name": "kg:name",
@@ -22,7 +22,7 @@
   "id": "kg:siegen-audio-depression-knowledge-graph",
   "name": "Simplified Siegen Audio-Depression Knowledge Graph",
   "description": "A lightweight graph connecting calibrated acoustic biomarkers to PHQ-8-aligned depression screening concepts, clinically cautious symptom interpretations, and conservative follow-up suggestions.",
-  "version": "2026-07-month-02",
+  "version": "2026-11-release-annotation-cleanup",
   "nodes": [
     {
       "id": "biomarker:high_jitter",
@@ -31,7 +31,7 @@
       "feature_key": "jitter",
       "threshold": 0.13194497433207755,
       "direction": "high",
-      "clinical_summary": "Elevated cycle-to-cycle pitch perturbation suggests reduced vocal stability and possible physiological arousal."
+      "clinical_summary": "Elevated pitch-period instability across retained voiced frames. This implemented proxy is not conventional cycle-to-cycle jitter and does not establish arousal or a clinical symptom."
     },
     {
       "id": "biomarker:high_pause_ratio",
@@ -461,48 +461,33 @@
       "from": "screening:phq8_depression_severity",
       "to": "risk:depression_screening_risk",
       "relation": "estimates",
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ],
-      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+      "sources": [],
+      "evidence_note": "Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation.",
+      "evidence_type": "design/policy"
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:clinical_review",
       "relation": "recommends",
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ],
-      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+      "sources": [],
+      "evidence_note": "Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation.",
+      "evidence_type": "design/policy"
     },
     {
       "from": "risk:depression_screening_risk",
       "to": "intervention:phq8_followup",
       "relation": "recommends",
-      "sources": [
-        "Tjoa and Guan (2020)",
-        "Ji et al. (2023)",
-        "Lewis et al. (2020)",
-        "Hamilton et al. (2024)"
-      ],
-      "evidence_note": "Clinical AI reports should remain grounded, traceable, and screening-oriented rather than diagnostic."
+      "sources": [],
+      "evidence_note": "Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation.",
+      "evidence_type": "design/policy"
     },
     {
       "from": "symptom:psychomotor_change",
       "to": "intervention:supportive_followup",
       "relation": "may_benefit_from",
-      "sources": [
-        "Kroenke et al. (2009)",
-        "Gratch et al. (2014)",
-        "DAIC-WOZ/AVEC PHQ-8 labels"
-      ],
-      "evidence_note": "PHQ-8 symptom constructs provide the validated screening reference used for calibration and cautious interpretation."
+      "sources": [],
+      "evidence_note": "Manually encoded prototype reporting policy, not a literature-validated clinical inference, probability estimate or personalised treatment recommendation.",
+      "evidence_type": "design/policy"
     }
   ]
 }

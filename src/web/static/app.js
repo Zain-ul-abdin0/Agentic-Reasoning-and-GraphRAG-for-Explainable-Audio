@@ -278,7 +278,7 @@ function renderEvaluation(payload) {
   metricsNode.appendChild(metricCard("Specificity", formatNumber(metrics.specificity)));
   metricsNode.appendChild(metricCard("Balanced Accuracy", formatNumber(metrics.balanced_accuracy)));
   metricsNode.appendChild(metricCard("F1 Score", formatNumber(metrics.f1_score)));
-  metricsNode.appendChild(metricCard("Mock Review", formatNumber(review.psychologist_mean_score), "psychologist mean"));
+  metricsNode.appendChild(metricCard("Automated Checklist", formatNumber(review.psychologist_mean_score), "not a human review"));
   renderSimpleTable(document.getElementById("legacyRetrievalMetrics"), [
     { diagnostic: "Graph path structural consistency", value: formatNumber(retrieval.graph_rag_mean_precision) },
     { diagnostic: `TF-IDF incident-edge precision@${retrieval.top_k || 3}`, value: formatNumber(retrieval.vector_mean_precision_at_k) },

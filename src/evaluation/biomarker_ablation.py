@@ -4,6 +4,7 @@ import csv
 import json
 
 from src.evaluation.metrics import binary_classification_metrics
+from src.rag.evidence_scoring import AGGREGATE_MATCH_THRESHOLD
 
 
 BASE_DIR = Path(__file__).resolve().parents[2]
@@ -195,7 +196,7 @@ def write_markdown(path, summary):
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
-def run_ablation(participant_results, output_dir, deployed_threshold=6):
+def run_ablation(participant_results, output_dir, deployed_threshold=AGGREGATE_MATCH_THRESHOLD):
     rows = load_participant_rows(participant_results)
     marker_names = all_biomarkers(rows)
     truth = labels(rows)
@@ -264,7 +265,7 @@ def parse_args():
     parser = argparse.ArgumentParser(description="Estimate how biomarkers affect PHQ-8 screening performance.")
     parser.add_argument("--participant-results", default=str(DEFAULT_PARTICIPANT_RESULTS))
     parser.add_argument("--output-dir", default=str(DEFAULT_OUTPUT_DIR))
-    parser.add_argument("--deployed-threshold", type=int, default=6)
+    parser.add_argument("--deployed-threshold", type=int, default=AGGREGATE_MATCH_THRESHOLD)
     return parser.parse_args()
 
 

@@ -233,7 +233,7 @@ def run_evaluation(
             top_k=top_k,
             limit=limit,
             max_duration_seconds=max_duration_seconds,
-            simulate_history_weeks=3,
+            simulate_history_weeks=0,
             label_file=None,
         )
         result = run_month_05_evaluation(args)

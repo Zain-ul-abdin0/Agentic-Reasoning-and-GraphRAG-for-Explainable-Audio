@@ -12,7 +12,7 @@ def score_report_quality(report, persona):
     matched_count = aggregate.get("matched_biomarker_count") or 0
     available_count = aggregate.get("available_biomarker_count") or 0
     path_count = len(paths)
-    supported = faithfulness.get("supported", True)
+    supported = faithfulness.get("checked") is True and faithfulness.get("supported") is True
 
     source_backed_paths = 0
     for path in paths:
@@ -25,7 +25,8 @@ def score_report_quality(report, persona):
     source_support = 1 + min(4, source_backed_paths // 4)
     caution = 5 if supported else 3
     persona_fit = 5 if persona in {"psychologist", "patient"} and prompt_chain else 3
-    context_use = 5 if recursive_context.get("enabled") else 3
+    real_context = recursive_context.get("enabled") and not recursive_context.get("simulated")
+    context_use = 5 if real_context else 3
     completeness = 1 + min(4, available_count // 3)
 
     if persona == "patient":
@@ -56,7 +57,8 @@ def build_mock_review_row(participant_id, report, persona):
         "screen_positive": aggregate.get("screen_positive"),
         "evidence_level": aggregate.get("evidence_level"),
         **scores,
-        "review_type": "mock qualitative rubric",
-        "note": "Deterministic proxy review for Month 5; not a substitute for clinician or participant user study.",
+        "review_type": "automated checklist; not human review",
+        "rubric_version": "release-v2-no-synthetic-context-credit",
+        "note": "Configuration and count-based checks, not measured comprehension, clinical quality or clinician/patient ratings.",
     }
 

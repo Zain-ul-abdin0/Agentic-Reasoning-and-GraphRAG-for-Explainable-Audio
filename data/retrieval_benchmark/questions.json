@@ -1,7 +1,7 @@
 {
-  "name": "Seed-conditioned graph explanation retrieval pilot v1",
+  "name": "Seed-conditioned graph explanation retrieval pilot v2 (release annotations)",
   "annotation_status": "Provisional AI-assisted draft relevance labels; not independently reviewed or held out",
-  "corpus_sha256": "758ca15c6acc7f7dae3670540e6509c7326d23659be34ceba11f57b199613dac",
+  "corpus_sha256": "9e5fe6f2d99396f71abaa8b2e04fb114d9860a24b169b4c1dfcbf6e05a6229f1",
   "limitations": [
     "This is a pilot on graph-derived text chunks, not original paper passages or clinical truth.",
     "Questions and relevance labels were authored during development; independent blinded review is still required.",
@@ -13,94 +13,192 @@
   ],
   "questions": [
     {
-      "id": "q01", "question": "Which stored relationships connect high pause ratio to the screening risk and clinical review?",
-      "seed_nodes": ["biomarker:high_pause_ratio"],
-      "relevant_chunk_ids": ["biomarker:high_pause_ratio->concept:speech_disruption", "concept:speech_disruption->risk:depression_screening_risk", "risk:depression_screening_risk->intervention:clinical_review"],
+      "id": "q01",
+      "question": "Which stored relationships connect high pause ratio to the screening risk and clinical review?",
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->risk:depression_screening_risk",
+        "risk:depression_screening_risk->intervention:clinical_review"
+      ],
       "rationale": "The question requests the pause-to-review branch, not the questionnaire or concentration branch. Relevance is to the stored explanation, not causality."
     },
     {
-      "id": "q02", "question": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content?",
-      "seed_nodes": ["biomarker:high_pause_ratio"],
-      "relevant_chunk_ids": ["biomarker:high_pause_ratio->concept:speech_disruption", "concept:speech_disruption->symptom:concentration_difficulty", "symptom:concentration_difficulty->screening:phq8_depression_severity"],
+      "id": "q02",
+      "question": "How does the stored pause-ratio interpretation connect to difficulty concentrating and questionnaire content?",
+      "seed_nodes": [
+        "biomarker:high_pause_ratio"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "concept:speech_disruption->symptom:concentration_difficulty",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
       "rationale": "The concentration branch and PHQ-8 item membership answer this question; risk and follow-up edges alone do not."
     },
     {
-      "id": "q03", "question": "What two descriptive concepts are connected directly to low speech rate?",
-      "seed_nodes": ["biomarker:low_speech_rate"],
-      "relevant_chunk_ids": ["biomarker:low_speech_rate->concept:speech_disruption", "biomarker:low_speech_rate->concept:reduced_expressivity"],
+      "id": "q03",
+      "question": "What two descriptive concepts are connected directly to low speech rate?",
+      "seed_nodes": [
+        "biomarker:low_speech_rate"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:low_speech_rate->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:reduced_expressivity"
+      ],
       "rationale": "Only the two direct conceptual interpretations are requested, not downstream symptoms or recommendations."
     },
     {
-      "id": "q04", "question": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content?",
-      "seed_nodes": ["biomarker:low_energy"],
-      "relevant_chunk_ids": ["biomarker:low_energy->concept:reduced_expressivity", "concept:reduced_expressivity->symptom:fatigue", "symptom:fatigue->screening:phq8_depression_severity"],
+      "id": "q04",
+      "question": "Which stored links relate low vocal energy to fatigue and PHQ-8 symptom content?",
+      "seed_nodes": [
+        "biomarker:low_energy"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:low_energy->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue",
+        "symptom:fatigue->screening:phq8_depression_severity"
+      ],
       "rationale": "These connect the measured descriptor to the fatigue interpretation and questionnaire node. They do not establish subjective fatigue from RMS."
     },
     {
-      "id": "q05", "question": "What stored interpretation links high jitter to vocal instability and psychomotor change?",
-      "seed_nodes": ["biomarker:high_jitter"],
-      "relevant_chunk_ids": ["biomarker:high_jitter->concept:vocal_instability", "concept:vocal_instability->symptom:psychomotor_change"],
+      "id": "q05",
+      "question": "What stored interpretation links high jitter to vocal instability and psychomotor change?",
+      "seed_nodes": [
+        "biomarker:high_jitter"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_jitter->concept:vocal_instability",
+        "concept:vocal_instability->symptom:psychomotor_change"
+      ],
       "rationale": "The two interpretive links address the question; they are not validation of the frame-level jitter proxy."
     },
     {
-      "id": "q06", "question": "Which stored branch connects high pitch variability to the screening risk?",
-      "seed_nodes": ["biomarker:high_pitch_variability"],
-      "relevant_chunk_ids": ["biomarker:high_pitch_variability->concept:vocal_instability", "concept:vocal_instability->risk:depression_screening_risk"],
+      "id": "q06",
+      "question": "Which stored branch connects high pitch variability to the screening risk?",
+      "seed_nodes": [
+        "biomarker:high_pitch_variability"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_pitch_variability->concept:vocal_instability",
+        "concept:vocal_instability->risk:depression_screening_risk"
+      ],
       "rationale": "Requests the risk branch rather than the psychomotor or follow-up branches."
     },
     {
-      "id": "q07", "question": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph?",
-      "seed_nodes": ["biomarker:high_pitch_mean"],
-      "relevant_chunk_ids": ["biomarker:high_pitch_mean->symptom:psychomotor_change", "symptom:psychomotor_change->intervention:supportive_followup"],
+      "id": "q07",
+      "question": "How is high mean pitch connected to psychomotor change and supportive follow-up in this graph?",
+      "seed_nodes": [
+        "biomarker:high_pitch_mean"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_pitch_mean->symptom:psychomotor_change",
+        "symptom:psychomotor_change->intervention:supportive_followup"
+      ],
       "rationale": "The requested follow-up is supportive follow-up, not the other intervention nodes."
     },
     {
-      "id": "q08", "question": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue?",
-      "seed_nodes": ["biomarker:low_pitch_mean"],
-      "relevant_chunk_ids": ["biomarker:low_pitch_mean->concept:reduced_expressivity", "concept:reduced_expressivity->symptom:fatigue"],
+      "id": "q08",
+      "question": "Which stored interpretations connect low mean pitch to reduced expressivity and fatigue?",
+      "seed_nodes": [
+        "biomarker:low_pitch_mean"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:low_pitch_mean->concept:reduced_expressivity",
+        "concept:reduced_expressivity->symptom:fatigue"
+      ],
       "rationale": "These two relations provide the requested conceptual chain, without claiming clinical confirmation."
     },
     {
-      "id": "q09", "question": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood?",
-      "seed_nodes": ["biomarker:high_mfcc_2_std"],
-      "relevant_chunk_ids": ["biomarker:high_mfcc_2_std->concept:spectral_shift", "concept:spectral_shift->symptom:depressed_mood"],
+      "id": "q09",
+      "question": "What contextual interpretation connects high MFCC 2 variability with spectral shift and depressed mood?",
+      "seed_nodes": [
+        "biomarker:high_mfcc_2_std"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_mfcc_2_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
       "rationale": "The spectral descriptor and requires_context_for relation answer the local interpretation question."
     },
     {
-      "id": "q10", "question": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire?",
-      "seed_nodes": ["biomarker:low_mfcc_3_mean"],
-      "relevant_chunk_ids": ["biomarker:low_mfcc_3_mean->concept:spectral_shift", "concept:spectral_shift->symptom:depressed_mood", "symptom:depressed_mood->screening:phq8_depression_severity"],
+      "id": "q10",
+      "question": "Which links connect low MFCC 3 mean through spectral shift and depressed mood to the questionnaire?",
+      "seed_nodes": [
+        "biomarker:low_mfcc_3_mean"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:low_mfcc_3_mean->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood",
+        "symptom:depressed_mood->screening:phq8_depression_severity"
+      ],
       "rationale": "All three relations are needed for the requested stored path to questionnaire content."
     },
     {
-      "id": "q11", "question": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified?",
-      "seed_nodes": ["biomarker:high_mfcc_4_std"],
-      "relevant_chunk_ids": ["biomarker:high_mfcc_4_std->concept:spectral_shift", "concept:spectral_shift->symptom:depressed_mood"],
+      "id": "q11",
+      "question": "Which interpretation links high MFCC 4 variability to depressed mood, and how is that relationship qualified?",
+      "seed_nodes": [
+        "biomarker:high_mfcc_4_std"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_mfcc_4_std->concept:spectral_shift",
+        "concept:spectral_shift->symptom:depressed_mood"
+      ],
       "rationale": "The requires_context_for relation supplies the qualification; questionnaire membership alone does not."
     },
     {
-      "id": "q12", "question": "Which follow-up actions are linked directly to the depression screening risk node?",
-      "seed_nodes": ["risk:depression_screening_risk"],
-      "relevant_chunk_ids": ["risk:depression_screening_risk->intervention:clinical_review", "risk:depression_screening_risk->intervention:phq8_followup"],
+      "id": "q12",
+      "question": "Which follow-up actions are linked directly to the depression screening risk node?",
+      "seed_nodes": [
+        "risk:depression_screening_risk"
+      ],
+      "relevant_chunk_ids": [
+        "risk:depression_screening_risk->intervention:clinical_review",
+        "risk:depression_screening_risk->intervention:phq8_followup"
+      ],
       "rationale": "Both outgoing recommendation edges are relevant. These are project reporting policies, not treatment prescriptions."
     },
     {
-      "id": "q13", "question": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content?",
-      "seed_nodes": ["screening:phq8_depression_severity"],
-      "relevant_chunk_ids": ["symptom:depressed_mood->screening:phq8_depression_severity", "symptom:psychomotor_change->screening:phq8_depression_severity", "symptom:fatigue->screening:phq8_depression_severity", "symptom:concentration_difficulty->screening:phq8_depression_severity"],
+      "id": "q13",
+      "question": "Which symptoms in this graph are recorded as part of PHQ-8 questionnaire content?",
+      "seed_nodes": [
+        "screening:phq8_depression_severity"
+      ],
+      "relevant_chunk_ids": [
+        "symptom:depressed_mood->screening:phq8_depression_severity",
+        "symptom:psychomotor_change->screening:phq8_depression_severity",
+        "symptom:fatigue->screening:phq8_depression_severity",
+        "symptom:concentration_difficulty->screening:phq8_depression_severity"
+      ],
       "rationale": "All four incoming part_of relations are relevant. This reverse-direction query deliberately tests a limitation of forward-path retrieval."
     },
     {
-      "id": "q14", "question": "Which acoustic rules share the speech disruption interpretation?",
-      "seed_nodes": ["concept:speech_disruption"],
-      "relevant_chunk_ids": ["biomarker:high_pause_ratio->concept:speech_disruption", "biomarker:low_speech_rate->concept:speech_disruption"],
+      "id": "q14",
+      "question": "Which acoustic rules share the speech disruption interpretation?",
+      "seed_nodes": [
+        "concept:speech_disruption"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:high_pause_ratio->concept:speech_disruption",
+        "biomarker:low_speech_rate->concept:speech_disruption"
+      ],
       "rationale": "The two incoming biomarker edges answer the question; downstream symptoms do not."
     },
     {
-      "id": "q15", "question": "How do low speech rate and low vocal energy share the reduced expressivity interpretation?",
-      "seed_nodes": ["biomarker:low_speech_rate", "biomarker:low_energy"],
-      "relevant_chunk_ids": ["biomarker:low_speech_rate->concept:reduced_expressivity", "biomarker:low_energy->concept:reduced_expressivity"],
+      "id": "q15",
+      "question": "How do low speech rate and low vocal energy share the reduced expressivity interpretation?",
+      "seed_nodes": [
+        "biomarker:low_speech_rate",
+        "biomarker:low_energy"
+      ],
+      "relevant_chunk_ids": [
+        "biomarker:low_speech_rate->concept:reduced_expressivity",
+        "biomarker:low_energy->concept:reduced_expressivity"
+      ],
       "rationale": "Both incoming reduced-expressivity edges are required; the separate speech-disruption branch is not requested."
     }
-  ]
+  ],
+  "revision_note": "Release graph descriptions corrected. Edge IDs, questions and provisional relevance sets retained; no independent relevance review performed. Historical v1 is archived separately."
 }

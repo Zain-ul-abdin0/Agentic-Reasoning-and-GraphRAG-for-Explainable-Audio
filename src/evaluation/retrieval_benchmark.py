@@ -26,6 +26,17 @@ def fingerprint(value):
     return hashlib.sha256(payload).hexdigest()
 
 
+def portable_graph_path(graph):
+    source = graph.graph.get("source_path")
+    if not source:
+        return None
+    path = Path(source)
+    try:
+        return path.resolve().relative_to(BASE_DIR).as_posix()
+    except ValueError:
+        return path.name
+
+
 def serializable_corpus(graph):
     return sorted([
         {**item, "related_nodes": sorted(item["related_nodes"])}
@@ -169,7 +180,7 @@ def evaluate_retrieval(benchmark_path=DEFAULT_BENCHMARK, top_k=3, graph=None):
         "limitations": benchmark["limitations"],
         "provenance": {
             "corpus_sha256": fingerprint(corpus), "benchmark_sha256": fingerprint(benchmark),
-            "graph_path": graph.graph.get("source_path"),
+            "graph_path": portable_graph_path(graph),
         },
         "methods": scores, "paired_differences": differences,
         "rows": rows, "benchmark_snapshot": benchmark, "corpus_snapshot": corpus,

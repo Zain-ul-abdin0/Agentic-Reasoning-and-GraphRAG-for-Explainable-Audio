@@ -1,0 +1,30 @@
+{
+  "status": "historical development-sample results; not rerun during release cleanup",
+  "participants_evaluated": 113,
+  "reference_label": "PHQ-8 >= 10",
+  "classification_metrics": {
+    "n": 113,
+    "true_positive": 52,
+    "true_negative": 38,
+    "false_positive": 19,
+    "false_negative": 4,
+    "accuracy": 0.7964601769911505,
+    "sensitivity": 0.9285714285714286,
+    "specificity": 0.6666666666666666,
+    "precision": 0.7323943661971831,
+    "f1_score": 0.8188976377952756,
+    "balanced_accuracy": 0.7976190476190477
+  },
+  "limitations": [
+    "Calibration and evaluation participants overlap.",
+    "Feature removal and cutoff selection used development data.",
+    "These are not independent test estimates."
+  ],
+  "historical_automated_checklist": {
+    "review_type": "mock qualitative rubric",
+    "psychologist_mean_score": 4.331858407079646,
+    "patient_mean_score": 4.331858407079646,
+    "rows": 226
+  },
+  "checklist_note": "Historical v1 checklist, not human ratings. Release v2 removes synthetic-context credit and assumes no passed faithfulness check when missing. Scores from these versions are not directly comparable."
+}

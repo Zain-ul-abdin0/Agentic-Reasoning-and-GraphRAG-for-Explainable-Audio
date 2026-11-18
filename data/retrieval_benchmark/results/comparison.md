@@ -6,10 +6,10 @@ Provisional AI-assisted draft relevance labels; not independently reviewed or he
 
 | Metric | Graph | TF-IDF |
 |---|---:|---:|
-| precision_at_k | 0.5556 | 0.6000 |
-| recall_at_k | 0.7333 | 0.7389 |
-| mrr_at_k | 0.8667 | 0.8889 |
-| ndcg_at_k | 0.7587 | 0.7624 |
+| precision_at_k | 0.5556 | 0.6222 |
+| recall_at_k | 0.7333 | 0.7722 |
+| mrr_at_k | 0.8667 | 0.9222 |
+| ndcg_at_k | 0.7587 | 0.7935 |
 
 ## Limits
 - This is a pilot on graph-derived text chunks, not original paper passages or clinical truth.
